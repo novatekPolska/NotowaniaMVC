@@ -9,12 +9,12 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         public QuotationsMap()
         {
             Id(c => c.Id);
-            Map(c => c.Guid);
-            Map(c => c.Fuel);
-            Map(c => c.Code);
-            Map(c => c.Region);
-            Map(c => c.PriceList);
-            Map(c => c.Company);
+            Map(c => c.Guid); 
+            References(c => c.Fuel);
+            Map(c => c.Code); 
+            References(c => c.Region); 
+            References(c => c.PriceList); 
+            References(c => c.Company);
             Map(c => c.Created);
             Map(c => c.Modified);
             Map(c => c.Creator);

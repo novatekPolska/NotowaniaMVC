@@ -8,13 +8,13 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Cenników na tabelę bazodanową
         public PriceListsMap()
         {
-            Id(c => c.Id);
+            Id(c => c.Id); 
             Map(c => c.Guid); 
             Map(c => c.Code);
             Map(c => c.PriceMin);
             Map(c => c.PriceMax);
-            Map(c => c.Unit); 
-            Map(c => c.Currency);
+            References(c => c.Unit); 
+            Map(c => c.Currency); 
             Map(c => c.DateTo);
             Map(c => c.DateOfQuotation); 
             Map(c => c.Created);

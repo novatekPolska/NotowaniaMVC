@@ -1,10 +1,12 @@
-﻿using System; 
+﻿using NHibernate.Mapping.Attributes;
+using System; 
 
 namespace NotowaniaMVC.Infrastructure.Database.Entities
 {
     //Encja jednostek w jakich będzie sprzedawane paliwo/dla jakiej będzie podawana cena - litry, kilogramy etc
     public class XXX_R55_Units
     {
+        [Key]
         public virtual int Id { get; set;  }
         public virtual Guid Guid { get; set; }
         public virtual string Code { get; set; }

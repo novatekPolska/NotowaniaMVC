@@ -26,7 +26,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Database.Create
         }
          
         [Test]
-        public void TestMethod1()
+        public void Create_database()
         {
             CreateDatabase create = new CreateDatabase();
             create.CreateDB();
