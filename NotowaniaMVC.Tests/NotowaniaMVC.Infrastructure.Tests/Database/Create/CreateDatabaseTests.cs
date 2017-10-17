@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
+﻿using NUnit.Framework; 
 using NotowaniaMVC.Infrastructure.Database.Create;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Database.Create
@@ -26,7 +25,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Database.Create
         }
          
         [Test]
-        public void Create_database()
+        public void Create_database() // na razie dodawanie tabel za pomocą testu. Później mozemy zrobic jakis migrator
         {
             CreateDatabase create = new CreateDatabase();
             create.CreateDB();

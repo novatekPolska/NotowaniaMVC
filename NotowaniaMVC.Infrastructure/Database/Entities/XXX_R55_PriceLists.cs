@@ -1,4 +1,5 @@
 ﻿using NHibernate.Mapping.Attributes;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
 using System; 
 
 namespace NotowaniaMVC.Infrastructure.Database.Entities
@@ -20,6 +21,6 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual int Creator { get; set; }
 
         public virtual XXX_R55_Units Unit { get; set; } //jednostka
-        public virtual int Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
+        public virtual Waluta Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
     }
 }

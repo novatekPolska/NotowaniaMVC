@@ -397,6 +397,8 @@
     <Compile Include="Database\Entities\XXX_R55_Quotations.cs" />
     <Compile Include="Database\Entities\XXX_R55_Regions.cs" />
     <Compile Include="Database\Entities\XXX_R55_Units.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\WalutaMap.cs" />
+    <Compile Include="Database\ExistingEntities\Waluta.cs" />
     <Compile Include="Database\Mappings\CompaniesMap.cs" />
     <Compile Include="Database\Mappings\DocumentsMap.cs" />
     <Compile Include="Database\Mappings\FuelsMap.cs" />

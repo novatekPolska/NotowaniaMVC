@@ -13,8 +13,8 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
             Map(c => c.Code);
             Map(c => c.PriceMin);
             Map(c => c.PriceMax);
-            References(c => c.Unit); 
-            Map(c => c.Currency); 
+            References(c => c.Unit);
+            References(c => c.Currency); 
             Map(c => c.DateTo);
             Map(c => c.DateOfQuotation); 
             Map(c => c.Created);
