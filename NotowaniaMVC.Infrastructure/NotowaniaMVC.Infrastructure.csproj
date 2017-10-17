@@ -391,6 +391,7 @@
     <Compile Include="Database\DBConfiguration\DatabaseConfiguration.cs" />
     <Compile Include="Database\Entities\XXX_R55_Companies.cs" />
     <Compile Include="Database\Entities\XXX_R55_Contactors.cs" />
+    <Compile Include="Database\Entities\XXX_R55_Deliveries.cs" />
     <Compile Include="Database\Entities\XXX_R55_Documents.cs" />
     <Compile Include="Database\Entities\XXX_R55_Fuels.cs" />
     <Compile Include="Database\Entities\XXX_R55_PriceLists.cs" />

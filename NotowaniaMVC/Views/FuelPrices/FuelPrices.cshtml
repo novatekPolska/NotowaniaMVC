@@ -6,23 +6,29 @@
     @{
         ViewData["Title"] = "Notowania";
     }
-
-
+ 
 
     @(Html.Grid(Model)
-        .Columns(columns =>
-        {
-            columns.Add(model => model.Id).Titled("Id");
-            columns.Add(model => model.FormOfCooperationName).Titled("");
-            columns.Add(model => model.DeliveryCombinedValue).Titled("Dostawa [litry]");
-            columns.Add(model => model.Rebate).Titled("Rabat zl/l");
-            columns.Add(model => model.FuelPriceMaxNetto).Titled("Cena netto max");
-            columns.Add(model => model.FuelPriceMinNetto).Titled("Cena netto min");
-            columns.Add(model => model.FuelPriceMaxBrutto).Titled("Cena brutto max");
-            columns.Add(model => model.FuelPriceMinBrutto).Titled("Cena brutto min");
-            columns.Add(model => model.UGM).Titled("UGM");  
-        })
+                        .Columns(columns =>
+                        {
+                        columns.Add(model => model.Id, true).Titled("Id");
+                        columns.Add(model => model.FormOfCooperationName).Titled("");
+                        columns.Add(model => model.DeliveryCombinedValue).Titled("Dostawa [litry]");
+                        columns.Add(model => model.Rebate).Titled("Rabat zl/l");
+                        columns.Add(model => model.FuelPriceMaxNetto).Titled("Cena netto max");
+                        columns.Add(model => model.FuelPriceMinNetto).Titled("Cena netto min");
+                        columns.Add(model => model.FuelPriceMaxBrutto).Titled("Cena brutto max");
+                        columns.Add(model => model.FuelPriceMinBrutto).Titled("Cena brutto min");
+                        columns.Add(model => model.UGM).Titled("UGM");
+                        //     columns.Add(model => model.UGM).Encoded(false).Sanitized(false).SetWidth(30)
+                        //.RenderValueAs(o => Html.TextBoxFor< >());
+                        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => @<button type="submit">Usuń</button>);
+
+                        }).Selectable(true).WithPaging(5).Sortable().Named("Notowania").Filterable(true).EmptyText("Brak danych")
     )
+ 
+
+ 
 
      
  
