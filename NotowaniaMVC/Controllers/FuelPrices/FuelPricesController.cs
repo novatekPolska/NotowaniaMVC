@@ -17,8 +17,7 @@ namespace NotowaniaMVC.Controllers.FuelPrices
         {
             _mediator = mediator;
         }
-
-        // GET: FuelPrices
+         
         public ActionResult FuelPrices()
         {
             List<FuelPricesViewModel> fuels = new List<FuelPricesViewModel>();

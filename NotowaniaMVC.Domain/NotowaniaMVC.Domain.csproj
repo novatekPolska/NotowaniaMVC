@@ -385,6 +385,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainEntities\Company.cs" />
+    <Compile Include="DomainEntities\Contractor.cs" />
+    <Compile Include="DomainEntities\Delivery.cs" />
+    <Compile Include="DomainEntities\Document.cs" />
+    <Compile Include="DomainEntities\Fuel.cs" />
+    <Compile Include="DomainEntities\PriceList.cs" />
+    <Compile Include="DomainEntities\Quotation.cs" />
+    <Compile Include="DomainEntities\Region.cs" />
+    <Compile Include="DomainEntities\Unit.cs" />
+    <Compile Include="DomainEntities\Waluta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +402,8 @@
     <Folder Include="FuelPrices\Models\" />
     <Folder Include="FuelPrices\Services\" />
     <Folder Include="FuelPrices\ValueObjects\" />
+    <Folder Include="ObjectRelationalMappings\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

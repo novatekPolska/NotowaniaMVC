@@ -12,5 +12,9 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual Guid Guid { get; set; }
         public virtual decimal MinValue { get; set; }
         public virtual decimal MaxValue { get; set; }
+        public virtual DateTime Created { get; set; }
+        public virtual DateTime Modified { get; set; }
+        public virtual int Modifier { get; set; }
+        public virtual int Creator { get; set; }
     }
 }
