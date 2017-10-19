@@ -402,14 +402,16 @@
   <ItemGroup>
     <Compile Include="FuelPrices\Handlers\CommandHandlers\FuelPricesCommandHandler.cs" />
     <Compile Include="FuelPrices\Handlers\CommandHandlers\Messages\NewQuotationCommand.cs" />
+    <Compile Include="FuelPrices\Interfaces\IFuelPriceService.cs" />
+    <Compile Include="FuelPrices\Interfaces\IQuotationService.cs" />
+    <Compile Include="FuelPrices\Services\FuelPriceService.cs" />
+    <Compile Include="FuelPrices\Services\QuotationService.cs" />
     <Compile Include="FuelPrices\ViewModels\FuelPricesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FuelPrices\Handlers\QueryHandlers\Messages\" />
-    <Folder Include="FuelPrices\Interfaces\" />
     <Folder Include="FuelPrices\Mappings\" />
-    <Folder Include="FuelPrices\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

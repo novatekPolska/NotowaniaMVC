@@ -1,38 +1,36 @@
 ﻿using MediatR;
-using NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers.Messages;
-using NotowaniaMVC.Domain.DomainEntities;
+using NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers.Messages; 
 using NotowaniaMVC.Application.FuelPrices.ViewModels;
+using NotowaniaMVC.Application.FuelPrices.Interfaces;
 
 namespace NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers
 {
     public class FuelPricesCommandHandler : IRequestHandler<NewQuotationCommand>
     {
+        private readonly IFuelPriceService _fuelPriceService;
+        private readonly IQuotationService _quotationService;
+
+        public FuelPricesCommandHandler(IFuelPriceService fuelPriceService, IQuotationService quotationService)
+        {
+            _fuelPriceService = fuelPriceService;
+            _quotationService = quotationService;
+        }
+
         public void Handle(NewQuotationCommand message)
         {
             foreach (var element in message.fuelPricesViewModels)
             {
-                var quotation = AddNewQuotation(element);
-                var priceList = AddNewPriceList(element);
-                quotation.SetPriceList(priceList.GetId());
-                priceList.Save();
-                quotation.Save();
+                SaveFuelPriceData(element);
             }
         }
          
-        private PriceList AddNewPriceList(FuelPricesViewModel fuelPriceViewModel) //todo wyniesc do osobnego serwisu
+        private void SaveFuelPriceData(FuelPricesViewModel fuelPriceDataToSave)
         {
-            var priceList = PriceList.Factory.Create("", fuelPriceViewModel.FuelPriceMinNetto, fuelPriceViewModel.FuelPriceMaxNetto, fuelPriceViewModel.FuelPriceMinBrutto, fuelPriceViewModel.FuelPriceMaxBrutto);
-            priceList.Validate();
-            priceList.Add();
-            return priceList;
-        }
-
-        private Quotation AddNewQuotation(FuelPricesViewModel fuelPricesViewModel) //todo wyniesc do osobnego serwisu
-        {
-            var quotation = Quotation.Factory.Create("");
-            quotation.Validate();
-            quotation.Add();
-            return quotation;
-        }
+            var quotation = _quotationService.AddNewQuotation(fuelPriceDataToSave);
+            var priceList = _fuelPriceService.AddNewPriceList(fuelPriceDataToSave);
+            quotation.SetPriceListId(priceList.GetId());
+            priceList.Save();
+            quotation.Save();
+        } 
     }
 }

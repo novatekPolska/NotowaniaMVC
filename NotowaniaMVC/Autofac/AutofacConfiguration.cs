@@ -3,12 +3,14 @@ using Autofac.Features.Variance;
 using MediatR;
 using System.Collections.Generic;
 using System.Reflection;
+using NotowaniaMVC.Application.FuelPrices.Interfaces;
+using NotowaniaMVC.Application.FuelPrices.Services;
 
 namespace NotowaniaMVC.Autofac
 {
     public static class AutofacConfiguration
     {
-        static IContainer _container;
+        static IContainer container;
 
         public static IContainer RegisterAndResolve()
         {
@@ -19,10 +21,10 @@ namespace NotowaniaMVC.Autofac
                 .AsSelf()
                 .AsImplementedInterfaces();
 
-            builder
-              .RegisterType<Mediator>()
-              .As<IMediator>()
-              .InstancePerLifetimeScope();
+            builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
+            builder.RegisterType<QuotationService>().As<IQuotationService>().InstancePerLifetimeScope();
+            builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
+
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(MediatR.IMediator).Assembly).AsSelf().AsImplementedInterfaces();
 
@@ -48,7 +50,7 @@ namespace NotowaniaMVC.Autofac
 
         public static void Shutdown()
         {
-            _container.Dispose();
+            container.Dispose();
         } 
     }
 }

@@ -2,14 +2,17 @@
 
 namespace NotowaniaMVC.Domain.DomainEntities
 {
-        // Wzorzec fabryki dla przykładu. Enkapsulujemy objekt domenowy i wszelkie jego własnosci 
-        // zmieniamy za pomocą jego metod. Obiekt tworzymy nie przez new, tylko przez fabryke. 
-        // Dzieki temu nikt/nic nie zepsuje nam obiektu/stanu obiektu
-        // umiescimy tutaj również walidacje za pomocą fluent validatora, żeby uniknąć "else-if patternu" lub "switch-case patternu"
-        // a także poprawić czytelnosc i strukture projektu
-        // Dodajemy tutaj klase factory która zwraca nam obiekt naszej encji domenowej - to własnie jest wzorzec fabryki
-        // Przykłady użycia  Quotation quotation = new Quotation(...parametry...) = ŹLE! POWSZECHNIE STOSOWANY ANTYWZORZEC "bo w szkole/na studiach tak uczyli"
-        // var Quotation = Quotation.Factory.Create(.... paremetry ...) = DOBRZE! Użyty wzorzec projektowy fabryki odporny na błędy użytkownika, zawierający czytelną walidacje obiektu, łatwomodyfikowalną i łatworozszerzalną
+    // Wzorzec fabryki dla przykładu. Enkapsulujemy objekt domenowy i wszelkie jego własnosci 
+    // zmieniamy za pomocą jego metod. Obiekt tworzymy nie przez new, tylko przez fabryke. 
+    // Dzieki temu nikt/nic nie zepsuje nam obiektu/stanu obiektu
+    // umiescimy tutaj również walidacje za pomocą fluent validatora, 
+    // żeby uniknąć "else-if patternu" lub "switch-case patternu"
+    // a także poprawić czytelnosc i strukture projektu
+    // Dodajemy tutaj klase factory która zwraca nam obiekt naszej encji domenowej - to własnie jest wzorzec fabryki
+    // Przykłady użycia  Quotation quotation = new Quotation(...parametry...) = ŹLE! 
+    // POWSZECHNIE STOSOWANY ANTYWZORZEC "bo w szkole/na studiach tak uczyli"
+    // var Quotation = Quotation.Factory.Create(.... paremetry ...) = DOBRZE! Użyty wzorzec projektowy fabryki odporny na 
+    // błędy użytkownika, zawierający czytelną walidacje obiektu, łatwomodyfikowalną i łatworozszerzalną
     public class Quotation 
     {
         private int Id { get; set; }
@@ -57,7 +60,7 @@ namespace NotowaniaMVC.Domain.DomainEntities
         { 
         }
 
-        public void SetPriceList(int priceListId)
+        public void SetPriceListId(int priceListId)
         {
             PriceList = priceListId;
         }
