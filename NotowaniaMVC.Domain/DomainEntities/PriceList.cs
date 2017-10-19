@@ -7,8 +7,10 @@ namespace NotowaniaMVC.Domain.DomainEntities
         private int Id { get; set; }
         private Guid Guid { get; set; }
         private String Code { get; set; }
-        private decimal PriceMin { get; set; }
-        private decimal PriceMax { get; set; }
+        private decimal PriceNettoMin { get; set; }
+        private decimal PriceNettoMax { get; set; }
+        private decimal PriceBruttoMin { get; set; }
+        private decimal PriceBruttoMax { get; set; }
         private DateTime DateTo { get; set; }
         private DateTime DateOfQuotation { get; set; }
         private DateTime Created { get; set; }
@@ -18,34 +20,59 @@ namespace NotowaniaMVC.Domain.DomainEntities
         private int Unit { get; set; } //jednostka
         private int Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
 
-        private PriceList(string code, decimal priceMin, decimal priceMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
+        private PriceList(string code, decimal priceNettoMin, decimal priceNettoMax, decimal priceBruttoMin, decimal priceBruttoMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
         {
             Code = code;
-            PriceMin = priceMin;
-            PriceMax = priceMax;
+            PriceNettoMin = priceNettoMin;
+            PriceNettoMax = priceNettoMax;
+            PriceBruttoMin = priceBruttoMin;
+            PriceBruttoMax = priceBruttoMax;
             DateTo = dateTo;
             DateOfQuotation = dateOfQuotation;
             Unit = unit;
             Currency = currency;
         }
 
-        private PriceList(string code, decimal priceMin, decimal priceMax)
+        private PriceList(string code, decimal priceNettoMin, decimal priceNettoMax, decimal priceBruttoMin, decimal priceBruttoMax)
         {
             Code = code;
-            PriceMin = priceMin;
-            PriceMax = priceMax; 
+            PriceNettoMin = priceNettoMin;
+            PriceNettoMax = priceNettoMax;
+            PriceBruttoMin = priceBruttoMin;
+            PriceBruttoMax = priceBruttoMax;
+        }
+
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void Validate()
+        { 
+        }
+
+        public void Add()
+        { 
+        }
+
+        public void Update()
+        { 
+        }
+
+        public void Save()
+        {
         }
 
         public static class Factory
         {
-            public static PriceList Create(string code, decimal priceMin, decimal priceMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
+            public static PriceList Create(string code, decimal priceNettoMin, decimal priceNettoMax, decimal priceBruttoMin, decimal priceBruttoMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
             {
-                return new PriceList(code, priceMin, priceMax, dateTo, dateOfQuotation, unit, currency);
+                return new PriceList(code, priceNettoMin, priceNettoMax, priceBruttoMin, priceBruttoMax, dateTo, dateOfQuotation, unit, currency);
             }
 
-            public static PriceList Create(string code, decimal priceMin, decimal priceMax)
+            public static PriceList Create(string code, decimal priceNettoMin, decimal priceNettoMax, decimal priceBruttoMin, decimal priceBruttoMax)
             {
-                return new PriceList(code, priceMin, priceMax);
+                return new PriceList(code, priceNettoMin, priceNettoMax, priceBruttoMin, priceBruttoMax);
             }
         }
     }

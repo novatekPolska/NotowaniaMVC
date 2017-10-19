@@ -3,12 +3,12 @@
 namespace NotowaniaMVC.Domain.DomainEntities
 {
         // Wzorzec fabryki dla przykładu. Enkapsulujemy objekt domenowy i wszelkie jego własnosci 
-        // zmieniamy za pomocą jego metod. Obiekt tworzymy nie przez new tylko przez fabryke. 
+        // zmieniamy za pomocą jego metod. Obiekt tworzymy nie przez new, tylko przez fabryke. 
         // Dzieki temu nikt/nic nie zepsuje nam obiektu/stanu obiektu
         // umiescimy tutaj również walidacje za pomocą fluent validatora, żeby uniknąć "else-if patternu" lub "switch-case patternu"
         // a także poprawić czytelnosc i strukture projektu
         // Dodajemy tutaj klase factory która zwraca nam obiekt naszej encji domenowej - to własnie jest wzorzec fabryki
-        // Przykłady użycia  Quotation quotation = new Quotation(...parametry...) = ŹLE! POWSZECHNIE STOSOWANY ANTYWZORZEC
+        // Przykłady użycia  Quotation quotation = new Quotation(...parametry...) = ŹLE! POWSZECHNIE STOSOWANY ANTYWZORZEC "bo w szkole/na studiach tak uczyli"
         // var Quotation = Quotation.Factory.Create(.... paremetry ...) = DOBRZE! Użyty wzorzec projektowy fabryki odporny na błędy użytkownika, zawierający czytelną walidacje obiektu, łatwomodyfikowalną i łatworozszerzalną
     public class Quotation 
     {
@@ -40,6 +40,32 @@ namespace NotowaniaMVC.Domain.DomainEntities
             PriceList = priceList; 
         }
 
+        private Quotation(string code)
+        {
+            Code = code; 
+        }
+
+        public void Validate()
+        { 
+        }
+
+        public void Add()
+        { 
+        }
+
+        public void Update()
+        { 
+        }
+
+        public void SetPriceList(int priceListId)
+        {
+            PriceList = priceListId;
+        }
+
+        public void Save()
+        {
+        }
+
         public static class Factory
         { 
             public static Quotation Create(string code, int fuel, int region, int priceList, int company)
@@ -50,6 +76,11 @@ namespace NotowaniaMVC.Domain.DomainEntities
             public static Quotation Create(string code, int fuel, int priceList)
             {
                 return new Quotation(code, fuel, priceList);
+            }
+
+            public static Quotation Create(string code)
+            {
+                return new Quotation(code);
             }
         } 
     }
