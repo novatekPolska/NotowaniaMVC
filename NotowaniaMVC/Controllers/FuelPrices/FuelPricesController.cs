@@ -17,6 +17,9 @@ namespace NotowaniaMVC.Controllers.FuelPrices
         {
             _mediator = mediator;
         }
+
+        public FuelPricesController()
+        { }
          
         public ActionResult FuelPrices()
         {

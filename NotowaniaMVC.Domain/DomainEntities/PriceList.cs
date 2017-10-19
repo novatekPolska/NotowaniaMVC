@@ -17,5 +17,36 @@ namespace NotowaniaMVC.Domain.DomainEntities
         private int Creator { get; set; }
         private int Unit { get; set; } //jednostka
         private int Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
+
+        private PriceList(string code, decimal priceMin, decimal priceMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
+        {
+            Code = code;
+            PriceMin = priceMin;
+            PriceMax = priceMax;
+            DateTo = dateTo;
+            DateOfQuotation = dateOfQuotation;
+            Unit = unit;
+            Currency = currency;
+        }
+
+        private PriceList(string code, decimal priceMin, decimal priceMax)
+        {
+            Code = code;
+            PriceMin = priceMin;
+            PriceMax = priceMax; 
+        }
+
+        public static class Factory
+        {
+            public static PriceList Create(string code, decimal priceMin, decimal priceMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
+            {
+                return new PriceList(code, priceMin, priceMax, dateTo, dateOfQuotation, unit, currency);
+            }
+
+            public static PriceList Create(string code, decimal priceMin, decimal priceMax)
+            {
+                return new PriceList(code, priceMin, priceMax);
+            }
+        }
     }
 }
