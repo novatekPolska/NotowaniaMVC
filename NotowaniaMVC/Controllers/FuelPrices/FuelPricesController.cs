@@ -5,12 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MediatR;
+using NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers.Messages;
 
 namespace NotowaniaMVC.Controllers.FuelPrices
 {
     public class FuelPricesController : Controller
     {
-
+        private readonly IMediator _mediator;
+        public FuelPricesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
         // GET: FuelPrices
         public ActionResult FuelPrices()
@@ -148,6 +154,11 @@ namespace NotowaniaMVC.Controllers.FuelPrices
             return View(result);
         }
 
+        public ActionResult Add(IEnumerable<FuelPricesViewModel> fuelPricesModels)
+        {
+            _mediator.Send(new NewQuotationCommand { fuelPricesViewModels = fuelPricesModels });
+            return View();
+        }
 
         public ActionResult Edit()
         {
