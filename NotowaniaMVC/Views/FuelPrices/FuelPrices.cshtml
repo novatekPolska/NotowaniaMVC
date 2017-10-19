@@ -1,36 +1,57 @@
-﻿@using GridMvc.Html
-@using NotowaniaMVC.Application.FuelPrices.ViewModels
+﻿@using GridMvc.Html 
+@using NotowaniaMVC.Application.FuelPrices.ViewModels 
+
+
 @model IEnumerable<FuelPricesViewModel>
+
+<script src="@Url.Content("~/Scripts/kendo/2017.3.913/jquery.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" /> 
 
 
     @{
         ViewData["Title"] = "Notowania";
     }
- 
 
-    @(Html.Grid(Model)
+ @using (Html.BeginForm())
+ {
+    <input type="button" name="button" class="gj-button" value="Dodaj" />
+ }
+
+    @(Html.Hidden("Id"))
+
+    @*@(Html.ActionLink("Add", "Edit", "FuelPrices"));*@
+
+    @(Html.Grid(Model).Named("Notowania")
                         .Columns(columns =>
                         {
-                        columns.Add(model => model.Id, true).Titled("Id");
-                        columns.Add(model => model.FormOfCooperationName).Titled("");
-                        columns.Add(model => model.DeliveryCombinedValue).Titled("Dostawa [litry]");
-                        columns.Add(model => model.Rebate).Titled("Rabat zl/l");
-                        columns.Add(model => model.FuelPriceMaxNetto).Titled("Cena netto max");
-                        columns.Add(model => model.FuelPriceMinNetto).Titled("Cena netto min");
-                        columns.Add(model => model.FuelPriceMaxBrutto).Titled("Cena brutto max");
-                        columns.Add(model => model.FuelPriceMinBrutto).Titled("Cena brutto min");
-                        columns.Add(model => model.UGM).Titled("UGM");
-                        //     columns.Add(model => model.UGM).Encoded(false).Sanitized(false).SetWidth(30)
-                        //.RenderValueAs(o => Html.TextBoxFor< >());
-                        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => @<button type="submit">Usuń</button>);
+                            
+                            columns.Add(model => model.Id, true).Titled("Id");
+                            columns.Add(model => model.FormOfCooperationName).Titled("");
+                            columns.Add(model => model.DeliveryCombinedValue).Titled("Dostawa [litry]");
+                            columns.Add(model => model.Rebate).Titled("Rabat zl/l");
+                            columns.Add(model => model.FuelPriceMaxNetto).Titled("Cena netto max");
+                            columns.Add(model => model.FuelPriceMinNetto).Titled("Cena netto min");
+                            columns.Add(model => model.FuelPriceMaxBrutto).Titled("Cena brutto max");
+                            columns.Add(model => model.FuelPriceMinBrutto).Titled("Cena brutto min");
+                            columns.Add(model => model.UGM).Titled("UGM"); 
+
+                            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Edit", "FuelPrices", new { id = o.Id }));
+                            columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Delete", "FuelPrices", new { id = o.Id }));
 
                         }).Selectable(true).WithPaging(5).Sortable().Named("Notowania").Filterable(true).EmptyText("Brak danych")
     )
  
+<script>
+    $(function () { 
+        pageGrids.Notowania.onRowSelect(function (e) { 
+            document.getElementById("Id").value = e.row.Id; 
+        });
+    });
+</script>
 
- 
 
-     
  
 
 

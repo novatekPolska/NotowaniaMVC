@@ -10,6 +10,8 @@ namespace NotowaniaMVC.Controllers.FuelPrices
 {
     public class FuelPricesController : Controller
     {
+
+
         // GET: FuelPrices
         public ActionResult FuelPrices()
         {
@@ -22,7 +24,7 @@ namespace NotowaniaMVC.Controllers.FuelPrices
                 DeliveryMinValue = 120,
                 FuelPriceMaxBrutto = 40,
                 FuelPriceMinNetto = 30,
-                FormOfCooperationName= "b2b",
+                FormOfCooperationName = "b2b",
                 FuelPriceMaxNetto = 80,
                 FuelPriceMinBrutto = 70,
                 DeliveryCombinedValue = "100 - 200",
@@ -62,7 +64,6 @@ namespace NotowaniaMVC.Controllers.FuelPrices
                 UGM = 3
             });
 
-
             fuels.Add(new FuelPricesViewModel
             {
                 CurrencyName = "test",
@@ -79,7 +80,6 @@ namespace NotowaniaMVC.Controllers.FuelPrices
                 UGM = 3
             });
 
-
             fuels.Add(new FuelPricesViewModel
             {
                 CurrencyName = "tenmjk,kst",
@@ -95,7 +95,6 @@ namespace NotowaniaMVC.Controllers.FuelPrices
                 Rebate = 30,
                 UGM = 3
             });
-
 
             fuels.Add(new FuelPricesViewModel
             {
@@ -148,6 +147,17 @@ namespace NotowaniaMVC.Controllers.FuelPrices
             var result = fuels.AsEnumerable();
             return View(result);
         }
- 
+
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
     }
 }
