@@ -15,6 +15,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         ISession session;
         DatabaseConfiguration dbConfiguratrion;
          
+        //todo rozbic na osobne klasy dla osobnych encji
         public NHibernateUniversalRepositoryTests()
         {
             dbConfiguratrion = new DatabaseConfiguration();
@@ -177,6 +178,41 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var quotation = CreateFakeQuotationObject();
+                var priceList = CreateFakePriceListObject();
+
+                var quotationQuid = quotation.Guid;
+                var priceListQuid = priceList.Guid;
+
+                nHibernateUniversalRepositoryQuotation.Create(quotation);
+                var addedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid);
+                if (addedQuotation is null)
+                    throw new Exception("Nie wpisało notowania wiec nie ma co dalej wpisywać/sprawdzać");
+
+                nHibernateUniversalRepositoryPriceLists.Create(priceList);
+                var addedPriceList = nHibernateUniversalRepositoryPriceLists.GetByGuid(priceListQuid);
+                if (addedPriceList is null)
+                    throw new Exception("Nie wpisało cennika wiec nie ma co dalej wpisywać/sprawdzać");
+
+                var priceListId = priceList.Id;
+
+                quotation.PriceList.Id = priceListId; //todo sprawdzic jak to sie robi w nhibernate, bo nie wiem jak powiązac tu elementy
+
+                nHibernateUniversalRepositoryQuotation.Update(quotation);
+                var modifiedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid);
+
+                Assert.AreNotEqual(addedQuotation.PriceList, priceListId);
+                Assert.AreEqual(modifiedQuotation.PriceList, priceListId);
+
+                Assert.AreEqual(addedQuotation.Guid, modifiedQuotation.Guid);
+                Assert.AreEqual(addedQuotation.Fuel, modifiedQuotation.Fuel);
+                Assert.AreEqual(addedQuotation.Company, modifiedQuotation.Company);
+                Assert.AreEqual(addedQuotation.Code, modifiedQuotation.Code);
+                Assert.AreEqual(addedQuotation.Region, modifiedQuotation.Region);
+                Assert.AreEqual(addedQuotation.Created, modifiedQuotation.Created);
+                Assert.AreEqual(addedQuotation.Creator, modifiedQuotation.Creator);
+                Assert.AreEqual(addedQuotation.Id, modifiedQuotation.Id);
+                Assert.AreNotEqual(addedQuotation.Modified, modifiedQuotation.Modified);
 
                 transaction.Rollback();
             }
@@ -187,7 +223,12 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var priceList = CreateFakePriceListObject();
 
+                nHibernateUniversalRepositoryPriceLists.Create(priceList);
+
+                Assert.AreNotEqual(priceList.Id, 0);
+                transaction.Rollback();
                 transaction.Rollback();
             }
         }
@@ -197,7 +238,31 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var objectGuid = new Guid();
+                var priceList = CreateFakePriceListObject();
+                objectGuid = priceList.Guid;
 
+                nHibernateUniversalRepositoryPriceLists.Create(priceList);
+                var addedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
+                addedObject.Modifier = 2;
+                nHibernateUniversalRepositoryPriceLists.Update(addedObject);
+                var modifiedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
+
+                Assert.AreEqual(modifiedObject.Modifier, 2);
+                Assert.AreEqual(addedObject.Id, modifiedObject.Id);
+                Assert.AreNotEqual(addedObject.Modified, modifiedObject.Modified);  
+                Assert.AreEqual(addedObject.Guid, modifiedObject.Guid); 
+                Assert.AreEqual(addedObject.Creator, modifiedObject.Creator);
+                Assert.AreEqual(addedObject.Created, modifiedObject.Created); 
+                Assert.AreEqual(addedObject.Code, modifiedObject.Code);
+                Assert.AreEqual(addedObject.PriceMin, modifiedObject.PriceMin);
+                Assert.AreEqual(addedObject.PriceMax, modifiedObject.PriceMax);
+                Assert.AreEqual(addedObject.Unit, modifiedObject.Unit);
+                Assert.AreEqual(addedObject.Currency, modifiedObject.Currency);
+                Assert.AreEqual(addedObject.DateOfQuotation, modifiedObject.DateOfQuotation);
+                Assert.AreEqual(addedObject.DateTo, modifiedObject.DateTo); 
+
+                transaction.Rollback();
                 transaction.Rollback();
             }
         }
@@ -214,6 +279,23 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var objectGuid = new Guid();
+                var priceListObject = CreateFakePriceListObject();
+                objectGuid = priceListObject.Guid;
+                nHibernateUniversalRepositoryPriceLists.Create(priceListObject);
+
+                var addedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
+
+                if (addedObject is null)
+                {
+                    throw new Exception("Nie udalo się dodać obiektu, więc nie ma co usuwać");
+                }
+                else
+                {
+                    nHibernateUniversalRepositoryPriceLists.DeleteByGuid(objectGuid);
+                    var deletedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
+                    Assert.AreEqual(deletedObject, null);
+                }
 
                 transaction.Rollback();
             }
@@ -224,7 +306,31 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var priceListObject = CreateFakePriceListObject();
+                nHibernateUniversalRepositoryPriceLists.Create(priceListObject);
 
+                var objectId = priceListObject.Id;
+
+                if (objectId == 0)
+                    throw new Exception("Nie udało się dodać do bazy więc nie ma co z niej wywlekać");
+                else
+                {
+                    var addedObject = nHibernateUniversalRepositoryPriceLists.GetById(objectId);
+
+                    Assert.AreEqual(priceListObject.Id, addedObject.Id);
+                    Assert.AreEqual(priceListObject.Guid, addedObject.Guid);
+                    Assert.AreEqual(priceListObject.Creator, addedObject.Creator);
+                    Assert.AreEqual(priceListObject.Created, addedObject.Created);
+                    Assert.AreEqual(priceListObject.Code, addedObject.Code);
+                    Assert.AreEqual(priceListObject.PriceMin, addedObject.PriceMin);
+                    Assert.AreEqual(priceListObject.PriceMax, addedObject.PriceMax);
+                    Assert.AreEqual(priceListObject.Unit, addedObject.Unit);
+                    Assert.AreEqual(priceListObject.Currency, addedObject.Currency);
+                    Assert.AreEqual(priceListObject.DateOfQuotation, addedObject.DateOfQuotation);
+                    Assert.AreEqual(priceListObject.DateTo, addedObject.DateTo);
+                    Assert.AreEqual(priceListObject.Modified, addedObject.Modified);
+                    Assert.AreEqual(priceListObject.Modifier, addedObject.Modifier);
+                }
                 transaction.Rollback();
             }
         }
@@ -234,7 +340,32 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             using (var transaction = session.BeginTransaction())
             {
+                var priceListObject = CreateFakePriceListObject();
 
+                var objectGuid = priceListObject.Guid;
+                var objectId = priceListObject.Id;
+                nHibernateUniversalRepositoryPriceLists.Create(priceListObject);
+
+                if (objectId == 0)
+                    throw new Exception("Nie udało się dodać do bazy więc nie ma co z niej wywlekać");
+                else
+                {
+                    var addedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
+
+                    Assert.AreEqual(priceListObject.Id, addedObject.Id);
+                    Assert.AreEqual(priceListObject.Guid, addedObject.Guid);
+                    Assert.AreEqual(priceListObject.Creator, addedObject.Creator);
+                    Assert.AreEqual(priceListObject.Created, addedObject.Created);
+                    Assert.AreEqual(priceListObject.Code, addedObject.Code);
+                    Assert.AreEqual(priceListObject.PriceMin, addedObject.PriceMin);
+                    Assert.AreEqual(priceListObject.PriceMax, addedObject.PriceMax);
+                    Assert.AreEqual(priceListObject.Unit, addedObject.Unit);
+                    Assert.AreEqual(priceListObject.Currency, addedObject.Currency);
+                    Assert.AreEqual(priceListObject.DateOfQuotation, addedObject.DateOfQuotation);
+                    Assert.AreEqual(priceListObject.DateTo, addedObject.DateTo);
+                    Assert.AreEqual(priceListObject.Modified, addedObject.Modified);
+                    Assert.AreEqual(priceListObject.Modifier, addedObject.Modifier);
+                }
                 transaction.Rollback();
             }
         }
