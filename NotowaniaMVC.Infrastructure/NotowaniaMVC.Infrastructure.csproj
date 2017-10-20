@@ -387,6 +387,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Interfaces\INHibernateUniversalRepository.cs" />
+    <Compile Include="Common\Repositories\NHibernateUniversalRepository.cs" />
     <Compile Include="Database\Create\CreateDatabase.cs" />
     <Compile Include="Database\DBConfiguration\DatabaseConfiguration.cs" />
     <Compile Include="Database\Entities\XXX_R55_Companies.cs" />
@@ -407,12 +409,14 @@
     <Compile Include="Database\Mappings\QuotationsMap.cs" />
     <Compile Include="Database\Mappings\RegionsMap.cs" />
     <Compile Include="Database\Mappings\UnitsMap.cs" />
+    <Compile Include="FuelPrices\Interfaces\IPriceListsRepository.cs" />
+    <Compile Include="FuelPrices\Interfaces\IQuotationsRepository.cs" />
+    <Compile Include="FuelPrices\Repositories\PriceListsRepository.cs" />
+    <Compile Include="FuelPrices\Repositories\QuotationsRepository.cs" />
     <Compile Include="NLog-NHibernate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FuelPrices\Interfaces\" />
-    <Folder Include="FuelPrices\Repositories\" />
     <Folder Include="_cfg\" />
   </ItemGroup>
   <ItemGroup>
@@ -424,16 +428,9 @@
   <ItemGroup>
     <Content Include="App_Readme\NHibernate.DataAnnotations.Readme..txt" />
     <Content Include="App_Readme\NHibernate.Session.Readme..txt" />
-    <Content Include="Emp.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NotowaniaMVC.Domain\NotowaniaMVC.Domain.csproj">
-      <Project>{db5d7f4b-b84d-40aa-8d32-5f55fb02e068}</Project>
-      <Name>NotowaniaMVC.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

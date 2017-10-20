@@ -158,7 +158,7 @@ namespace NotowaniaMVC.Controllers.FuelPrices
 
         public ActionResult Add(IEnumerable<FuelPricesViewModel> fuelPricesModels)
         {
-            _mediator.Send(new NewQuotationCommand { fuelPricesViewModels = fuelPricesModels });
+            _mediator.Send(new NewQuotationCommand { FuelPricesViewModels = fuelPricesModels });
             return View();
         }
 

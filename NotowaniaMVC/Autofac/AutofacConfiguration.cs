@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using NotowaniaMVC.Application.FuelPrices.Interfaces;
 using NotowaniaMVC.Application.FuelPrices.Services;
+using NotowaniaMVC.Infrastructure.FuelPrices.Interfaces;
+using NotowaniaMVC.Infrastructure.FuelPrices.Repositories;
+using NHibernate;
+using NHibernate.Cfg;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -15,18 +19,26 @@ namespace NotowaniaMVC.Autofac
         public static IContainer RegisterAndResolve()
         {
             var builder = new ContainerBuilder();
+            Configuration cfg = new Configuration();
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(executingAssembly)
                 .AsSelf()
                 .AsImplementedInterfaces();
 
+            builder.Register(c => cfg.BuildSessionFactory()).As<ISessionFactory>().SingleInstance();
+            builder.Register(c => c.Resolve<ISessionFactory>().OpenSession());
+
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
+
             builder.RegisterType<QuotationService>().As<IQuotationService>().InstancePerLifetimeScope();
             builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
+
             builder.RegisterSource(new ContravariantRegistrationSource());
-            builder.RegisterAssemblyTypes(typeof(MediatR.IMediator).Assembly).AsSelf().AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
 
 
             builder

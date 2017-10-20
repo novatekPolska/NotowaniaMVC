@@ -6,6 +6,6 @@ namespace NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers.Messages
 {
     public class NewQuotationCommand : IRequest 
     {
-        public IEnumerable<FuelPricesViewModel> fuelPricesViewModels { get; set; }
+        public IEnumerable<FuelPricesViewModel> FuelPricesViewModels { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers
 
         public void Handle(NewQuotationCommand message)
         {
-            foreach (var element in message.fuelPricesViewModels)
+            foreach (var element in message.FuelPricesViewModels)
             {
                 SaveFuelPriceData(element);
             }

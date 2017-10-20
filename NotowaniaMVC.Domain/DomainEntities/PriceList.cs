@@ -1,4 +1,6 @@
-﻿using System; 
+﻿using System;
+using NotowaniaMVC.Infrastructure.FuelPrices.Interfaces;
+using NotowaniaMVC.Infrastructure.FuelPrices.Repositories;
 
 namespace NotowaniaMVC.Domain.DomainEntities
 {
@@ -19,6 +21,12 @@ namespace NotowaniaMVC.Domain.DomainEntities
         private int Creator { get; set; }
         private int Unit { get; set; } //jednostka
         private int Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
+
+        private readonly IPriceListsRepository _priceListsRepository;
+        public PriceList(IPriceListsRepository priceListsRepository)
+        {
+            _priceListsRepository = priceListsRepository;
+        }
 
         private PriceList(string code, decimal priceNettoMin, decimal priceNettoMax, decimal priceBruttoMin, decimal priceBruttoMax, DateTime dateTo, DateTime dateOfQuotation, int unit, int currency)
         {

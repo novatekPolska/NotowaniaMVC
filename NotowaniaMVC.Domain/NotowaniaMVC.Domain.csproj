@@ -412,5 +412,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotowaniaMVC.Infrastructure\NotowaniaMVC.Infrastructure.csproj">
+      <Project>{841d8ac0-8f96-4fad-ac20-a33e7d5b9977}</Project>
+      <Name>NotowaniaMVC.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

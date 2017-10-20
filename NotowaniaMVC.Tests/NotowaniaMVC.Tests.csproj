@@ -454,6 +454,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotowaniaMVC.Infrastructure.Tests\Common\Repositories\NHibernateUniversalRepositoryTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Configure\ConfigureDatabaseTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Create\CreateDatabaseTests.cs" />
     <Compile Include="NotowaniaMVC.Presentation.Tests\Autofac.Test\Autofac.Tests.cs" />

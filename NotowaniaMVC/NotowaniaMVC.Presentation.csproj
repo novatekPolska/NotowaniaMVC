@@ -2533,6 +2533,14 @@
       <Project>{2f72aae1-18f0-4ce9-b423-8bcfebf81054}</Project>
       <Name>NotowaniaMVC.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NotowaniaMVC.Domain\NotowaniaMVC.Domain.csproj">
+      <Project>{db5d7f4b-b84d-40aa-8d32-5f55fb02e068}</Project>
+      <Name>NotowaniaMVC.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotowaniaMVC.Infrastructure\NotowaniaMVC.Infrastructure.csproj">
+      <Project>{841d8ac0-8f96-4fad-ac20-a33e7d5b9977}</Project>
+      <Name>NotowaniaMVC.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

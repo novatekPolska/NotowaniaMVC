@@ -1,9 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic; 
-using NUnit;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Database.Configure
