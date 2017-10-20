@@ -46,7 +46,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
                 nHibernateUniversalRepositoryQuotation.Create(quotation); 
 
-                Assert.AreNotEqual(quotation.Id, 0); 
+                Assert.AreNotEqual(quotation.Id, 0);
+                
                 transaction.Rollback();
             }
         }
@@ -228,8 +229,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 nHibernateUniversalRepositoryPriceLists.Create(priceList);
 
                 Assert.AreNotEqual(priceList.Id, 0);
-                transaction.Rollback();
-                transaction.Rollback();
+                transaction.Rollback(); 
             }
         }
           
@@ -379,7 +379,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Guid = new Guid(),
                 Modified = DateTime.Now,
                 Modifier = 1,
-                Creator = 1
+                Creator = 1,
+                Id=5
             };
         }
 

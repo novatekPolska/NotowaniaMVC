@@ -8,7 +8,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Notowań na tabelę bazodanową
         public QuotationsMap()
         {
-            Id(c => c.Id);
+            Id(c => c.Id).Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_QUOT")); 
             Map(c => c.Guid); 
             References(c => c.Fuel);
             Map(c => c.Code); 

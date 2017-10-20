@@ -23,12 +23,16 @@ namespace NotowaniaMVC.Infrastructure.Database.DBConfiguration
             var firebirdConfiguration = new FirebirdConfiguration();
             
             var configuration =  Fluently.Configure()
-               .Database(firebirdConfiguration.ConnectionString(connectionString).ShowSql) 
+               .Database(firebirdConfiguration.ConnectionString(connectionString).ShowSql)
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UnitsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RegionsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DocumentsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CompaniesMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
                .BuildConfiguration();
-
-            var exporter = new SchemaExport(configuration);
-            exporter.Execute(true, true, false);
-
+              
             var sessionFactory =  configuration.BuildSessionFactory();
             var session = sessionFactory.OpenSession();
             return session; 
