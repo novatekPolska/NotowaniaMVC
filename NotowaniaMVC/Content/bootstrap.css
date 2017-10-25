@@ -59,6 +59,7 @@ html {
 
 body {
   margin: 0;
+  
 }
 
 a:focus {
@@ -315,7 +316,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #ffffff; 
 }
 
 input,
@@ -760,7 +761,7 @@ pre code {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: auto; 
 }
 
 .container:before,
@@ -4023,11 +4024,16 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar {
-  position: relative;
-  z-index: 1000;
-  min-height: 50px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
+    width: 100% !important;
+    position: relative;
+    z-index: 1000;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    margin:0px auto;
+    left:0;
+    right:0;
+    padding:0;
 }
 
 .navbar:before,

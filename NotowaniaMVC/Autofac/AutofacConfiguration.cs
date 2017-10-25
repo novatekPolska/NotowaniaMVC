@@ -9,6 +9,8 @@ using NotowaniaMVC.Infrastructure.FuelPrices.Interfaces;
 using NotowaniaMVC.Infrastructure.FuelPrices.Repositories;
 using NHibernate;
 using NHibernate.Cfg;
+using NotowaniaMVC.Infrastructure.Quotations.Repositories;
+using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -36,6 +38,7 @@ namespace NotowaniaMVC.Autofac
 
             builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
 
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();

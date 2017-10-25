@@ -485,6 +485,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Icons, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Icons.1.0.0\lib\net20\System.Drawing.Icons.dll</HintPath>
+    </Reference>
     <Reference Include="System.Globalization.Calendars">
       <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
       <Private>True</Private>
@@ -890,6 +893,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Autofac\AutofacConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Quotations\QuotationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1097,6 +1101,12 @@
     <Content Include="Content\2013.2.611\Windows7\slider-v.gif" />
     <Content Include="Content\2013.2.611\Windows7\sprite-vertical.png" />
     <Content Include="Content\2013.2.611\Windows7\sprite.png" />
+    <Content Include="Content\PdfDownload.png" />
+    <Content Include="Content\PdfSave.png" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\Save.png" />
+    <Content Include="Content\Cancel.png" />
+    <Content Include="Content\AddPdf.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -1245,6 +1255,8 @@
     <Content Include="Content\kendo\2017.3.913\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2017.3.913\Uniform\sprite_kpi_2x.png" />
     <Content Include="Content\ladda-bootstrap\ladda-themeless.min.css" />
+    <Content Include="Content\quotationStyles.css" />
+    <Content Include="Content\Search.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1354,6 +1366,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="App_Code\GlyphIcon.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
@@ -2284,6 +2297,7 @@
     <Content Include="Scripts\kendo\2017.3.913\jquery.min.map" />
     <Content Include="Views\Shared\_AjaxGridPager.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Quotations\Quotations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

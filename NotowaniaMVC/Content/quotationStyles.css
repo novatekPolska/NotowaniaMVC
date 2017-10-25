@@ -1,0 +1,183 @@
+﻿ 
+.textBox {
+    border: 1px solid #A8A8A8;
+    width: 150px;
+    color: #262626;
+    border-color: #A8A8A8;
+    float: right;
+    margin: 3px;
+    padding: 1px;
+}
+
+.tbxSearch {
+    border: 1px solid #A8A8A8;
+    width: 150px;
+    color: #262626;
+    border-color: #A8A8A8;
+    float: right;  
+    top: -35px;
+    position: relative
+}
+
+.btnSearch {
+    height: 30px;
+    width: 30px;
+    border: none;
+    color: white;
+    background-color: white;
+    margin: 5px;
+    float: right;
+    top: -35px;
+    position: relative
+}
+
+.panelBox {
+    border: 1px solid #e3e3e3; 
+    border-color: #e3e3e3;
+    float: right; 
+    border-spacing:20px;
+    padding:20px;
+    margin-top:30px;
+    height:830px;
+}
+
+.pdfPanel {
+    border: 1px solid #e3e3e3;
+    border-color: #e3e3e3;
+    float: left;
+    border-spacing: 20px;
+    padding: 20px;
+    margin-top: 30px;
+    height: 830px;
+    width: 600px;
+}
+
+.btnAddPDF {
+    height: 40px;
+    width: 40px;
+    icon: url(AddPdf.png);
+    image-orientation: from-image;
+    border: none;
+    background-image: url(AddPdf.png);
+    background-repeat:no-repeat;  
+}
+
+.btnAddCancel {
+    height: 40px;
+    width: 40px;
+    border: none;
+    color: white;
+    background-color: white;
+    margin: 5px;
+    float: right; 
+    bottom: 0; 
+}
+
+.btnDownload { 
+    border: none;
+    color: white;
+    background-color: white;
+    bottom: 0;
+    column-span: all;
+    flex-flow: wrap;
+    justify-content: space-around;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+ 
+.btnSavePdf {
+    height: 40px;
+    width: 30px;
+    border: none;
+    color: white;
+    background-color: white; 
+    bottom: 0;
+    margin: 5px;
+    float:left;
+    
+}
+
+.floatRelative {
+    position: relative;
+}
+
+.myContainer {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    float: left; 
+    width: -moz-available;
+    border:none;
+}
+
+.pdfTable {
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-color: #e3e3e3;
+}
+
+.bdTbl {
+    border: 1px solid #e3e3e3;
+    border-color: #e3e3e3; 
+    column-span: all;
+    flex-flow: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;  
+}
+
+.tableColumns {
+    border: 1px solid #e3e3e3;
+    border-color: #e3e3e3;  
+    width: 100%;
+    height: 100%;  
+}
+
+.columns {
+    border: none;  
+    width: 100%;
+    height: 100%; 
+}
+
+.btnUploadFile{
+   border-style:none; 
+   width:100%;
+   height:100%;
+   margin-right: 5px;
+}
+
+.btn-file input[type=file] {
+    text-align: right;
+    display: block;
+    color: #428bca; 
+    flood-color: #428bca;
+    border-color: #357ebd;
+    
+}
+
+.logo {
+    background: url(../Content/logo.png) no-repeat top left;
+    display: block;
+    width: 150px;
+    height: 40px;
+    border:none;
+    color:black;
+    text-indent: -9999px; /* hides the link text */
+    margin-top:20px;
+    margin-left:10px;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: none;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

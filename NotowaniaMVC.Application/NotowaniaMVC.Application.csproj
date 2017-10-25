@@ -408,10 +408,16 @@
     <Compile Include="FuelPrices\Services\QuotationService.cs" />
     <Compile Include="FuelPrices\ViewModels\FuelPricesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotations\ViewModels\NewQuotationViewModel.cs" />
+    <Compile Include="Quotations\ViewModels\QuotationsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FuelPrices\Handlers\QueryHandlers\Messages\" />
     <Folder Include="FuelPrices\Mappings\" />
+    <Folder Include="Quotations\Handlers\" />
+    <Folder Include="Quotations\Interfaces\" />
+    <Folder Include="Quotations\Mappings\" />
+    <Folder Include="Quotations\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

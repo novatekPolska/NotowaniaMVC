@@ -390,6 +390,7 @@
     <Compile Include="DomainEntities\Delivery.cs" />
     <Compile Include="DomainEntities\Document.cs" />
     <Compile Include="DomainEntities\Fuel.cs" />
+    <Compile Include="DomainEntities\FuelTypes.cs" />
     <Compile Include="DomainEntities\PriceList.cs" />
     <Compile Include="DomainEntities\Quotation.cs" />
     <Compile Include="DomainEntities\Region.cs" />

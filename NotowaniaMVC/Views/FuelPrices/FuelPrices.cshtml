@@ -11,7 +11,7 @@
 
 
     @{
-        ViewData["Title"] = "Notowania";
+        ViewData["Title"] = "Cenniki";
     }
 
  @using (Html.BeginForm())
@@ -23,7 +23,7 @@
 
     @*@(Html.ActionLink("Add", "Edit", "FuelPrices"));*@
 
-    @(Html.Grid(Model).Named("Notowania")
+    @(Html.Grid(Model).Named("Cenniki")
                         .Columns(columns =>
                         {
                             
@@ -40,12 +40,12 @@
                             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Edit", "FuelPrices", new { id = o.Id }));
                             columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Delete", "FuelPrices", new { id = o.Id }));
 
-                        }).Selectable(true).WithPaging(5).Sortable().Named("Notowania").Filterable(true).EmptyText("Brak danych")
+                        }).Selectable(true).WithPaging(5).Sortable().Named("Cenniki").Filterable(true).EmptyText("Brak danych")
     )
  
 <script>
     $(function () { 
-        pageGrids.Notowania.onRowSelect(function (e) { 
+        pageGrids.Cenniki.onRowSelect(function (e) { 
             document.getElementById("Id").value = e.row.Id; 
         });
     });
