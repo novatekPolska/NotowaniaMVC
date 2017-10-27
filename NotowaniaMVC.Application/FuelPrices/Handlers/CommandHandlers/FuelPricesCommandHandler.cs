@@ -27,8 +27,7 @@ namespace NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers
         private void SaveFuelPriceData(FuelPricesViewModel fuelPriceDataToSave)
         {
             var quotation = _quotationService.AddNewQuotation(fuelPriceDataToSave);
-            var priceList = _fuelPriceService.AddNewPriceList(fuelPriceDataToSave);
-            quotation.SetPriceListId(priceList.GetId());
+            var priceList = _fuelPriceService.AddNewPriceList(fuelPriceDataToSave); 
             priceList.Save();
             quotation.Save();
         } 

@@ -12,9 +12,14 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
             Map(c => c.Guid); 
             References(c => c.Fuel);
             Map(c => c.Code); 
-            References(c => c.Region); 
-            References(c => c.PriceList); 
+            References(c => c.Region);
+            Map(c => c.PriceMin);
+            Map(c => c.PriceMax);
+            Map(c => c.DateTo);
+            Map(c => c.DateOfQuotation);
             References(c => c.Company);
+            References(c => c.Unit);
+            References(c => c.Currency);
             Map(c => c.Created);
             Map(c => c.Modified);
             Map(c => c.Creator);

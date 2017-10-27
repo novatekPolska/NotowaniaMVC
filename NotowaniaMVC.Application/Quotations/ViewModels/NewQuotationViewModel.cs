@@ -20,6 +20,7 @@ namespace NotowaniaMVC.Application.Quotations.ViewModels
         public int PdfId { get; set; }
         public string PdfName { get; set; }
         public string PdfPath { get; set; }
+        public int Unit { get; set; }
 
         //Zmiennne do wypelnienia kontrole ListBoxFor (Listy rozwijalne)
         //Teoretycznie powinny mieć one możliwosc załadowania źródła danych
@@ -28,6 +29,6 @@ namespace NotowaniaMVC.Application.Quotations.ViewModels
         public IDictionary CurrencyTypes { get; set; } //TODO to nie powinno byc w modelu ale kontrolka mnie ogranicza
         public IDictionary FuelTypes { get; set; }
         public IDictionary QuotationTypes { get; set; }
- 
+        public IDictionary Units { get; set; }
     }
 }

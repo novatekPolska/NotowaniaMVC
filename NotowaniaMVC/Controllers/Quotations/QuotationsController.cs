@@ -22,7 +22,10 @@ namespace NotowaniaMVC.Controllers.Quotations
             Dictionary<int, string> quotationTypes = new Dictionary<int, string>();
             quotationTypes.Add(1, "test");
 
-            NewQuotationViewModel quotationViewModel = new NewQuotationViewModel { CurrencyTypes = currencyType, FuelTypes = fuelTypes, QuotationTypes = quotationTypes };
+            Dictionary<int, string> units = new Dictionary<int, string>();
+            units.Add(1, "test");
+
+            NewQuotationViewModel quotationViewModel = new NewQuotationViewModel { CurrencyTypes = currencyType, FuelTypes = fuelTypes, QuotationTypes = quotationTypes, Units = units };
             return View(quotationViewModel);
         }
 

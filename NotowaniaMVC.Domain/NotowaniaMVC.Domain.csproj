@@ -82,6 +82,9 @@
     <Reference Include="FluentNHibernateProviders.Providers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernateProviders.0.9.6\lib\net40\FluentNHibernateProviders.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidator, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidator.2.0.4\lib\netstandard1.3\FluentValidator.dll</HintPath>
     </Reference>
@@ -397,14 +400,19 @@
     <Compile Include="DomainEntities\Unit.cs" />
     <Compile Include="DomainEntities\Waluta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotation\Validators\QuotationValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FuelPrices\Interfaces\" />
     <Folder Include="FuelPrices\Models\" />
     <Folder Include="FuelPrices\Services\" />
+    <Folder Include="FuelPrices\Validators\" />
     <Folder Include="FuelPrices\ValueObjects\" />
     <Folder Include="ObjectRelationalMappings\" />
-    <Folder Include="Validators\" />
+    <Folder Include="Quotation\Interfaces\" />
+    <Folder Include="Quotation\Models\" />
+    <Folder Include="Quotation\Services\" />
+    <Folder Include="Quotation\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

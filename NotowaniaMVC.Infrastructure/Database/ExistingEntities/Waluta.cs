@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NHibernate.Mapping.Attributes; 
+using System;
 
 namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
 {
     public class Waluta
     {
+        [Key]
+        [Id]
         public virtual int Id_waluta { get; set; }
         public virtual string Skrot { get; set; }
         public virtual string waluta { get; set; }

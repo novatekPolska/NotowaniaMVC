@@ -1,7 +1,8 @@
-﻿using NHibernate;
+﻿using NHibernate; 
 using NotowaniaMVC.Infrastructure.Common.Repositories;
 using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 using NotowaniaMVC.Infrastructure.Database.Entities;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
 using NUnit.Framework;
 using System;
 
@@ -69,8 +70,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
                 Assert.AreEqual(modifiedObject.Modifier, 2); 
                 Assert.AreEqual(addedObject.Id, modifiedObject.Id);
-                Assert.AreNotEqual(addedObject.Modified, modifiedObject.Modified);
-                Assert.AreEqual(addedObject.PriceList, modifiedObject.PriceList);
+                Assert.AreNotEqual(addedObject.Modified, modifiedObject.Modified); 
                 Assert.AreEqual(addedObject.Region, modifiedObject.Region);
                 Assert.AreEqual(addedObject.Guid, modifiedObject.Guid);
                 Assert.AreEqual(addedObject.Fuel, modifiedObject.Fuel);
@@ -127,8 +127,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
                     Assert.AreEqual(quotationObject.Id, addedObject.Id);
                     Assert.AreEqual(quotationObject.Modified, addedObject.Modified);
-                    Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier);
-                    Assert.AreEqual(quotationObject.PriceList, addedObject.PriceList);
+                    Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier); 
                     Assert.AreEqual(quotationObject.Region, addedObject.Region);
                     Assert.AreEqual(quotationObject.Guid, addedObject.Guid);
                     Assert.AreEqual(quotationObject.Fuel, addedObject.Fuel);
@@ -160,8 +159,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
                         Assert.AreEqual(quotationObject.Id, addedObject.Id);
                         Assert.AreEqual(quotationObject.Modified, addedObject.Modified);
-                        Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier);
-                        Assert.AreEqual(quotationObject.PriceList, addedObject.PriceList);
+                        Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier); 
                         Assert.AreEqual(quotationObject.Region, addedObject.Region);
                         Assert.AreEqual(quotationObject.Guid, addedObject.Guid);
                         Assert.AreEqual(quotationObject.Fuel, addedObject.Fuel);
@@ -197,14 +195,9 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
                 var priceListId = priceList.Id;
 
-                quotation.PriceList.Id = priceListId; //todo sprawdzic jak to sie robi w nhibernate, bo nie wiem jak powiązac tu elementy
-
+                 
                 nHibernateUniversalRepositoryQuotation.Update(quotation);
-                var modifiedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid);
-
-                Assert.AreNotEqual(addedQuotation.PriceList, priceListId);
-                Assert.AreEqual(modifiedQuotation.PriceList, priceListId);
-
+                var modifiedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid); 
                 Assert.AreEqual(addedQuotation.Guid, modifiedQuotation.Guid);
                 Assert.AreEqual(addedQuotation.Fuel, modifiedQuotation.Fuel);
                 Assert.AreEqual(addedQuotation.Company, modifiedQuotation.Company);
@@ -380,7 +373,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Modified = DateTime.Now,
                 Modifier = 1,
                 Creator = 1,
-                Id=5
+                DateTo = DateTime.Now,
+                //DateOfQuotation = DateTime.Now,
+                //Unit = new XXX_R55_Units { Id = 1 },
+                //Currency = new Waluta { Id_waluta = 1 },
+                //Fuel = new XXX_R55_Fuels { Id = 1 },
+                //Region = new XXX_R55_Regions { Id = 1 },
+                //Company = new XXX_R55_Companies { Id = 1 } 
             };
         }
 
