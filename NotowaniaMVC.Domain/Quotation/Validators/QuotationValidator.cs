@@ -22,7 +22,7 @@ namespace NotowaniaMVC.Domain.Quotation.Validators
             RuleFor(quotation => quotation.Fuel).NotNull();
             RuleFor(quotation => quotation.QuotationType).NotNull(); 
 
-            //cena max większ od ceny mic
+            //cena max większ od ceny min
             RuleFor(quotation => quotation.PriceMax).GreaterThanOrEqualTo(quotation => quotation.PriceMin);
 
             //ceny większe od zera
@@ -30,7 +30,13 @@ namespace NotowaniaMVC.Domain.Quotation.Validators
             RuleFor(quotation => quotation.PriceMin).GreaterThan(0);
         
             //data notowania mniejsza lub równa dacie obecnej
-            RuleFor(quotation => quotation.DateOfQuotation).LessThan(System.DateTime.Now);
+            RuleFor(quotation => quotation.DateOfQuotation).LessThanOrEqualTo(System.DateTime.Now);
+
+            //referencje nie mogą być równe 0
+            RuleFor(quotation => quotation.Currency).GreaterThan(0);
+            RuleFor(quotation => quotation.Fuel).GreaterThan(0);
+            RuleFor(quotation => quotation.QuotationType).GreaterThan(0);
+            RuleFor(quotation => quotation.Unit).GreaterThan(0);
         }
     }
 }

@@ -395,11 +395,13 @@
     <Compile Include="DomainEntities\Fuel.cs" />
     <Compile Include="DomainEntities\FuelTypes.cs" />
     <Compile Include="DomainEntities\PriceList.cs" />
-    <Compile Include="DomainEntities\Quotation.cs" />
+    <Compile Include="Quotation\Interfaces\IQuotationDomainService.cs" />
+    <Compile Include="Quotation\Models\Quotation.cs" />
     <Compile Include="DomainEntities\Region.cs" />
     <Compile Include="DomainEntities\Unit.cs" />
     <Compile Include="DomainEntities\Waluta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotation\Services\QuotationDomainService.cs" />
     <Compile Include="Quotation\Validators\QuotationValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -409,9 +411,6 @@
     <Folder Include="FuelPrices\Validators\" />
     <Folder Include="FuelPrices\ValueObjects\" />
     <Folder Include="ObjectRelationalMappings\" />
-    <Folder Include="Quotation\Interfaces\" />
-    <Folder Include="Quotation\Models\" />
-    <Folder Include="Quotation\Services\" />
     <Folder Include="Quotation\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>

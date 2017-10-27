@@ -52,6 +52,35 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 transaction.Rollback();
             }
         }
+
+        [Test]
+        public void when_add_new_quotation_then_database_should_have_new_quotation_with_correct_properties()
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                var quotation = CreateFakeQuotationObject(); 
+                nHibernateUniversalRepositoryQuotation.Create(quotation);
+
+                Assert.AreNotEqual(quotation.Id, 0);
+                var id = quotation.Id;
+
+                var addedObject = nHibernateUniversalRepositoryQuotation.GetById(id);
+
+                Assert.AreEqual(quotation.Id, addedObject.Id);
+                Assert.AreEqual(quotation.PriceMax, addedObject.PriceMax);
+                Assert.AreEqual(quotation.PriceMin, addedObject.PriceMin);
+                Assert.AreEqual(quotation.DateOfQuotation, addedObject.DateOfQuotation);
+                Assert.AreEqual(quotation.Code, addedObject.Code);
+                Assert.AreEqual(quotation.DateTo, addedObject.DateTo);
+                Assert.AreEqual(quotation.Guid, addedObject.Guid);
+                Assert.AreEqual(quotation.Created, addedObject.Created);
+                Assert.AreEqual(quotation.Creator, addedObject.Creator);
+                Assert.AreEqual(quotation.Modified, addedObject.Modified);
+                Assert.AreEqual(quotation.Modifier, addedObject.Modifier);
+
+                transaction.Rollback();
+            }
+        }
          
         [Test]
         public void Can_Update_Quotation()
@@ -172,46 +201,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             }
         }
 
-        [Test]
-        public void Can_Add_New_Quotation_With_Price_List()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
-                var quotation = CreateFakeQuotationObject();
-                var priceList = CreateFakePriceListObject();
-
-                var quotationQuid = quotation.Guid;
-                var priceListQuid = priceList.Guid;
-
-                nHibernateUniversalRepositoryQuotation.Create(quotation);
-                var addedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid);
-                if (addedQuotation is null)
-                    throw new Exception("Nie wpisało notowania wiec nie ma co dalej wpisywać/sprawdzać");
-
-                nHibernateUniversalRepositoryPriceLists.Create(priceList);
-                var addedPriceList = nHibernateUniversalRepositoryPriceLists.GetByGuid(priceListQuid);
-                if (addedPriceList is null)
-                    throw new Exception("Nie wpisało cennika wiec nie ma co dalej wpisywać/sprawdzać");
-
-                var priceListId = priceList.Id;
-
-                 
-                nHibernateUniversalRepositoryQuotation.Update(quotation);
-                var modifiedQuotation = nHibernateUniversalRepositoryQuotation.GetByGuid(quotationQuid); 
-                Assert.AreEqual(addedQuotation.Guid, modifiedQuotation.Guid);
-                Assert.AreEqual(addedQuotation.Fuel, modifiedQuotation.Fuel);
-                Assert.AreEqual(addedQuotation.Company, modifiedQuotation.Company);
-                Assert.AreEqual(addedQuotation.Code, modifiedQuotation.Code);
-                Assert.AreEqual(addedQuotation.Region, modifiedQuotation.Region);
-                Assert.AreEqual(addedQuotation.Created, modifiedQuotation.Created);
-                Assert.AreEqual(addedQuotation.Creator, modifiedQuotation.Creator);
-                Assert.AreEqual(addedQuotation.Id, modifiedQuotation.Id);
-                Assert.AreNotEqual(addedQuotation.Modified, modifiedQuotation.Modified);
-
-                transaction.Rollback();
-            }
-        }
-
+        
         [Test]
         public void Can_Add_New_PriceList()
         {
@@ -374,7 +364,9 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Modifier = 1,
                 Creator = 1,
                 DateTo = DateTime.Now,
-                //DateOfQuotation = DateTime.Now,
+                DateOfQuotation = DateTime.Now,
+                PriceMax = 10,
+                PriceMin = 10
                 //Unit = new XXX_R55_Units { Id = 1 },
                 //Currency = new Waluta { Id_waluta = 1 },
                 //Fuel = new XXX_R55_Fuels { Id = 1 },

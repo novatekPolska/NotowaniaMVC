@@ -106,6 +106,7 @@
     <Reference Include="FluentNHibernateProviders.Providers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernateProviders.0.9.6\lib\net40\FluentNHibernateProviders.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0" />
     <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.2\lib\net461\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -454,6 +455,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotowaniaMVC.Domain.Tests\Quotations\Validator\QuotationValidatorTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Common\Repositories\NHibernateUniversalRepositoryTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Configure\ConfigureDatabaseTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Create\CreateDatabaseTests.cs" />
@@ -484,7 +486,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NotowaniaMVC.Application.Tests\" />
-    <Folder Include="NotowaniaMVC.Domain.Tests\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
