@@ -414,13 +414,17 @@
     <Compile Include="Database\Mappings\RegionsMap.cs" />
     <Compile Include="Database\Mappings\UnitsMap.cs" />
     <Compile Include="FuelPrices\Interfaces\IPriceListsRepository.cs" />
-    <Compile Include="FuelPrices\Interfaces\IQuotationsRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IUnitsRepository.cs" />
+    <Compile Include="Dictionaries\Repositories\UnitsRepository.cs" />
+    <Compile Include="Quotations\Interfaces\IQuotationsRepository.cs" />
     <Compile Include="FuelPrices\Repositories\PriceListsRepository.cs" />
-    <Compile Include="FuelPrices\Repositories\QuotationsRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IQuotationTypesRepository.cs" />
+    <Compile Include="Quotations\Repositories\QuotationsRepository.cs" />
     <Compile Include="NLog-NHibernate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quotations\Interfaces\IFuelTypesRepository.cs" />
-    <Compile Include="Quotations\Repositories\FuelTypesRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IFuelTypesRepository.cs" />
+    <Compile Include="Dictionaries\Repositories\FuelTypesRepository.cs" />
+    <Compile Include="Dictionaries\Repositories\QuotationTypesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="_cfg\" />

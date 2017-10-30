@@ -13,6 +13,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
     {
         NHibernateUniversalRepository<XXX_R55_Quotations> nHibernateUniversalRepositoryQuotation;
         NHibernateUniversalRepository<XXX_R55_PriceLists> nHibernateUniversalRepositoryPriceLists;
+        NHibernateUniversalRepository<XXX_R55_Units> nHibernateUniversalRepositoryUnits;
+
         ISession session;
         DatabaseConfiguration dbConfiguration;
          
@@ -23,6 +25,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             session = dbConfiguration.GetSession();
             nHibernateUniversalRepositoryQuotation = new NHibernateUniversalRepository<XXX_R55_Quotations>(session);
             nHibernateUniversalRepositoryPriceLists = new NHibernateUniversalRepository<XXX_R55_PriceLists>(session);
+            nHibernateUniversalRepositoryUnits = new NHibernateUniversalRepository<XXX_R55_Units>(session);
         }
 
         private TestContext testContextInstance;
@@ -353,7 +356,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 transaction.Rollback();
             }
         }
-         
+          
         private XXX_R55_Quotations CreateFakeQuotationObject()
         {
             return new XXX_R55_Quotations

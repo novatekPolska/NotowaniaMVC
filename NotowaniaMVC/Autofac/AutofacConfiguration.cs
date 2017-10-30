@@ -13,6 +13,10 @@ using NotowaniaMVC.Infrastructure.Quotations.Repositories;
 using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 using NotowaniaMVC.Domain.Quotation.Services;
 using NotowaniaMVC.Domain.Quotation.Interfaces;
+using NotowaniaMVC.Infrastructure.Common.Repositories;
+using NotowaniaMVC.Infrastructure.Common.Interfaces;
+using System.Linq;
+using System;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -39,9 +43,24 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
 
             builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope();
+
+            builder.RegisterGeneric(typeof(NHibernateUniversalRepository<>)).As(typeof(INHibernateUniversalRepository<>)).OnActivating(e =>
+            {
+                var typeToLookup = e.Parameters.FirstOrDefault() as TypedParameter;
+                if (typeToLookup != null)
+                {
+                    var respositoryType = typeof(NHibernateUniversalRepository<>);
+                    Type[] typeArgs = { typeToLookup.Value.GetType() };
+                    var genericType = respositoryType.MakeGenericType(typeArgs);
+                    var genericRepository = Activator.CreateInstance(genericType);
+                    e.ReplaceInstance(genericRepository);
+                }
+            }); 
+
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
+            builder.RegisterType<QuotationTypesRepository>().As<IQuotationTypesRepository>().InstancePerLifetimeScope();
              
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();

@@ -1,15 +1,17 @@
 ﻿using NHibernate;
+using NotowaniaMVC.Infrastructure.Common.Interfaces;
 using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 using NotowaniaMVC.Infrastructure.Database.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace NotowaniaMVC.Infrastructure.Common.Repositories
 {
-    public class NHibernateUniversalRepository<T>  
+    public class NHibernateUniversalRepository<T> : INHibernateUniversalRepository<T>
     { 
-        ParameterExpression parameter = Expression.Parameter(typeof(T));
+        
         private ISession Session { get; set; }
 
         public NHibernateUniversalRepository(ISession session)
@@ -29,12 +31,14 @@ namespace NotowaniaMVC.Infrastructure.Common.Repositories
 
         public T GetByGuid(Guid guid)
         {
+            ParameterExpression parameter = Expression.Parameter(typeof(T));
             var predicateGuid = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(parameter, "Guid"), Expression.Constant(guid)), parameter); 
             return Session.Query<T>().Single(predicateGuid);
         }
 
         public T GetById(int id)
         {
+            ParameterExpression parameter = Expression.Parameter(typeof(T));
             var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(parameter, "Id"), Expression.Constant(id)), parameter);
             return Session.Query<T>().Single(predicate);
         }
@@ -49,6 +53,12 @@ namespace NotowaniaMVC.Infrastructure.Common.Repositories
         {
           //  var predicate = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(parameter, "Guid"), Expression.Constant(guid)), parameter);
             //Session.Delete<T>(predicate);
-        }  
+        }
+
+        public IQueryable<T> GetAll()
+        {
+           return Session.Query<T>();
+        } 
     }
+
 }
