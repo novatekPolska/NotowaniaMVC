@@ -1,5 +1,4 @@
-﻿using NHibernate.Mapping.Attributes; 
-using System;
+﻿using NHibernate.Mapping.Attributes;  
 
 namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
 {

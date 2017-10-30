@@ -1,9 +1,8 @@
 ﻿using System; 
 
 namespace NotowaniaMVC.Infrastructure.Database.Entities
-{
-    
-    class XXX_R55_FuelTypes
+{ 
+    public class XXX_R55_FuelTypes
     {
         public virtual int Id { get; set; }
         public virtual Guid Guid { get; set; }

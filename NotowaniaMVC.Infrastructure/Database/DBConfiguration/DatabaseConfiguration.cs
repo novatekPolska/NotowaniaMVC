@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
 using NotowaniaMVC.Infrastructure.Database.Mappings;
 using System; 
 
@@ -29,8 +30,11 @@ namespace NotowaniaMVC.Infrastructure.Database.DBConfiguration
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DocumentsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CompaniesMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelTypesMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Waluta>())
                .BuildConfiguration();
               
             var sessionFactory =  configuration.BuildSessionFactory();

@@ -14,13 +14,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         NHibernateUniversalRepository<XXX_R55_Quotations> nHibernateUniversalRepositoryQuotation;
         NHibernateUniversalRepository<XXX_R55_PriceLists> nHibernateUniversalRepositoryPriceLists;
         ISession session;
-        DatabaseConfiguration dbConfiguratrion;
+        DatabaseConfiguration dbConfiguration;
          
         //todo rozbic na osobne klasy dla osobnych encji
         public NHibernateUniversalRepositoryTests()
         {
-            dbConfiguratrion = new DatabaseConfiguration();
-            session = dbConfiguratrion.GetSession();
+            dbConfiguration = new DatabaseConfiguration();
+            session = dbConfiguration.GetSession();
             nHibernateUniversalRepositoryQuotation = new NHibernateUniversalRepository<XXX_R55_Quotations>(session);
             nHibernateUniversalRepositoryPriceLists = new NHibernateUniversalRepository<XXX_R55_PriceLists>(session);
         }

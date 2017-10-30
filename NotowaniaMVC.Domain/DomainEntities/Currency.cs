@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotowaniaMVC.Domain.DomainEntities
 {
-    public class Waluta
+    public class Currency
     {
         private int Id_waluta { get; set; }
         private string Skrot { get; set; }

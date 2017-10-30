@@ -399,7 +399,7 @@
     <Compile Include="Quotation\Models\Quotation.cs" />
     <Compile Include="DomainEntities\Region.cs" />
     <Compile Include="DomainEntities\Unit.cs" />
-    <Compile Include="DomainEntities\Waluta.cs" />
+    <Compile Include="DomainEntities\Currency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quotation\Services\QuotationDomainService.cs" />
     <Compile Include="Quotation\Validators\QuotationValidator.cs" />

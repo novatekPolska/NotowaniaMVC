@@ -31,8 +31,10 @@ namespace NotowaniaMVC.Infrastructure.Database.Create
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DocumentsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CompaniesMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelTypesMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>())
                .BuildConfiguration();
 
             var exporter = new SchemaExport(configuration);

@@ -410,6 +410,7 @@
     <Compile Include="Database\Mappings\FuelTypesMap.cs" />
     <Compile Include="Database\Mappings\PriceListsMap.cs" />
     <Compile Include="Database\Mappings\QuotationsMap.cs" />
+    <Compile Include="Database\Mappings\QuotationTypesMap.cs" />
     <Compile Include="Database\Mappings\RegionsMap.cs" />
     <Compile Include="Database\Mappings\UnitsMap.cs" />
     <Compile Include="FuelPrices\Interfaces\IPriceListsRepository.cs" />
