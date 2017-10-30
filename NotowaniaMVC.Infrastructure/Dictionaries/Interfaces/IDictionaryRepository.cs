@@ -2,7 +2,7 @@
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Interfaces
 {
-    public interface IQuotationTypesRepository
+    public interface IDictionaryRepository
     {
         IQueryable GetAllIdNamePairs();
     }

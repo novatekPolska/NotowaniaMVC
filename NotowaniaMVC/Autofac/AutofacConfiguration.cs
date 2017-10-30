@@ -9,8 +9,8 @@ using NotowaniaMVC.Infrastructure.FuelPrices.Interfaces;
 using NotowaniaMVC.Infrastructure.FuelPrices.Repositories;
 using NHibernate;
 using NHibernate.Cfg;
-using NotowaniaMVC.Infrastructure.Quotations.Repositories;
-using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
+using NotowaniaMVC.Infrastructure.Dictionaries.Repositories;
+using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces;
 using NotowaniaMVC.Domain.Quotation.Services;
 using NotowaniaMVC.Domain.Quotation.Interfaces;
 using NotowaniaMVC.Infrastructure.Common.Repositories;
@@ -58,10 +58,11 @@ namespace NotowaniaMVC.Autofac
             }); 
 
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FuelTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
-            builder.RegisterType<QuotationTypesRepository>().As<IQuotationTypesRepository>().InstancePerLifetimeScope();
-             
+            builder.RegisterType<QuotationTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitsRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
+
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
 

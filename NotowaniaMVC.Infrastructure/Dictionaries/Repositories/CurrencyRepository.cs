@@ -1,22 +1,22 @@
 ﻿using System.Linq;
 using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces;
-using NotowaniaMVC.Infrastructure.Database.Entities;
 using NHibernate;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 {
-    public class UnitsRepository : IDictionaryRepository
+    public class CurrencyRepository : IDictionaryRepository
     {
         private ISession Session { get; set; }
 
-        public UnitsRepository(ISession session)
+        public CurrencyRepository(ISession session)
         {
             Session = session;
         }
 
         public IQueryable GetAllIdNamePairs()
         {
-            return Session.Query<XXX_R55_Units>().Select(c => new { c.Id, c.Name });
+            return Session.Query<Waluta>().Select(c => new { c.Id_waluta, c.Skrot });
         }
     }
 }

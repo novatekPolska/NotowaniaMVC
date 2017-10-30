@@ -1,11 +1,11 @@
 ﻿using NHibernate;
 using NotowaniaMVC.Infrastructure.Database.Entities;
-using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
+using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces; 
 using System.Linq;
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 {
-    public class FuelTypesRepository : IFuelTypesRepository
+    public class FuelTypesRepository : IDictionaryRepository
     {
         private ISession Session { get; set; }
 
