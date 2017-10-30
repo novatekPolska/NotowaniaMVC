@@ -117,9 +117,9 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             using (var transaction = session.BeginTransaction())
             {
                 var objectGuid = new Guid();
-                var quotationObject = CreateFakeQuotationObject();
-                objectGuid = quotationObject.Guid;
+                var quotationObject = CreateFakeQuotationObject(); 
                 nHibernateUniversalRepositoryQuotation.Create(quotationObject);
+                objectGuid = quotationObject.Guid;
 
                 var addedObject = nHibernateUniversalRepositoryQuotation.GetByGuid(objectGuid);
 
@@ -177,9 +177,10 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                     var quotationObject = CreateFakeQuotationObject();
 
                     var objectGuid = quotationObject.Guid;
-                    var objectId = quotationObject.Id;
+                    
                     nHibernateUniversalRepositoryQuotation.Create(quotationObject);
-                     
+                    var objectId = quotationObject.Id;
+
                     if (objectId == 0)
                         throw new Exception("Nie udało się dodać do bazy więc nie ma co z niej wywlekać");
                     else
@@ -325,9 +326,9 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             {
                 var priceListObject = CreateFakePriceListObject();
 
-                var objectGuid = priceListObject.Guid;
-                var objectId = priceListObject.Id;
+                var objectGuid = priceListObject.Guid; 
                 nHibernateUniversalRepositoryPriceLists.Create(priceListObject);
+                var objectId = priceListObject.Id;
 
                 if (objectId == 0)
                     throw new Exception("Nie udało się dodać do bazy więc nie ma co z niej wywlekać");
