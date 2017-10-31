@@ -7,6 +7,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
     public class XXX_R55_Contactors
     {
         [Key]
+        [Id] 
         public virtual int Id { get; set;  }
 
         public virtual DateTime Created { get; set; }

@@ -1,8 +1,7 @@
 ﻿using NHibernate; 
 using NotowaniaMVC.Infrastructure.Common.Repositories;
 using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
-using NotowaniaMVC.Infrastructure.Database.Entities;
-using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
+using NotowaniaMVC.Infrastructure.Database.Entities; 
 using NUnit.Framework;
 using System;
 
@@ -13,7 +12,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
     {
         NHibernateUniversalRepository<XXX_R55_Quotations> nHibernateUniversalRepositoryQuotation;
         NHibernateUniversalRepository<XXX_R55_PriceLists> nHibernateUniversalRepositoryPriceLists;
-        NHibernateUniversalRepository<XXX_R55_Units> nHibernateUniversalRepositoryUnits;
+        NHibernateUniversalRepository<UnitsDb> nHibernateUniversalRepositoryUnits;
 
         ISession session;
         DatabaseConfiguration dbConfiguration;
@@ -25,7 +24,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             session = dbConfiguration.GetSession();
             nHibernateUniversalRepositoryQuotation = new NHibernateUniversalRepository<XXX_R55_Quotations>(session);
             nHibernateUniversalRepositoryPriceLists = new NHibernateUniversalRepository<XXX_R55_PriceLists>(session);
-            nHibernateUniversalRepositoryUnits = new NHibernateUniversalRepository<XXX_R55_Units>(session);
+            nHibernateUniversalRepositoryUnits = new NHibernateUniversalRepository<UnitsDb>(session);
         }
 
         private TestContext testContextInstance;
@@ -92,7 +91,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             {
                 var objectGuid = new Guid();
                 var quotation = CreateFakeQuotationObject();
-                objectGuid = quotation.Guid;
+               objectGuid = quotation.Guid;
 
                 nHibernateUniversalRepositoryQuotation.Create(quotation); 
                 var addedObject = nHibernateUniversalRepositoryQuotation.GetByGuid(objectGuid); 
@@ -188,19 +187,19 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                         throw new Exception("Nie udało się dodać do bazy więc nie ma co z niej wywlekać");
                     else
                     {
-                        var addedObject = nHibernateUniversalRepositoryQuotation.GetByGuid(objectGuid);
+                    var addedObject = nHibernateUniversalRepositoryQuotation.GetByGuid(objectGuid);
 
-                        Assert.AreEqual(quotationObject.Id, addedObject.Id);
-                        Assert.AreEqual(quotationObject.Modified, addedObject.Modified);
-                        Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier); 
-                        Assert.AreEqual(quotationObject.Region, addedObject.Region);
-                        Assert.AreEqual(quotationObject.Guid, addedObject.Guid);
-                        Assert.AreEqual(quotationObject.Fuel, addedObject.Fuel);
-                        Assert.AreEqual(quotationObject.Creator, addedObject.Creator);
-                        Assert.AreEqual(quotationObject.Created, addedObject.Created);
-                        Assert.AreEqual(quotationObject.Company, addedObject.Company);
-                        Assert.AreEqual(quotationObject.Code, addedObject.Code);
-                    }
+                    Assert.AreEqual(quotationObject.Id, addedObject.Id);
+                    Assert.AreEqual(quotationObject.Modified, addedObject.Modified);
+                    Assert.AreEqual(quotationObject.Modifier, addedObject.Modifier);
+                    Assert.AreEqual(quotationObject.Region, addedObject.Region);
+                    Assert.AreEqual(quotationObject.Guid, addedObject.Guid);
+                    Assert.AreEqual(quotationObject.Fuel, addedObject.Fuel);
+                    Assert.AreEqual(quotationObject.Creator, addedObject.Creator);
+                    Assert.AreEqual(quotationObject.Created, addedObject.Created);
+                    Assert.AreEqual(quotationObject.Company, addedObject.Company);
+                    Assert.AreEqual(quotationObject.Code, addedObject.Code);
+                }
                     transaction.Rollback(); 
             }
         }
@@ -249,7 +248,6 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Assert.AreEqual(addedObject.DateOfQuotation, modifiedObject.DateOfQuotation);
                 Assert.AreEqual(addedObject.DateTo, modifiedObject.DateTo); 
 
-                transaction.Rollback();
                 transaction.Rollback();
             }
         }

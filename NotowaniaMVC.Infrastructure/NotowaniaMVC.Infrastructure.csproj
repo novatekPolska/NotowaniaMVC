@@ -401,9 +401,24 @@
     <Compile Include="Database\Entities\XXX_R55_Quotations.cs" />
     <Compile Include="Database\Entities\XXX_R55_QuotationTypes.cs" />
     <Compile Include="Database\Entities\XXX_R55_Regions.cs" />
-    <Compile Include="Database\Entities\XXX_R55_Units.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\CardGroupsMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\StCardGroupTypesMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\CardGroupTypesMap2.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\CardGroupTypesMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\DictionaryMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\DictionaryTypeMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\ForTableMap.cs" />
+    <Compile Include="Database\ExistingEntities\AnaliticsDb.cs" />
+    <Compile Include="Database\ExistingEntities\CardGroupsDb.cs" />
+    <Compile Include="Database\ExistingEntities\StCardGroupTypesDb.cs" />
+    <Compile Include="Database\ExistingEntities\CardGroupTypesDb2.cs" />
+    <Compile Include="Database\ExistingEntities\CardGroupTypesDb.cs" />
+    <Compile Include="Database\ExistingEntities\DictionaryDb.cs" />
+    <Compile Include="Database\ExistingEntities\DictionaryTypeDb.cs" />
+    <Compile Include="Database\ExistingEntities\ForTableDb.cs" />
+    <Compile Include="Database\ExistingEntities\UnitsDb.cs" />
     <Compile Include="Database\ExistingEntitiesMappings\WalutaMap.cs" />
-    <Compile Include="Database\ExistingEntities\Waluta.cs" />
+    <Compile Include="Database\ExistingEntities\WalutaDb.cs" />
     <Compile Include="Database\Mappings\CompaniesMap.cs" />
     <Compile Include="Database\Mappings\DocumentsMap.cs" />
     <Compile Include="Database\Mappings\FuelsMap.cs" />
@@ -412,7 +427,8 @@
     <Compile Include="Database\Mappings\QuotationsMap.cs" />
     <Compile Include="Database\Mappings\QuotationTypesMap.cs" />
     <Compile Include="Database\Mappings\RegionsMap.cs" />
-    <Compile Include="Database\Mappings\UnitsMap.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\UnitsMap.cs" />
+    <Compile Include="Dictionaries\Dictionary.cs" />
     <Compile Include="Dictionaries\Repositories\CurrencyRepository.cs" />
     <Compile Include="FuelPrices\Interfaces\IPriceListsRepository.cs" />
     <Compile Include="Dictionaries\Repositories\UnitsRepository.cs" />
@@ -425,9 +441,7 @@
     <Compile Include="Dictionaries\Repositories\FuelTypesRepository.cs" />
     <Compile Include="Dictionaries\Repositories\QuotationTypesRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_cfg\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>

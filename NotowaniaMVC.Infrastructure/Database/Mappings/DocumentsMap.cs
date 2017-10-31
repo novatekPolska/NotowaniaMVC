@@ -8,15 +8,16 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Dokumentów na tabelę bazodanową
         public DocumentsMap()
         {
-            Id(c => c.Id);
-            Map(c => c.Guid);
-            Map(c => c.Link);
-            Map(c => c.Code); 
-            References(c => c.Quotation);
-            Map(c => c.Created);
-            Map(c => c.Modified);
-            Map(c => c.Creator);
-            Map(c => c.Modifier);
+            Table("XXX_R55_DOCUMENTS");
+            Id(c => c.Id, "ID").Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_DOC")); ;
+            Map(c => c.Guid, "GUID");
+            Map(c => c.Link, "LINK");
+            Map(c => c.Code, "CODE"); 
+            References(c => c.Quotation, "ID_QUOTATION");
+            Map(c => c.Created, "CREATED");
+            Map(c => c.Modified, "MODIFIED");
+            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Modifier, "MODIFIER");
         }
     }
 }

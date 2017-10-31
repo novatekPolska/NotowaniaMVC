@@ -8,15 +8,16 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Paliw na tabelę bazodanową
         public FuelsMap()
         {
-            Id(c => c.Id);
-            Map(c => c.Guid);
-            Map(c => c.Name);
-            Map(c => c.Code); 
-            Map(c => c.Density); 
-            Map(c => c.Created);
-            Map(c => c.Modified);
-            Map(c => c.Creator);
-            Map(c => c.Modifier);
+            Table("XXX_R55_FUELS");
+            Id(c => c.Id, "ID").Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_FUEL")); ;
+            Map(c => c.Guid, "GUID");
+            Map(c => c.Name, "NAME");
+            Map(c => c.Code, "CODE"); 
+            Map(c => c.Density, "DENSITY"); 
+            Map(c => c.Created, "CREATED");
+            Map(c => c.Modified, "MODIFIED");
+            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Modifier, "MODIFIER");
         } 
     }
 }

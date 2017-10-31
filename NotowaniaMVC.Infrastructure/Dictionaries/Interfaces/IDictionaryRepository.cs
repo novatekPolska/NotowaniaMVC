@@ -4,6 +4,6 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Interfaces
 {
     public interface IDictionaryRepository
     {
-        IQueryable GetAllIdNamePairs();
+        IQueryable<Dictionary> GetAllIdNamePairs();
     }
 }

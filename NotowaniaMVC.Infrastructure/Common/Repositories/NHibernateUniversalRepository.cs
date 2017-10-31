@@ -1,17 +1,13 @@
 ﻿using NHibernate;
-using NotowaniaMVC.Infrastructure.Common.Interfaces;
-using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
-using NotowaniaMVC.Infrastructure.Database.Entities;
-using System;
-using System.Collections.Generic;
+using NotowaniaMVC.Infrastructure.Common.Interfaces; 
+using System; 
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace NotowaniaMVC.Infrastructure.Common.Repositories
 {
     public class NHibernateUniversalRepository<T> : INHibernateUniversalRepository<T>
-    { 
-        
+    {  
         private ISession Session { get; set; }
 
         public NHibernateUniversalRepository(ISession session)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NHibernate.Mapping.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
 {
     public class XXX_R55_Deliveries
     {
+        [Key]
+        [Id]
         public virtual int Id { get; set; }
         public virtual Guid Guid { get; set; }
         public virtual decimal MinValue { get; set; }

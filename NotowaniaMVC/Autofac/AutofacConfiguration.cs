@@ -17,6 +17,8 @@ using NotowaniaMVC.Infrastructure.Common.Repositories;
 using NotowaniaMVC.Infrastructure.Common.Interfaces;
 using System.Linq;
 using System;
+using NotowaniaMVC.Infrastructure.Quotations.Repositories;
+using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 
 namespace NotowaniaMVC.Autofac
 {

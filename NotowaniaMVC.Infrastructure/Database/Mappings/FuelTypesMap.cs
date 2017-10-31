@@ -1,10 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using NotowaniaMVC.Infrastructure.Database.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NotowaniaMVC.Infrastructure.Database.Entities; 
 
 namespace NotowaniaMVC.Infrastructure.Database.Mappings
 {
@@ -13,14 +8,15 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji rodzajów paliw na tabelę bazodanową
         public FuelTypesMap()
         {
-            Id(c => c.Id);
-            Map(c => c.Guid);
-            Map(c => c.Name);
-            Map(c => c.Code); 
-            Map(c => c.Created);
-            Map(c => c.Modified);
-            Map(c => c.Creator);
-            Map(c => c.Modifier);
+            Table("XXX_R55_FUEL_TYPES");
+            Id(c => c.Id, "ID").Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_FUET")); ;
+            Map(c => c.Guid, "GUID");
+            Map(c => c.Name, "NAME");
+            Map(c => c.Code, "CODE"); 
+            Map(c => c.Created, "CREATED");
+            Map(c => c.Modified, "MODIFIED");
+            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Modifier, "MODIFIER");
         }
     }
 }

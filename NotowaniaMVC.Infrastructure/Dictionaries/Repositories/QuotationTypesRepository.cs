@@ -18,9 +18,9 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
         /// pobiera id i name dla typów notowań. Potrzebne jest to do kontrolki z listą rozwijalną w formularzu dodawania nowego notowania
         /// </summary>
         /// <returns></returns>
-        public IQueryable GetAllIdNamePairs() 
+        public IQueryable<Dictionary> GetAllIdNamePairs() 
         {
-            return Session.Query<XXX_R55_QuotationTypes>().Select(c => new { c.Id, c.Name });
+            return Session.Query<XXX_R55_QuotationTypes>().Select(c => new Dictionary { Id = c.Id, Name = c.Name });
         } 
     }
 }

@@ -14,9 +14,9 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
             Session = session;
         }
 
-        public IQueryable GetAllIdNamePairs()
+        public IQueryable<Dictionary> GetAllIdNamePairs()
         {
-            return Session.Query<XXX_R55_Units>().Select(c => new { c.Id, c.Name });
+            return Session.Query<UnitsDb>().Select(c => new Dictionary { Id = c.Id, Name = c.Jm });
         }
     }
 }

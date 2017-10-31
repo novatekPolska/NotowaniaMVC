@@ -8,6 +8,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
     public class XXX_R55_PriceLists  
     {
         [Key]
+        [Id]
         public virtual int Id { get; set; }
         public virtual Guid Guid { get; set; }
         public virtual String Code { get; set; }
@@ -20,7 +21,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual int Modifier { get; set; }
         public virtual int Creator { get; set; }
 
-        public virtual XXX_R55_Units Unit { get; set; } //jednostka
-        public virtual Waluta Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
+        public virtual UnitsDb Unit { get; set; } //jednostka
+        public virtual WalutaDb Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
     }
 }

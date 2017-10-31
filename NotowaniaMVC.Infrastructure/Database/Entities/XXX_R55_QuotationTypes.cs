@@ -1,9 +1,12 @@
-﻿using System; 
+﻿using NHibernate.Mapping.Attributes;
+using System; 
 
 namespace NotowaniaMVC.Infrastructure.Database.Entities
 {
     public class XXX_R55_QuotationTypes
     {
+        [Key]
+        [Id]
         public virtual int Id { get; set; }
         public virtual Guid Guid { get; set; }
         public virtual string Code { get; set; }

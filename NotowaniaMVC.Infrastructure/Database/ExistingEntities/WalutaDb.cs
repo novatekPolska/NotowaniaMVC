@@ -2,10 +2,11 @@
 
 namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
 {
-    public class Waluta
+    
+    public class WalutaDb
     {
         [Key]
-        [Id]
+        [Id] 
         public virtual int Id_waluta { get; set; }
         public virtual string Skrot { get; set; }
         public virtual string waluta { get; set; }

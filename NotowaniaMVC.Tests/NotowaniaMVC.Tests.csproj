@@ -459,6 +459,10 @@
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Common\Repositories\NHibernateUniversalRepositoryTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Configure\ConfigureDatabaseTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Create\CreateDatabaseTests.cs" />
+    <Compile Include="NotowaniaMVC.Infrastructure.Tests\Dictionaries\Repositories\CurrencyRepositoryTests.cs" />
+    <Compile Include="NotowaniaMVC.Infrastructure.Tests\Dictionaries\Repositories\FuelTypesRepositoryTests.cs" />
+    <Compile Include="NotowaniaMVC.Infrastructure.Tests\Dictionaries\Repositories\QuotationTypesRepositoryTests.cs" />
+    <Compile Include="NotowaniaMVC.Infrastructure.Tests\Dictionaries\Repositories\UnitsRepositoryTests.cs" />
     <Compile Include="NotowaniaMVC.Presentation.Tests\Autofac.Test\Autofac.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

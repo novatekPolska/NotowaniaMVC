@@ -8,22 +8,23 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Notowań na tabelę bazodanową
         public QuotationsMap()
         {
-            Id(c => c.Id).Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_QUOT")); 
-            Map(c => c.Guid); 
-            References(c => c.Fuel);
-            Map(c => c.Code); 
-            References(c => c.Region);
-            Map(c => c.PriceMin);
-            Map(c => c.PriceMax);
-            Map(c => c.DateTo);
-            Map(c => c.DateOfQuotation);
-            References(c => c.Company);
-            References(c => c.Unit);
-            References(c => c.Currency);
-            Map(c => c.Created);
-            Map(c => c.Modified);
-            Map(c => c.Creator);
-            Map(c => c.Modifier);
+            Table("XXX_R55_QUOTATIONS");
+            Id(c => c.Id, "ID").Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_QUOT"));
+            Map(c => c.Guid, "GUID");
+            References(c => c.Fuel, "FUEL");
+            Map(c => c.Code, "CODE");
+            References(c => c.Region, "REGION");
+            Map(c => c.PriceMin, "PRICE_MIN");
+            Map(c => c.PriceMax, "PRICE_MAX");
+            Map(c => c.DateTo, "DATE_TO");
+            Map(c => c.DateOfQuotation, "DATE_OF_QUOTATION");
+            References(c => c.Company, "COMPANY");
+            References(c => c.Unit, "UNIT");
+            References(c => c.Currency, "CURRENCY");
+            Map(c => c.Created, "CREATED");
+            Map(c => c.Modified, "MODIFIED");
+            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Modifier, "MODIFIER");
         }
     }
 }

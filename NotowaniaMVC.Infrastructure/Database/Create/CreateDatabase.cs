@@ -3,6 +3,8 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
+using NotowaniaMVC.Infrastructure.Database.ExistingEntitiesMappings;
 using NotowaniaMVC.Infrastructure.Database.Mappings;
 
 namespace NotowaniaMVC.Infrastructure.Database.Create
@@ -25,20 +27,21 @@ namespace NotowaniaMVC.Infrastructure.Database.Create
             var firebirdConfiguration = new FirebirdConfiguration();
 
             var configuration = Fluently.Configure()
-               .Database(firebirdConfiguration.ConnectionString(connectionString).ShowSql)
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UnitsMap>())
+               .Database(firebirdConfiguration.ConnectionString(connectionString).ShowSql)  
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>()) 
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RegionsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DocumentsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CompaniesMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelTypesMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>()) 
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>())
+                    
                .BuildConfiguration();
 
-            var exporter = new SchemaExport(configuration);
-            exporter.Execute(true, true, false); 
+            var exporter = new SchemaUpdate(configuration);
+            exporter.Execute(true, true);
+
+          
         }  
     }
 }

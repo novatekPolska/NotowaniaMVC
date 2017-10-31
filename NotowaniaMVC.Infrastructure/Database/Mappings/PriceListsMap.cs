@@ -8,19 +8,20 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
         //Mapowanie encji Cenników na tabelę bazodanową
         public PriceListsMap()
         {
-            Id(c => c.Id); 
-            Map(c => c.Guid); 
-            Map(c => c.Code);
-            Map(c => c.PriceMin);
-            Map(c => c.PriceMax);
-            References(c => c.Unit);
-            References(c => c.Currency); 
-            Map(c => c.DateTo);
-            Map(c => c.DateOfQuotation); 
-            Map(c => c.Created);
-            Map(c => c.Modified);
-            Map(c => c.Creator);
-            Map(c => c.Modifier);
+            Table("XXX_R55_PRICE_LISTS");
+            Id(c => c.Id, "ID").Not.Nullable().GeneratedBy.Native(builder => builder.AddParam("sequence", "SEQ_PRL")); ;
+            Map(c => c.Guid, "GUID");
+            Map(c => c.Code, "CODE");
+            Map(c => c.PriceMin, "PRICE_MIN");
+            Map(c => c.PriceMax, "PRICE_MAX");
+            References(c => c.Unit, "UNIT");
+            References(c => c.Currency, "CURRENCY");
+            Map(c => c.DateTo, "DATE_TO");
+            Map(c => c.DateOfQuotation, "DATE_OF_QUOTATION");
+            Map(c => c.Created, "CREATED");
+            Map(c => c.Modified, "MODIFIED");
+            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Modifier, "MODIFIER");
         }
     }
 }

@@ -176,8 +176,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test"});
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
                 var obj  = session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
 
@@ -201,8 +201,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test"});
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
                 var obj = session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
 
@@ -225,8 +225,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test" });
                 session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
                 var obj = session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
 
@@ -250,8 +250,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test"});
                 session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
                 var obj = session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
 
@@ -274,10 +274,10 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid()});
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() }); 
-                var obj = session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                var obj = session.Save(new UnitsDb { Jm = "test"});
 
                 id = (int)obj;
                 if (id != 0) id = id + 1;
@@ -299,10 +299,10 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
                 session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
-                var obj = session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
+                var obj = session.Save(new UnitsDb { Jm = "test"});
 
                 id = (int)obj; 
 
@@ -325,8 +325,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
 
                 session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
-                var obj = session.Save(new Waluta {  Bilon = "test", Krotnosc = 1, Skrot= "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test"});
+                var obj = session.Save(new WalutaDb {  Bilon = "test", Krotnosc = 1, Skrot= "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
 
                 id = (int)obj;
                 if (id != 0) id = id + 1;
@@ -350,8 +350,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
 
                 session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
                 session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
-                session.Save(new XXX_R55_Units { Name = "test", Code = "test", Guid = new Guid() });
-                var obj = session.Save(new Waluta { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
+                session.Save(new UnitsDb { Jm = "test"});
+                var obj = session.Save(new WalutaDb { Bilon = "test", Krotnosc = 1, Skrot = "test", Wydruk = "test", Symbol = "test", waluta = "test", Walutapodstawowa = true });
 
                 id = (int)obj; 
 

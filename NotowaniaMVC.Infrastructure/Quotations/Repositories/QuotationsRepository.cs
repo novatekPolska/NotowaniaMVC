@@ -1,6 +1,6 @@
-﻿using NotowaniaMVC.Infrastructure.FuelPrices.Interfaces; 
+﻿using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 
-namespace NotowaniaMVC.Infrastructure.FuelPrices.Repositories
+namespace NotowaniaMVC.Infrastructure.Quotations.Repositories
 {
     public class QuotationsRepository : IQuotationsRepository
     {
