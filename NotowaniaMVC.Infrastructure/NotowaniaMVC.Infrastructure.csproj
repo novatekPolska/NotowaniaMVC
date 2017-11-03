@@ -401,6 +401,7 @@
     <Compile Include="Database\Entities\XXX_R55_Quotations.cs" />
     <Compile Include="Database\Entities\XXX_R55_QuotationTypes.cs" />
     <Compile Include="Database\Entities\XXX_R55_Regions.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\AnaliticsMap.cs" />
     <Compile Include="Database\ExistingEntitiesMappings\CardGroupsMap.cs" />
     <Compile Include="Database\ExistingEntitiesMappings\StCardGroupTypesMap.cs" />
     <Compile Include="Database\ExistingEntitiesMappings\CardGroupTypesMap2.cs" />
@@ -417,8 +418,8 @@
     <Compile Include="Database\ExistingEntities\DictionaryTypeDb.cs" />
     <Compile Include="Database\ExistingEntities\ForTableDb.cs" />
     <Compile Include="Database\ExistingEntities\UnitsDb.cs" />
-    <Compile Include="Database\ExistingEntitiesMappings\WalutaMap.cs" />
-    <Compile Include="Database\ExistingEntities\WalutaDb.cs" />
+    <Compile Include="Database\ExistingEntitiesMappings\CurrencyMap.cs" />
+    <Compile Include="Database\ExistingEntities\CurrencyDb.cs" />
     <Compile Include="Database\Mappings\CompaniesMap.cs" />
     <Compile Include="Database\Mappings\DocumentsMap.cs" />
     <Compile Include="Database\Mappings\FuelsMap.cs" />

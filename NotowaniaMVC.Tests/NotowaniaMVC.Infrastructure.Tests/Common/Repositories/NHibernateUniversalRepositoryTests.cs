@@ -42,24 +42,16 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
 
         [Test]
         public void Can_Add_New_Quotation()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
-                var quotation = CreateFakeQuotationObject(); 
-
+        { 
+                var quotation = CreateFakeQuotationObject();  
                 nHibernateUniversalRepositoryQuotation.Create(quotation); 
-
                 Assert.AreNotEqual(quotation.Id, 0);
-                
-                transaction.Rollback();
-            }
+                nHibernateUniversalRepositoryQuotation.DeleteById(quotation.Id);
         }
 
         [Test]
         public void when_add_new_quotation_then_database_should_have_new_quotation_with_correct_properties()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var quotation = CreateFakeQuotationObject(); 
                 nHibernateUniversalRepositoryQuotation.Create(quotation);
 
@@ -79,16 +71,12 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Assert.AreEqual(quotation.Creator, addedObject.Creator);
                 Assert.AreEqual(quotation.Modified, addedObject.Modified);
                 Assert.AreEqual(quotation.Modifier, addedObject.Modifier);
-
-                transaction.Rollback();
-            }
+                nHibernateUniversalRepositoryQuotation.DeleteById(id);
         }
          
         [Test]
         public void Can_Update_Quotation()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var objectGuid = new Guid();
                 var quotation = CreateFakeQuotationObject();
                objectGuid = quotation.Guid;
@@ -108,16 +96,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Assert.AreEqual(addedObject.Creator, modifiedObject.Creator);
                 Assert.AreEqual(addedObject.Created, modifiedObject.Created);
                 Assert.AreEqual(addedObject.Company, modifiedObject.Company);
-                Assert.AreEqual(addedObject.Code, modifiedObject.Code); 
-                transaction.Rollback();
-            }
+                Assert.AreEqual(addedObject.Code, modifiedObject.Code);
+                nHibernateUniversalRepositoryQuotation.DeleteByGuid(objectGuid);
         }
 
         [Test]
-        public void Can_Delete_Quotation()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        public void Can_Delete_Quotation_By_Guid()
+        { 
                 var objectGuid = new Guid();
                 var quotationObject = CreateFakeQuotationObject(); 
                 nHibernateUniversalRepositoryQuotation.Create(quotationObject);
@@ -133,18 +118,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 {
                     nHibernateUniversalRepositoryQuotation.DeleteByGuid(objectGuid);
                     var deletedObject = nHibernateUniversalRepositoryQuotation.GetByGuid(objectGuid);
-                    Assert.AreEqual(deletedObject, null);
-                }
-
-                transaction.Rollback();
-            }
+                    Assert.AreEqual(deletedObject, null); 
+                } 
         }
 
         [Test]
         public void Can_Get_Quotation_By_Id()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var quotationObject = CreateFakeQuotationObject();
                 nHibernateUniversalRepositoryQuotation.Create(quotationObject);
 
@@ -165,17 +145,14 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                     Assert.AreEqual(quotationObject.Creator, addedObject.Creator);
                     Assert.AreEqual(quotationObject.Created, addedObject.Created);
                     Assert.AreEqual(quotationObject.Company, addedObject.Company);
-                    Assert.AreEqual(quotationObject.Code, addedObject.Code); 
-                }
-                transaction.Rollback();
-            }
+                    Assert.AreEqual(quotationObject.Code, addedObject.Code);
+                    nHibernateUniversalRepositoryQuotation.DeleteById(objectId);
+            } 
         }
 
         [Test]
         public void Can_Get_Quotation_By_Guid()
-        {
-            using (var transaction = session.BeginTransaction())
-            {  
+        {  
                     var quotationObject = CreateFakeQuotationObject();
 
                     var objectGuid = quotationObject.Guid;
@@ -199,31 +176,25 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                     Assert.AreEqual(quotationObject.Created, addedObject.Created);
                     Assert.AreEqual(quotationObject.Company, addedObject.Company);
                     Assert.AreEqual(quotationObject.Code, addedObject.Code);
-                }
-                    transaction.Rollback(); 
-            }
+                    nHibernateUniversalRepositoryQuotation.DeleteByGuid(objectGuid);
+            } 
         }
 
         
         [Test]
         public void Can_Add_New_PriceList()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var priceList = CreateFakePriceListObject();
 
                 nHibernateUniversalRepositoryPriceLists.Create(priceList);
 
                 Assert.AreNotEqual(priceList.Id, 0);
-                transaction.Rollback(); 
-            }
+                nHibernateUniversalRepositoryPriceLists.DeleteById(priceList.Id);
         }
           
         [Test]
         public void Can_Update_PriceList()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var objectGuid = new Guid();
                 var priceList = CreateFakePriceListObject();
                 objectGuid = priceList.Guid;
@@ -246,10 +217,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 Assert.AreEqual(addedObject.Unit, modifiedObject.Unit);
                 Assert.AreEqual(addedObject.Currency, modifiedObject.Currency);
                 Assert.AreEqual(addedObject.DateOfQuotation, modifiedObject.DateOfQuotation);
-                Assert.AreEqual(addedObject.DateTo, modifiedObject.DateTo); 
-
-                transaction.Rollback();
-            }
+                Assert.AreEqual(addedObject.DateTo, modifiedObject.DateTo);
+                nHibernateUniversalRepositoryPriceLists.DeleteById(priceList.Id);
         }
           
         //Docelowo istniejące obiekty będziemy usuwać 
@@ -260,10 +229,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         //na archiwizacje danych. Czemu? Wyobraźmy sobie ze uzytkownik cos usunie niechcący i poprosi o odzyskanie danych...
         //albo inaczej - usunie cos do czego mamy jakies klucze obce - dostanie wyjątkami po oczach, a tego nie chcemy
         [Test]
-        public void Can_Delete_PriceList() 
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        public void Can_Delete_PriceList_By_Guid() 
+        { 
                 var objectGuid = new Guid();
                 var priceListObject = CreateFakePriceListObject();
                 objectGuid = priceListObject.Guid;
@@ -279,18 +246,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                 {
                     nHibernateUniversalRepositoryPriceLists.DeleteByGuid(objectGuid);
                     var deletedObject = nHibernateUniversalRepositoryPriceLists.GetByGuid(objectGuid);
-                    Assert.AreEqual(deletedObject, null);
-                }
-
-                transaction.Rollback();
-            }
+                    Assert.AreEqual(deletedObject, null); 
+            } 
         }
 
         [Test]
         public void Can_Get_PriceList_By_Id()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var priceListObject = CreateFakePriceListObject();
                 nHibernateUniversalRepositoryPriceLists.Create(priceListObject);
 
@@ -315,16 +277,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                     Assert.AreEqual(priceListObject.DateTo, addedObject.DateTo);
                     Assert.AreEqual(priceListObject.Modified, addedObject.Modified);
                     Assert.AreEqual(priceListObject.Modifier, addedObject.Modifier);
-                }
-                transaction.Rollback();
-            }
+                    nHibernateUniversalRepositoryPriceLists.DeleteById(objectId);
+            } 
         }
          
         [Test]
         public void Can_Get_PriceList_By_Guid()
-        {
-            using (var transaction = session.BeginTransaction())
-            {
+        { 
                 var priceListObject = CreateFakePriceListObject();
 
                 var objectGuid = priceListObject.Guid; 
@@ -350,9 +309,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
                     Assert.AreEqual(priceListObject.DateTo, addedObject.DateTo);
                     Assert.AreEqual(priceListObject.Modified, addedObject.Modified);
                     Assert.AreEqual(priceListObject.Modifier, addedObject.Modifier);
-                }
-                transaction.Rollback();
-            }
+                    nHibernateUniversalRepositoryPriceLists.DeleteById(priceListObject.Id);
+            } 
         }
           
         private XXX_R55_Quotations CreateFakeQuotationObject()
@@ -361,7 +319,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
             {
                 Code = "testCode",
                 Created = DateTime.Now,
-                Guid = new Guid(),
+                Guid = Guid.NewGuid(),
                 Modified = DateTime.Now,
                 Modifier = 1,
                 Creator = 1,
@@ -381,7 +339,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Common.Repositori
         {
             return new XXX_R55_PriceLists
             {
-                Guid = new Guid(),
+                Guid = Guid.NewGuid(),
                 Code = "testCode",
                 PriceMin = 10,
                 PriceMax = 20,

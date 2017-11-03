@@ -22,6 +22,6 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual int Creator { get; set; }
 
         public virtual UnitsDb Unit { get; set; } //jednostka
-        public virtual WalutaDb Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
+        public virtual CurrencyDb Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
     }
 }

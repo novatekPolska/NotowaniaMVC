@@ -16,7 +16,7 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 
         public IQueryable<Dictionary> GetAllIdNamePairs()
         {
-            return Session.Query<WalutaDb>().Select(c => new Dictionary { Id = c.Id_waluta, Name = c.Skrot });
+            return Session.Query<CurrencyDb>().Select(c => new Dictionary { Id = c.Id, Name = c.Shortcut });
         }
     }
 }

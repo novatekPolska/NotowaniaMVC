@@ -7,7 +7,7 @@ namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
         [Key]
         [Id]
         public virtual int Id { get; set; }
-        public virtual int TableId { get; set; }
+        public virtual ForTableDb TableId { get; set; }
         public virtual CardGroupTypesDb CardGroupTypeId { get; set; }
         public virtual CardGroupTypesDb2 CardGroupTypeId2 { get; set; }
         public virtual string Name { get; set; }
@@ -23,7 +23,7 @@ namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
         public virtual int SPOSTWANALITYKI { get; set; } //todo przetlumaczyc
         public virtual bool PRZYDRUKROZBIC { get; set; } //todo przetlumaczyc
         public virtual bool ROZRACHUNKOWA { get; set; } //todo przetlumaczyc
-        public virtual bool ROZDZIELNIK_DLA_PLAC { get; set; } //todo przetlumaczyc
+        public virtual bool DistributorForWage { get; set; }  
         public virtual bool DOLACZ_ROZRACH_NAGLPK { get; set; } //todo przetłumaczyc
     }
 }

@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic; 
 using System.Web.Mvc;
 using NotowaniaMVC.Application.Quotations.ViewModels;
-using System.Collections;
+using MediatR;
+using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers.Messages;
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
     public class QuotationsController : Controller
     {
+        private readonly IMediator _mediator;
+        public QuotationsController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        //public QuotationsController() //: this(IMediator mediator)
+        //{
+        //}
+
         // GET: Quotations
         public ActionResult Quotations()
         {
@@ -29,14 +37,22 @@ namespace NotowaniaMVC.Controllers.Quotations
             return View(quotationViewModel);
         }
 
-        public ActionResult Add()
+        [HttpPost]
+        public ActionResult Add(NewQuotationViewModel newQuotationModel)
         {
-            return View();
+            _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel });
+            return View("Quotations", newQuotationModel);
         }
 
         public ActionResult Cancel()
         {
             return View();
         }
+
+        //[HttpPost]
+        //public ActionResult Add(FormCollection form)
+        //{
+        //    return View("Quotations");
+        //}
     }
 }

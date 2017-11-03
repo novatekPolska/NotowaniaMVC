@@ -401,22 +401,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FuelPrices\Handlers\CommandHandlers\FuelPricesCommandHandler.cs" />
-    <Compile Include="FuelPrices\Handlers\CommandHandlers\Messages\NewQuotationCommand.cs" />
+    <Compile Include="Quotations\Handlers\CommandHandlers\Messages\NewQuotationCommand.cs" />
     <Compile Include="FuelPrices\Interfaces\IFuelPriceService.cs" />
-    <Compile Include="FuelPrices\Interfaces\IQuotationService.cs" />
     <Compile Include="FuelPrices\Services\FuelPriceService.cs" />
-    <Compile Include="FuelPrices\Services\QuotationService.cs" />
     <Compile Include="FuelPrices\ViewModels\FuelPricesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotations\Handlers\CommandHandlers\QuotationsCommandHandler.cs" />
+    <Compile Include="Quotations\Interfaces\IQuotationMapper.cs" />
+    <Compile Include="Quotations\Mappings\QuotationMapper.cs" />
     <Compile Include="Quotations\ViewModels\NewQuotationViewModel.cs" />
     <Compile Include="Quotations\ViewModels\QuotationsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FuelPrices\Handlers\CommandHandlers\Messages\" />
     <Folder Include="FuelPrices\Handlers\QueryHandlers\Messages\" />
     <Folder Include="FuelPrices\Mappings\" />
-    <Folder Include="Quotations\Handlers\" />
-    <Folder Include="Quotations\Interfaces\" />
-    <Folder Include="Quotations\Mappings\" />
+    <Folder Include="Quotations\Handlers\QueryHandlers\Messages\" />
     <Folder Include="Quotations\Services\" />
   </ItemGroup>
   <ItemGroup>

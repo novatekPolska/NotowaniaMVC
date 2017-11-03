@@ -18,30 +18,34 @@ using NotowaniaMVC.Infrastructure.Common.Interfaces;
 using System.Linq;
 using System;
 using NotowaniaMVC.Infrastructure.Quotations.Repositories;
-using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
+using NotowaniaMVC.Infrastructure.Quotations.Interfaces; 
+using Autofac.Integration.Mvc;
+using System.Web.Mvc;
+using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers;
+using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 
 namespace NotowaniaMVC.Autofac
 {
     public static class AutofacConfiguration
-    {
-        static IContainer container;
-
+    {  
         public static IContainer RegisterAndResolve()
         {
             var builder = new ContainerBuilder();
             Configuration cfg = new Configuration();
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            DatabaseConfiguration dbConfig = new DatabaseConfiguration();
 
             builder.RegisterAssemblyTypes(executingAssembly)
                 .AsSelf()
                 .AsImplementedInterfaces();
 
             builder.Register(c => cfg.BuildSessionFactory()).As<ISessionFactory>().SingleInstance();
-            builder.Register(c => c.Resolve<ISessionFactory>().OpenSession());
+            builder.Register(c => dbConfig.GetSession());
+          //  builder.Register(c => c.Resolve<ISessionFactory>().OpenSession());
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
-
-            builder.RegisterType<QuotationService>().As<IQuotationService>().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<,>));
+            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<>));
             builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
 
             builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope();
@@ -64,11 +68,12 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UnitsRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
-
+           
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
-
-
+            
+            builder.RegisterControllers(typeof(MvcApplication).Assembly); 
+            
             builder
               .Register<SingleInstanceFactory>(ctx => {
                   var c = ctx.Resolve<IComponentContext>();
@@ -81,16 +86,16 @@ namespace NotowaniaMVC.Autofac
                   var c = ctx.Resolve<IComponentContext>();
                   return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
               })
-              .InstancePerLifetimeScope();
-            
+              .InstancePerLifetimeScope(); 
             var container = builder.Build();
-
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             return container; 
         }
 
-        public static void Shutdown()
+        public static void Shutdown(IContainer container)
         {
             container.Dispose();
         } 
     }
+     
 }

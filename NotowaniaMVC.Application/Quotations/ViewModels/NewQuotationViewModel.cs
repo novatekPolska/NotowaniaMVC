@@ -1,7 +1,5 @@
-﻿using NotowaniaMVC.Domain.DomainEntities;
-using System;
-using System.Collections;
-using System.Collections.Generic; 
+﻿using System;
+using System.Collections; 
 
 namespace NotowaniaMVC.Application.Quotations.ViewModels
 {

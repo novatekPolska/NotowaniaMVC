@@ -1,35 +1,31 @@
 ﻿using MediatR;
-using NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers.Messages; 
+using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers.Messages; 
 using NotowaniaMVC.Application.FuelPrices.ViewModels;
 using NotowaniaMVC.Application.FuelPrices.Interfaces;
 
 namespace NotowaniaMVC.Application.FuelPrices.Handlers.CommandHandlers
 {
-    public class FuelPricesCommandHandler : IRequestHandler<NewQuotationCommand>
+    public class FuelPricesCommandHandler// : IRequestHandler<NewQuotationCommand>
     {
-        private readonly IFuelPriceService _fuelPriceService;
-        private readonly IQuotationService _quotationService;
+        private readonly IFuelPriceService _fuelPriceService; 
 
-        public FuelPricesCommandHandler(IFuelPriceService fuelPriceService, IQuotationService quotationService)
+        public FuelPricesCommandHandler(IFuelPriceService fuelPriceService)
         {
-            _fuelPriceService = fuelPriceService;
-            _quotationService = quotationService;
+            _fuelPriceService = fuelPriceService; 
         }
 
-        public void Handle(NewQuotationCommand message)
-        {
-            foreach (var element in message.FuelPricesViewModels)
-            {
-                SaveFuelPriceData(element);
-            }
-        }
-         
+        //public void Handle(NewQuotationCommand message)
+        //{
+        //    foreach (var element in message.QuotationViewModels)
+        //    {
+        //        SaveFuelPriceData(element);
+        //    }
+        //}
+
         private void SaveFuelPriceData(FuelPricesViewModel fuelPriceDataToSave)
-        {
-            var quotation = _quotationService.AddNewQuotation(fuelPriceDataToSave);
+        { 
             var priceList = _fuelPriceService.AddNewPriceList(fuelPriceDataToSave); 
-            priceList.Save();
-            quotation.Save();
+            priceList.Save(); 
         } 
     }
 }

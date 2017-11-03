@@ -1,4 +1,7 @@
-﻿using System;  
+﻿using NotowaniaMVC.Domain.Quotation.Validators;
+using NotowaniaMVC.Infrastructure.Common.Interfaces;
+using NotowaniaMVC.Infrastructure.Database.Entities;
+using System;  
 
 namespace NotowaniaMVC.Domain.DomainEntities
 {
@@ -20,86 +23,55 @@ namespace NotowaniaMVC.Domain.DomainEntities
         public string Code { get; private set; }
         public decimal PriceMin { get; private set; }
         public decimal PriceMax { get; private set; }
-        public int Currency { get; private set; }
+        public int? Currency { get; private set; }
         public DateTime Created { get; private set; }
         public DateTime Modified { get; private set; }
-        public int Modifier { get; private set; }
-        public int Creator { get; private set; }
-        public int Fuel { get; private set; }
-        public int Region { get; private set; }
-        public int Company { get; private set; }
-        public int Unit { get; private set; }
-        public int QuotationType { get; private set; }
+        public int? Modifier { get; private set; }
+        public int? Creator { get; private set; }
+        public int? Fuel { get; private set; }
+        public int? Region { get; private set; }
+        public int? Company { get; private set; }
+        public int? Unit { get; private set; }
+        public int? QuotationType { get; private set; }
         public DateTime DateTo { get; private set; }
         public DateTime DateOfQuotation { get; private set; }
 
-        private Quotation(DateTime dateOfQuotation, int fuel, decimal priceNettoMin, decimal priceNettoMax, int unit,  int currency, int quotationType)
+        private readonly INHibernateUniversalRepository<XXX_R55_Quotations> _universalNHibernateRepository;
+
+        private Quotation(DateTime dateOfQuotation,  decimal priceNettoMin, decimal priceNettoMax)
         {
-            DateOfQuotation = dateOfQuotation;
-            Fuel = fuel;
+            DateOfQuotation = dateOfQuotation; 
             PriceMax = priceNettoMax;
-            PriceMin = priceNettoMin;
-            Unit = unit;
-            Currency = currency;
-            QuotationType = quotationType;
+            PriceMin = priceNettoMin; 
         }
 
-        private Quotation(string code, int fuel, int region, int company)
+
+        public void SetCurrency(int id)
         {
-            Code = code;
-            Fuel = fuel;
-            Region = region; 
-            Company = company;
+            Currency = id;
         }
 
-        private Quotation(string code, int fuel)
+        public void SetQuotationType(int id)
         {
-            Code = code;
-            Fuel = fuel;  
+            QuotationType = id;
         }
 
-        private Quotation(string code)
+        public void SetFuelType(int id)
         {
-            Code = code; 
+            Fuel = id;
         }
 
-        public void Validate()
-        { 
-        }
-
-        public void Add()
-        { 
-        }
-
-        public void Update()
-        { 
-        }
-         
-        public void Save()
+        public void SetUnit(int id)
         {
+            Unit = id;
         }
 
         public static class Factory
         {
-            public static Quotation Create(DateTime dateOfQuotation, int fuel, decimal priceNettoMin, decimal priceNettoMax, int unit, int currency, int quotationType)
+            public static Quotation Create(DateTime dateOfQuotation,  decimal priceNettoMin, decimal priceNettoMax)
             {
-                return new Quotation(dateOfQuotation, fuel, priceNettoMin, priceNettoMax, unit, currency, quotationType);
-            }
-
-            public static Quotation Create(string code, int fuel, int region, int company)
-            {
-                return new Quotation(code, fuel, region, company);
-            }
-
-            public static Quotation Create(string code, int fuel)
-            {
-                return new Quotation(code, fuel);
-            }
-
-            public static Quotation Create(string code)
-            {
-                return new Quotation(code);
-            }
+                return new Quotation(dateOfQuotation, priceNettoMin, priceNettoMax);
+            } 
         } 
     }
 }

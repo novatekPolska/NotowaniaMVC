@@ -34,14 +34,15 @@ namespace NotowaniaMVC.Infrastructure.Database.DBConfiguration
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<WalutaMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CurrencyMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CardGroupsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DictionaryMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CardGroupsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DictionaryTypeMap>()) 
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ForTableMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CardGroupTypesMap2>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<StCardGroupTypesMap>())  
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<StCardGroupTypesMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AnaliticsMap>()) 
                .BuildConfiguration();
               
             var sessionFactory =  configuration.BuildSessionFactory();
