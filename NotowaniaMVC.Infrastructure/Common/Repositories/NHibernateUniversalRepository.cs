@@ -75,7 +75,7 @@ namespace NotowaniaMVC.Infrastructure.Common.Repositories
             //}
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll() 
         {
            return Session.Query<T>();
         } 

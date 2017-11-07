@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title — Notowania</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr") 
+    @Styles.Render("~/Content/jqueryui") 
     <link href="@Url.Content("~/Content/quotationStyles.css")" rel="stylesheet" /> 
 </head>
 <body>
@@ -49,8 +50,23 @@
         </footer>
     </div>
 
+    <script type="text/javascript">
+        $(function () {
+            $("#jqueryui-marker-datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeYear: true,
+                showOn: "button"
+            }).css("display", "inline-block")
+                .next("button").button({
+                    icons: { primary: "ui-icon-calendar" },
+                    label: "Wybierz datę",
+                    text: false
+                });
+        });
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
 </body>
 </html>

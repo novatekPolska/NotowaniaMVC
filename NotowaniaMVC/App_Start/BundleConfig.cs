@@ -27,7 +27,11 @@ namespace NotowaniaMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-         
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Content/jquery-ui-{version}.js"));
+
+            bundles.Add(new StyleBundle("~/Content/jqueryui")
+               .Include("~/Content/themes/base/all.css"));
+
             bundles.IgnoreList.Clear();
         }
     }

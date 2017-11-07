@@ -22,7 +22,7 @@ using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 using Autofac.Integration.Mvc;
 using System.Web.Mvc;
 using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers;
-using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
+using NotowaniaMVC.Infrastructure.Database.DBConfiguration; 
 
 namespace NotowaniaMVC.Autofac
 {
@@ -48,8 +48,8 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<>));
             builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope();
-
+            builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope(); 
+            
             builder.RegisterGeneric(typeof(NHibernateUniversalRepository<>)).As(typeof(INHibernateUniversalRepository<>)).OnActivating(e =>
             {
                 var typeToLookup = e.Parameters.FirstOrDefault() as TypedParameter;

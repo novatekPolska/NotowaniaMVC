@@ -3,6 +3,10 @@ using System.Web.Mvc;
 using NotowaniaMVC.Application.Quotations.ViewModels;
 using MediatR;
 using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers.Messages;
+using System.Web;
+using System.IO;
+using System.Text;
+using System;
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
@@ -44,15 +48,32 @@ namespace NotowaniaMVC.Controllers.Quotations
             return View("Quotations", newQuotationModel);
         }
 
+        [HttpPost]
+        public ActionResult SavePdf(HttpPostedFileBase PdfFile)
+        {
+            var pdf = PdfFile.InputStream;
+            var pdfName = PdfFile.FileName;
+            //   var streamWritter = new StreamWriter(pdf);
+
+            string path = @"C:\Users\szklarek\Documents\" + pdfName;
+
+            
+   
+
+            using (FileStream fs = System.IO.File.Create(path, (int)pdf.Length))
+            {
+                byte[] bytesInStream = new byte[pdf.Length];
+                pdf.Read(bytesInStream, 0, bytesInStream.Length);
+                fs.Write(bytesInStream, 0, bytesInStream.Length);
+            }
+
+            return View("Quotations", new NewQuotationViewModel());
+        }
+
         public ActionResult Cancel()
         {
             return View();
         }
-
-        //[HttpPost]
-        //public ActionResult Add(FormCollection form)
-        //{
-        //    return View("Quotations");
-        //}
+         
     }
 }

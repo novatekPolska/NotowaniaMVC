@@ -1,11 +1,15 @@
 ﻿using System;
-using System.Collections; 
+using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace NotowaniaMVC.Application.Quotations.ViewModels
 {
-    public class NewQuotationViewModel  
+    public class NewQuotationViewModel
     {
         public int Id { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime QuotationDate { get; set; }
         public int FuelType { get; set; }
         public string FuelTypeName { get; set; }
@@ -15,6 +19,7 @@ namespace NotowaniaMVC.Application.Quotations.ViewModels
         public string QuotationTypeName { get; set; }
         public decimal PriceNettoMin { get; set; }
         public decimal PriceNettoMax { get; set; }
+        public object PdfFile { get; set; }
         public int PdfId { get; set; }
         public string PdfName { get; set; }
         public string PdfPath { get; set; }

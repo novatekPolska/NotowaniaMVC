@@ -1,18 +1,23 @@
-﻿<script src="@Url.Content("~/Scripts/kendo/2017.3.913/jquery.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
-<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" /> 
-<link href="@Url.Content("~/Content/quotationStyles.css")" rel="stylesheet" /> 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
- 
-@model NotowaniaMVC.Application.Quotations.ViewModels.NewQuotationViewModel 
+﻿<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/quotationStyles.css")" rel="stylesheet" />
+      
+    
+</head>
+<body> 
+    @model NotowaniaMVC.Application.Quotations.ViewModels.NewQuotationViewModel
+     
 
-@{
-    ViewData["Title"] = "Notowania";
-}  
-
+    @{
+        ViewData["Title"] = "Notowania";
+    }
 
     <table class="columns" style="margin-top:50px">
         <tr class="columns">
@@ -20,26 +25,33 @@
                 <table class="columns">
                     <tr>
                         <td colspan="2" height="30px">
-                            @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @*@using (Html.BeginForm("SavePdf", "Quotations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <span>Select File:</span>
+                                <input type="file" name="postedFile" />
+                                <hr />
+                                <input type="submit" value="Upload" />
+                                <br />
+                                <span style="color:green">@ViewBag.Message</span>
+                            }*@
+                            @using (Html.BeginForm("SavePdf", "Quotations", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @*@Html.LabelFor(model => model.PdfName)*@
+                            
 
-                                <label for="file-upload" class="btnSavePdf">
+                                <label for="PdfFile" class="btnSavePdf" >
                                     <i class="fa fa-cloud-upload"></i>
                                     <img src="@Url.Content("~/Content/AddPdf.png")" height="40" width="40" />
                                 </label>
-                                <input id="file-upload" type="file" />
-
-                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-                                @*<input type="submit" value="Aktualizuj" class="custom-file-upload" src="@Url.Content("~/Content/PdfSave.png")"/>*@
-
-                                <button class="btnSavePdf" formaction="@Url.Action("SavePdf")">
+                                <input id="PdfFile" type="file" name="PdfFile" value="PdfFile"/> 
+                                @Html.ValidationMessageFor(model => model.PdfFile, "", new { @class = "text-danger" })
+                                @*<input type="submit" value="Upload File" id="btnSubmit" height="40" width="40" src="@Url.Content("~/Content/PdfSave.png")">*@
+                                <button class="btnSavePdf" type="submit">
                                     <img src="@Url.Content("~/Content/PdfSave.png")" height="40" width="40" />
                                 </button>
 
-                                @ViewBag.FileStatus 
+                                @ViewBag.FileStatus
                             }
                         </td>
                     </tr>
@@ -75,106 +87,113 @@
                     </tr>
                 </table>
             </td>
-@using (Html.BeginForm("Add", "Quotations", FormMethod.Post, new { @area = "Admin", @role = "form" }))
-{
-    @Html.AntiForgeryToken()
-            <td class="bdTbl">
+            @using (Html.BeginForm("Add", "Quotations", FormMethod.Post, new { @area = "Admin", @role = "form" }))
+            {
 
-                <table class="columns">
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Data notowania: "))</td>
-                                    <td class="columns">@(Html.TextBoxFor(model => model.QuotationDate, new { @class = "textBox" }))</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Typ notowania: "))</td>
-                                    <td class="columns">@(Html.DropDownList("lbfQuotationTypesOptions", new SelectList(Model.QuotationTypes), new { @class = "textBox" }))</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Typ paliwa: "))</td>
-                                    <td class="columns">@(Html.DropDownList("lbfFuelTypesOptions", new SelectList(Model.FuelTypes), new { @class = "textBox" }))</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Waluta: "))</td>
-                                    <td class="columns">@(Html.DropDownList("lbfCurrencyTypesOptions", new SelectList(Model.CurrencyTypes), new { @class = "textBox" })) </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Jednostka: "))</td>
-                                    <td class="columns">@(Html.DropDownList("lbfUnitsOptions", new SelectList(Model.Units), new { @class = "textBox" })) </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Cena netto minimalna: "))</td>
-                                    <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMin, new { @class = "textBox" }))</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">
-                                    <td class="columns">@(Html.Label("Cena netto maksymalna: "))</td>
-                                    <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMax, new { @class = "textBox" }))</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr class="columns">
-                        <td class="columns">
-                            <table class="columns">
-                                <tr class="columns">  
-                                  
-                                    <td style="column-span: all; flex-flow: wrap; justify-content: space-around; width: 100%; height: 100%; "> 
-                                        <button class="btnAddCancel">
-                                            <img src="@Url.Content("~/Content/Save.png")" height="40" width="40" />
-                                        </button> 
-                                    </td>
-                                   
-                                    <td style="column-span: all; flex-flow: wrap; justify-content: space-around; width: 100%; height: 100%; ">
-                                        <button class="btnAddCancel" onclick="@Url.Action("Add", "Quotations")">
-                                            <img src="@Url.Content("~/Content/Cancel.png")" height="40" width="40" />
-                                        </button> 
-                                    </td> 
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-               
-            </td>
-}
+                @Html.AntiForgeryToken()
+                <td class="bdTbl">
+
+                    <table class="columns">
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">
+                                            @(Html.Label("Data notowania: "))
+                                        </td>
+                                        <td class="columns"> 
+                                            @Html.EditorFor(model => model.QuotationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                             
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Typ notowania: "))</td>
+                                        <td class="columns">@(Html.DropDownList("lbfQuotationTypesOptions", new SelectList(Model.QuotationTypes), new { @class = "textBox form-control" }))</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Typ paliwa: "))</td>
+                                        <td class="columns">@(Html.DropDownList("lbfFuelTypesOptions", new SelectList(Model.FuelTypes), new { @class = "textBox form-control" }))</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Waluta: "))</td>
+                                        <td class="columns">@(Html.DropDownList("lbfCurrencyTypesOptions", new SelectList(Model.CurrencyTypes), new { @class = "textBox form-control" })) </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Jednostka: "))</td>
+                                        <td class="columns">@(Html.DropDownList("lbfUnitsOptions", new SelectList(Model.Units), new { @class = "textBox form-control" })) </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Cena netto minimalna: "))</td>
+                                        <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMin, new { @class = "textBox form-control" }))</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+                                        <td class="columns">@(Html.Label("Cena netto maksymalna: "))</td>
+                                        <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMax, new { @class = "textBox form-control" }))</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="columns">
+                            <td class="columns">
+                                <table class="columns">
+                                    <tr class="columns">
+
+                                        <td style="column-span: all; flex-flow: wrap; justify-content: space-around; width: 100%; height: 100%; ">
+                                            <button class="btnAddCancel" type="submit">
+                                                <img src="@Url.Content("~/Content/Save.png")" height="40" width="40" />
+                                            </button>
+                                        </td>
+
+                                        <td style="column-span: all; flex-flow: wrap; justify-content: space-around; width: 100%; height: 100%; ">
+                                            <button class="btnAddCancel" type="reset" onclick="@Url.Action("Add", "Quotations")">
+                                                <img src="@Url.Content("~/Content/Cancel.png")" height="40" width="40" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            }
         </tr>
     </table>
- 
+   
+</body>
+</html> 
