@@ -1,11 +1,11 @@
 ﻿using Moq;
 using NotowaniaMVC.Domain.Documents.Helpers;
+using NotowaniaMVC.Domain.Documents.Mappers;
 using NotowaniaMVC.Domain.Documents.Services;
 using NotowaniaMVC.Domain.DomainEntities;
 using NotowaniaMVC.Infrastructure.Common.Interfaces;
 using NotowaniaMVC.Infrastructure.Database.Entities;
-using NUnit.Framework;
-using System;
+using NUnit.Framework; 
 using System.IO;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Services
@@ -17,12 +17,14 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Services
         private readonly Mock<INHibernateUniversalRepository<XXX_R55_Documents>> _nhibernateUniversalRepository;
         private readonly DbDocumentsHelper _dbDocumentsHelper;
         private readonly DiskDocumentsHelper _diskDocumentsHelper;
+        private readonly DocumentToDocumentDbMapper _documentMapper;
 
 
         public DocumentsDomainServiceTests()
         {
             _nhibernateUniversalRepository = new Mock<INHibernateUniversalRepository<XXX_R55_Documents>>();
-            _dbDocumentsHelper = new DbDocumentsHelper(_nhibernateUniversalRepository.Object);
+            _documentMapper = new DocumentToDocumentDbMapper();
+            _dbDocumentsHelper = new DbDocumentsHelper(_nhibernateUniversalRepository.Object, _documentMapper);
             _diskDocumentsHelper = new DiskDocumentsHelper();
             _documentsDomainService = new DocumentsDomainService(_dbDocumentsHelper, _diskDocumentsHelper);
         }

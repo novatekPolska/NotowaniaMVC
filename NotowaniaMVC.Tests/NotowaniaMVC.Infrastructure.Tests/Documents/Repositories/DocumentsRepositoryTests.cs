@@ -118,7 +118,17 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Documents.Reposit
 
         private XXX_R55_Documents CreateFakeDocument()
         {
-            return XXX_R55_Documents.Factory.Create("test", Guid.NewGuid(), "test", "c:/", DateTime.Now, DateTime.Now, 1, 1); 
+            return new XXX_R55_Documents
+            {
+                Name = "test",
+                Guid = Guid.NewGuid(),
+                Code = "test",
+                Link = "c:/",
+                Created = DateTime.Now,
+                Modified = DateTime.Now,
+                Creator = 1,
+                Modifier = 1
+            }; 
         }
     }
 }

@@ -10,18 +10,22 @@ namespace NotowaniaMVC.Domain.Quotation.Services
         private readonly INHibernateUniversalRepository<XXX_R55_Quotations> _nHibernateQuotationUniversalRepository;
         private readonly INHibernateUniversalRepository<XXX_R55_Documents> _nHibernateDocumentUniversalRepository;
         private readonly QuotationValidator _quotationValidator;
+        private readonly IQuotationToQuotationDbMapper _quotationMapper;
 
-        public QuotationDomainService(INHibernateUniversalRepository<XXX_R55_Quotations> nHibernateQuotationUniversalRepository, INHibernateUniversalRepository<XXX_R55_Documents> nHibernateDocumentUniversalRepository)
+        public QuotationDomainService(INHibernateUniversalRepository<XXX_R55_Quotations> nHibernateQuotationUniversalRepository, 
+            INHibernateUniversalRepository<XXX_R55_Documents> nHibernateDocumentUniversalRepository,
+            IQuotationToQuotationDbMapper quotationMapper)
         {
             _nHibernateQuotationUniversalRepository = nHibernateQuotationUniversalRepository;
             _nHibernateDocumentUniversalRepository = nHibernateDocumentUniversalRepository;
             _quotationValidator = new QuotationValidator();
+            _quotationMapper = quotationMapper;
         }
 
         public void AddNewQuotation(DomainEntities.Quotation quotation)
         { 
             var validationResult = _quotationValidator.Validate(quotation);
-            var objectToAdd = XXX_R55_Quotations.Factory.Create(quotation.PriceMin, quotation.PriceMax, quotation.DateOfQuotation);
+            var objectToAdd = _quotationMapper.Map(quotation); 
             if (validationResult.IsValid)
                 _nHibernateQuotationUniversalRepository.Create(objectToAdd);
             else throw new System.Exception("błędy walidacji");
@@ -31,9 +35,11 @@ namespace NotowaniaMVC.Domain.Quotation.Services
         {
             quotation.SetDocumentId(documentId);
             var validationResult = _quotationValidator.Validate(quotation);
-            //var quotationDb;// = XXX_R55_Quotations.Factory.Create
-   
-            //_nHibernateQuotationUniversalRepository.Update(quotationDb);
+            if (validationResult.IsValid)
+            {
+                var quotationDb = _quotationMapper.Map(quotation);
+                _nHibernateQuotationUniversalRepository.Update(quotationDb);
+            } 
         }
     }
 }

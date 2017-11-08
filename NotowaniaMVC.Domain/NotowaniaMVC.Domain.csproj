@@ -402,6 +402,7 @@
     <Compile Include="Documents\Interfaces\IDbDocumentHelper.cs" />
     <Compile Include="Documents\Interfaces\IDiskDocumentHelper.cs" />
     <Compile Include="Documents\Interfaces\IDocumentsDomainService.cs" />
+    <Compile Include="Documents\Interfaces\IDocumentToDocumentDbMapper.cs" />
     <Compile Include="Documents\Mappers\DocumentToDocumentDbMapper.cs" />
     <Compile Include="Documents\Services\DocumentsDomainService.cs" />
     <Compile Include="Documents\Validators\DocumentValidator.cs" />
@@ -413,6 +414,7 @@
     <Compile Include="DomainEntities\FuelTypes.cs" />
     <Compile Include="DomainEntities\PriceList.cs" />
     <Compile Include="Quotation\Interfaces\IQuotationDomainService.cs" />
+    <Compile Include="Quotation\Interfaces\IQuotationToQuotationDbMapper.cs" />
     <Compile Include="Quotation\Mappers\QuotationToQuotationDbMapper.cs" />
     <Compile Include="Quotation\Models\Quotation.cs" />
     <Compile Include="DomainEntities\Region.cs" />

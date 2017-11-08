@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using NotowaniaMVC.Domain.Documents.Interfaces;
 using NotowaniaMVC.Infrastructure.Database.Entities;
 
 namespace NotowaniaMVC.Domain.Documents.Mappers
 {
-    public class DocumentToDocumentDbMapper
+    public class DocumentToDocumentDbMapper : IDocumentToDocumentDbMapper
     {
         public XXX_R55_Documents Map(DomainEntities.Document document)
         {

@@ -1,11 +1,10 @@
-﻿using NHibernate;
-using NotowaniaMVC.Domain.Documents.Validators;
-using NotowaniaMVC.Domain.DomainEntities;
+﻿using NotowaniaMVC.Domain.DomainEntities;
 using NotowaniaMVC.Infrastructure.Database.Entities;
 using NUnit.Framework; 
 using Moq;
 using NotowaniaMVC.Infrastructure.Common.Interfaces;
-using NotowaniaMVC.Domain.Documents.Helpers;
+using NotowaniaMVC.Domain.Documents.Helpers; 
+using NotowaniaMVC.Domain.Documents.Mappers;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
 {
@@ -27,11 +26,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
 
         private readonly Mock<INHibernateUniversalRepository<XXX_R55_Documents>> _nhibernateUniversalRepository;
         private readonly DbDocumentsHelper _dbDocumentsHelper;
+        private readonly DocumentToDocumentDbMapper _documentMapper;
 
         public DbDocumentsHelperTests()
         {
             _nhibernateUniversalRepository = new Mock<INHibernateUniversalRepository<XXX_R55_Documents>>();
-            _dbDocumentsHelper = new DbDocumentsHelper(_nhibernateUniversalRepository.Object);
+            _documentMapper = new DocumentToDocumentDbMapper();
+            _dbDocumentsHelper = new DbDocumentsHelper(_nhibernateUniversalRepository.Object, _documentMapper);
             document = CreateFakeDocument();
         }
 

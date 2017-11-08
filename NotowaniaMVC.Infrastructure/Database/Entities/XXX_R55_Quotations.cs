@@ -26,36 +26,6 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual DateTime Modified { get; set; }
         public virtual int Modifier { get; set; }
         public virtual int Creator { get; set; }
-        public virtual XXX_R55_Documents Document { get; set; }
-
-        public static class Factory
-        {
-            public static XXX_R55_Quotations Create(decimal priceMin, decimal priceMax,  DateTime dateOfQuotation)
-            {
-                return new XXX_R55_Quotations
-                {
-                    Guid = Guid.NewGuid(),
-                    PriceMin = priceMin,
-                    PriceMax = priceMax,
-                    DateOfQuotation = dateOfQuotation, 
-                    Created = DateTime.Now,
-                    Modified = DateTime.Now 
-                };
-            }
-
-            public static XXX_R55_Quotations Create(decimal priceMin, decimal priceMax, DateTime dateOfQuotation, int documentId)
-            {
-                return new XXX_R55_Quotations
-                {
-                    Guid = Guid.NewGuid(),
-                    PriceMin = priceMin,
-                    PriceMax = priceMax,
-                    DateOfQuotation = dateOfQuotation,
-                    Created = DateTime.Now,
-                    Modified = DateTime.Now,
-                    //Document = new XXX_R55_Documents { Id = documentId }
-                };
-            }
-        }
+        public virtual XXX_R55_Documents Document { get; set; }  
     }
 }

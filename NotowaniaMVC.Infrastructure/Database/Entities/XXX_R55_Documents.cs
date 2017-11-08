@@ -16,31 +16,6 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual DateTime Modified { get; set; }
         public virtual int Modifier { get; set; }
         public virtual int Creator { get; set; }
-        public virtual string Name { get; set; }
-
-        protected XXX_R55_Documents()
-        {
-
-        }
-
-        private XXX_R55_Documents(string name, Guid guid, string code, string link, DateTime created, DateTime modified, int creator, int modifier)
-        {
-            Guid = guid;
-            Code = code;
-            Link = link; 
-            Created = created;
-            Modified = modified;
-            Creator = creator;
-            Modifier = modifier;
-            Name = name;
-        }
-
-        public static class Factory
-        {
-            public static XXX_R55_Documents Create(string name, Guid guid, string code, string link, DateTime created, DateTime modified, int creator, int modifier)
-            {
-                return new XXX_R55_Documents(name, guid, code, link, created, modified, creator, modifier);
-            }
-        }
+        public virtual string Name { get; set; }  
     }
 }

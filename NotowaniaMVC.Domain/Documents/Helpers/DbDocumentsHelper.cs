@@ -10,9 +10,12 @@ namespace NotowaniaMVC.Domain.Documents.Helpers
     public class DbDocumentsHelper : IDbDocumentHelper
     {
         private readonly INHibernateUniversalRepository<XXX_R55_Documents> _nHibernateUniversalRepository;
-        public DbDocumentsHelper(INHibernateUniversalRepository<XXX_R55_Documents> nHibernateUniversalRepository)
+        private readonly IDocumentToDocumentDbMapper _documentMapper;
+
+        public DbDocumentsHelper(INHibernateUniversalRepository<XXX_R55_Documents> nHibernateUniversalRepository, IDocumentToDocumentDbMapper documentMapper)
         {
             _nHibernateUniversalRepository = nHibernateUniversalRepository;
+            _documentMapper = documentMapper;
         }
 
         public ValidationResult SaveDocumentToDb(Document document)
@@ -20,9 +23,8 @@ namespace NotowaniaMVC.Domain.Documents.Helpers
             DocumentValidator validator = new DocumentValidator();
             var result = validator.Validate(document);
             if (result.IsValid)
-            {
-                //todo automapper
-                var documentToAdd = XXX_R55_Documents.Factory.Create(document.Name, document.Guid, document.Code, document.Link, document.Created, document.Modified, document.Creator, document.Modifier);
+            { 
+                var documentToAdd = _documentMapper.Map(document); 
                 _nHibernateUniversalRepository.Create(documentToAdd);
             } 
             return result;

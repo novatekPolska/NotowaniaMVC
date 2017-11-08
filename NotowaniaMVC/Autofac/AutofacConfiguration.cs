@@ -25,6 +25,8 @@ using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers;
 using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 using NotowaniaMVC.Domain.Documents.Interfaces;
 using NotowaniaMVC.Domain.Documents.Helpers;
+using NotowaniaMVC.Domain.Documents.Mappers;
+using NotowaniaMVC.Domain.Quotations.Mappers;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -73,6 +75,8 @@ namespace NotowaniaMVC.Autofac
 
             builder.RegisterType<DbDocumentsHelper>().As<IDbDocumentHelper>().InstancePerLifetimeScope();
             builder.RegisterType<DiskDocumentsHelper>().As<IDiskDocumentHelper>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentToDocumentDbMapper>().As<IDocumentToDocumentDbMapper>().InstancePerLifetimeScope();
+            builder.RegisterType<QuotationToQuotationDbMapper>().As<IQuotationToQuotationDbMapper>().InstancePerLifetimeScope();
 
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
