@@ -41,9 +41,9 @@ namespace NotowaniaMVC.Infrastructure.Common.Repositories
 
         public T GetByGuid(Guid guid)
         { 
-                ParameterExpression parameter = Expression.Parameter(typeof(T));
-                var predicateGuid = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(parameter, "Guid"), Expression.Constant(guid)), parameter);
-                return Session.Query<T>().Single(predicateGuid); 
+             ParameterExpression parameter = Expression.Parameter(typeof(T));
+             var predicateGuid = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(parameter, "Guid"), Expression.Constant(guid)), parameter);
+             return Session.Query<T>().Single(predicateGuid); 
         } 
 
         public T GetById(int id)
@@ -79,6 +79,5 @@ namespace NotowaniaMVC.Infrastructure.Common.Repositories
         {
            return Session.Query<T>();
         } 
-    }
-
+    } 
 }

@@ -47,8 +47,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Documents.Reposit
             Assert.AreEqual(fakeDocument.Guid, addedDocument.Guid);
             Assert.AreEqual(fakeDocument.Code, addedDocument.Code);
             Assert.AreEqual(fakeDocument.Created, addedDocument.Created);
-            Assert.AreEqual(fakeDocument.Link, addedDocument.Link);
-            Assert.AreEqual(fakeDocument.Quotation, addedDocument.Quotation);
+            Assert.AreEqual(fakeDocument.Link, addedDocument.Link); 
             Assert.AreEqual(fakeDocument.Creator, addedDocument.Creator);
             //Assert.AreNotEqual(fakeDocument.Modified, addedDocument.Modified);
 
@@ -68,23 +67,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Documents.Reposit
             //fakeDocument.Blob = null;
             var ex = Assert.Throws<Exception>(() => documentsRepository.Create(fakeDocument));
         }
-
-        [Test]
-        public void when_try_to_add_document_with_empty_quotation_id_then_method_should_not_return_error()
-        {
-            fakeDocument.Quotation = null;
-            documentsRepository.Create(fakeDocument);
-            documentsRepository.DeleteById(fakeDocument.Id);
-        }
-
-        [Test]
-        public void when_try_to_set_quotation_id_in_document_then_method_should_not_return_error()
-        {
-            fakeDocument.Quotation.Id = 1;
-            documentsRepository.Create(fakeDocument);
-            documentsRepository.DeleteById(fakeDocument.Id);
-        }
-
+          
         [Test]
         public void can_update_document()
         {
@@ -98,8 +81,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Documents.Reposit
             Assert.AreEqual(updatedDocument.Guid, addedDocument.Guid);
             Assert.AreEqual(updatedDocument.Code, addedDocument.Code);
             Assert.AreEqual(updatedDocument.Created, addedDocument.Created);
-            Assert.AreEqual(updatedDocument.Link, "D:/");
-            Assert.AreEqual(updatedDocument.Quotation, addedDocument.Quotation);
+            Assert.AreEqual(updatedDocument.Link, "D:/"); 
             Assert.AreEqual(updatedDocument.Creator, addedDocument.Creator);
           //  Assert.AreNotEqual(updatedDocument.Modified, addedDocument.Modified);
 
@@ -136,14 +118,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Documents.Reposit
 
         private XXX_R55_Documents CreateFakeDocument()
         {
-            return new XXX_R55_Documents()
-            {
-                Guid = System.Guid.NewGuid(),
-                Code = "test",
-                Created = System.DateTime.Now,
-                Modified = System.DateTime.Now,
-                Link = "c:/" 
-            };
+            return XXX_R55_Documents.Factory.Create("test", Guid.NewGuid(), "test", "c:/", DateTime.Now, DateTime.Now, 1, 1); 
         }
     }
 }

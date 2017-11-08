@@ -23,7 +23,8 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
             References(c => c.Currency, "CURRENCY");
             Map(c => c.Created, "CREATED");
             Map(c => c.Modified, "MODIFIED");
-            Map(c => c.Creator, "CREATOR");
+            Map(c => c.Creator, "CREATOR"); 
+            References(c => c.Document, "ID_DOCUMENT");
             Map(c => c.Modifier, "MODIFIER");
         }
     }

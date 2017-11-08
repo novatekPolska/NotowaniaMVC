@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using NotowaniaMVC.Autofac;
+using AutoMapper;
 
 namespace NotowaniaMVC
 {
@@ -18,6 +19,7 @@ namespace NotowaniaMVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfiguration.RegisterAndResolve();
+           // AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperProfile>());
         }
     }
 }

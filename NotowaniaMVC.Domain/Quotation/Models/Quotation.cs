@@ -1,7 +1,4 @@
-﻿using NotowaniaMVC.Domain.Quotation.Validators;
-using NotowaniaMVC.Infrastructure.Common.Interfaces;
-using NotowaniaMVC.Infrastructure.Database.Entities;
-using System;  
+﻿using System;  
 
 namespace NotowaniaMVC.Domain.DomainEntities
 {
@@ -33,19 +30,17 @@ namespace NotowaniaMVC.Domain.DomainEntities
         public int? Company { get; private set; }
         public int? Unit { get; private set; }
         public int? QuotationType { get; private set; }
+        public int DocumentId { get; private set; }
         public DateTime DateTo { get; private set; }
         public DateTime DateOfQuotation { get; private set; }
-
-        private readonly INHibernateUniversalRepository<XXX_R55_Quotations> _universalNHibernateRepository;
-
+          
         private Quotation(DateTime dateOfQuotation,  decimal priceNettoMin, decimal priceNettoMax)
         {
             DateOfQuotation = dateOfQuotation; 
             PriceMax = priceNettoMax;
             PriceMin = priceNettoMin; 
         }
-
-
+         
         public void SetCurrency(int id)
         {
             Currency = id;
@@ -64,6 +59,11 @@ namespace NotowaniaMVC.Domain.DomainEntities
         public void SetUnit(int id)
         {
             Unit = id;
+        }
+
+        public void SetDocumentId(int id)
+        {
+            DocumentId = id;
         }
 
         public static class Factory

@@ -1,10 +1,11 @@
-﻿using NotowaniaMVC.Domain.DomainEntities;
+﻿using FluentValidation.Results;
+using NotowaniaMVC.Domain.DomainEntities;
 using System.IO;
 
 namespace NotowaniaMVC.Domain.Documents.Interfaces
 {
     public interface IDocumentsDomainService
     {
-        void SaveNewDocument(Document document, Stream file);
+        ValidationResult SaveNewDocument(Document document, string name, Stream file);
     }
 }

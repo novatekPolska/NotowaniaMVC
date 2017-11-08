@@ -90,6 +90,15 @@
     <Reference Include="Autofac.Integration.SharePoint, Version=1.0.0.1, Culture=neutral, PublicKeyToken=25f6e957508b033f, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Integration.SharePoint.1.0.0.1\lib\net35\Autofac.Integration.SharePoint.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Attributes, Version=6.0.0.0, Culture=neutral, PublicKeyToken=bbc347385eae1a0e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.Attributes.6.0.0\lib\net45\AutoMapper.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapperExtender, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapperExtender.1.0.0.1\lib\net45\AutoMapperExtender.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>

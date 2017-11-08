@@ -22,7 +22,9 @@ using NotowaniaMVC.Infrastructure.Quotations.Interfaces;
 using Autofac.Integration.Mvc;
 using System.Web.Mvc;
 using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers;
-using NotowaniaMVC.Infrastructure.Database.DBConfiguration; 
+using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
+using NotowaniaMVC.Domain.Documents.Interfaces;
+using NotowaniaMVC.Domain.Documents.Helpers;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -68,7 +70,10 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UnitsRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
-           
+
+            builder.RegisterType<DbDocumentsHelper>().As<IDbDocumentHelper>().InstancePerLifetimeScope();
+            builder.RegisterType<DiskDocumentsHelper>().As<IDiskDocumentHelper>().InstancePerLifetimeScope();
+
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
             

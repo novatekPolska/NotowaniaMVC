@@ -48,6 +48,15 @@
     <Reference Include="Autofac.Extensions.DependencyInjection, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Extensions.DependencyInjection.4.2.0\lib\netstandard1.1\Autofac.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Attributes, Version=6.0.0.0, Culture=neutral, PublicKeyToken=bbc347385eae1a0e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.Attributes.6.0.0\lib\net45\AutoMapper.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapperExtender, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapperExtender.1.0.0.1\lib\net45\AutoMapperExtender.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -456,7 +465,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NotowaniaMVC.Domain.Tests\Documents\Validators\DocumentValidatorTests.cs" />
+    <Compile Include="NotowaniaMVC.Domain.Tests\Helpers\DbDocumentsHelperTests.cs" />
+    <Compile Include="NotowaniaMVC.Domain.Tests\Helpers\DiskDocumentsHelperTests.cs" />
     <Compile Include="NotowaniaMVC.Domain.Tests\Quotations\Validator\QuotationValidatorTests.cs" />
+    <Compile Include="NotowaniaMVC.Domain.Tests\Services\DocumentsDomainServiceTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Common\Repositories\NHibernateUniversalRepositoryTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Configure\ConfigureDatabaseTests.cs" />
     <Compile Include="NotowaniaMVC.Infrastructure.Tests\Database\Create\CreateDatabaseTests.cs" />

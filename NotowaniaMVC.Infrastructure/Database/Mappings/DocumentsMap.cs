@@ -13,11 +13,11 @@ namespace NotowaniaMVC.Infrastructure.Database.Mappings
             Map(c => c.Guid, "GUID");
             Map(c => c.Link, "LINK");
             Map(c => c.Code, "CODE"); 
-            References(c => c.Quotation, "ID_QUOTATION");
             Map(c => c.Created, "CREATED");
             Map(c => c.Modified, "MODIFIED");
             Map(c => c.Creator, "CREATOR");
             Map(c => c.Modifier, "MODIFIER");
+            Map(c => c.Name, "NAME");
         }
     }
 }

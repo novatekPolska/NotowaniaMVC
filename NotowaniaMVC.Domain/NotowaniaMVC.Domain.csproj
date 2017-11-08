@@ -33,6 +33,15 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Attributes, Version=6.0.0.0, Culture=neutral, PublicKeyToken=bbc347385eae1a0e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.Attributes.6.0.0\lib\net45\AutoMapper.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapperExtender, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapperExtender.1.0.0.1\lib\net45\AutoMapperExtender.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -388,7 +397,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documents\Helpers\DbDocumentsHelper.cs" />
+    <Compile Include="Documents\Helpers\DiskDocumentsHelper.cs" />
+    <Compile Include="Documents\Interfaces\IDbDocumentHelper.cs" />
+    <Compile Include="Documents\Interfaces\IDiskDocumentHelper.cs" />
     <Compile Include="Documents\Interfaces\IDocumentsDomainService.cs" />
+    <Compile Include="Documents\Mappers\DocumentToDocumentDbMapper.cs" />
     <Compile Include="Documents\Services\DocumentsDomainService.cs" />
     <Compile Include="Documents\Validators\DocumentValidator.cs" />
     <Compile Include="DomainEntities\Company.cs" />
@@ -399,6 +413,7 @@
     <Compile Include="DomainEntities\FuelTypes.cs" />
     <Compile Include="DomainEntities\PriceList.cs" />
     <Compile Include="Quotation\Interfaces\IQuotationDomainService.cs" />
+    <Compile Include="Quotation\Mappers\QuotationToQuotationDbMapper.cs" />
     <Compile Include="Quotation\Models\Quotation.cs" />
     <Compile Include="DomainEntities\Region.cs" />
     <Compile Include="DomainEntities\Unit.cs" />
@@ -413,7 +428,6 @@
     <Folder Include="FuelPrices\Services\" />
     <Folder Include="FuelPrices\Validators\" />
     <Folder Include="FuelPrices\ValueObjects\" />
-    <Folder Include="ObjectRelationalMappings\" />
     <Folder Include="Quotation\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>

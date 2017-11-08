@@ -1,47 +1,26 @@
-﻿using NotowaniaMVC.Domain.Documents.Interfaces;
-using NotowaniaMVC.Domain.Documents.Validators;
-using NotowaniaMVC.Domain.DomainEntities;
-using NotowaniaMVC.Infrastructure.Common.Interfaces; 
-using NotowaniaMVC.Infrastructure.Database.Entities;
-using System.IO;
-using System.Text;
+﻿using FluentValidation.Results;
+using NotowaniaMVC.Domain.Documents.Interfaces; 
+using NotowaniaMVC.Domain.DomainEntities; 
+using System.IO; 
 
 namespace NotowaniaMVC.Domain.Documents.Services
 {
-    public class DocumentsDomainService: IDocumentsDomainService
+    public class DocumentsDomainService : IDocumentsDomainService
     {
-        private readonly INHibernateUniversalRepository<XXX_R55_Documents> _nHibernateUniversalRepository;
-        public DocumentsDomainService(INHibernateUniversalRepository<XXX_R55_Documents> nHibernateUniversalRepository)
+        private readonly IDbDocumentHelper _dbDocumentHelper;
+        private readonly IDiskDocumentHelper _diskDocumentHelper;
+
+        public DocumentsDomainService(IDbDocumentHelper dbDocumentHelper, IDiskDocumentHelper diskDocumentHelper)
         {
-            _nHibernateUniversalRepository = nHibernateUniversalRepository;
+            _dbDocumentHelper = dbDocumentHelper;
+            _diskDocumentHelper = diskDocumentHelper;
         }
-
-        private void SaveDocumentToDb(Document document)
+          
+        public ValidationResult SaveNewDocument(Document document, string name, Stream file)  
         {
-            DocumentValidator validator = new DocumentValidator();
-            var result = validator.Validate(document);
-            if (result.IsValid)
-            {
-                var documentToAdd = XXX_R55_Documents.Factory.Create(document.Guid, document.Code, document.Link, document.Quotation, document.Created, document.Modified, document.Creator, document.Modifier);
-                _nHibernateUniversalRepository.Create(documentToAdd);
-            }
-        }
-
-        private void SaveDocumentOnDisk(Stream file, string Name, string Path)
-        {
-            StringBuilder sb = new StringBuilder(); 
-
-            using (FileStream fs = File.Create(sb.AppendFormat("{0}, {1}", Path, Name).ToString(), (int)file.Length))
-            {
-                byte[] bytesInStream = new byte[file.Length];
-                file.Read(bytesInStream, 0, bytesInStream.Length);
-                fs.Write(bytesInStream, 0, bytesInStream.Length);
-            }
-        }
-         
-        public void SaveNewDocument(Document document, Stream file)
-        {
-
+            _diskDocumentHelper.SaveDocumentOnDisk(file, name, document.Link);  
+            var validationResult = _dbDocumentHelper.SaveDocumentToDb(document);
+            return validationResult;
         }
     }
 }

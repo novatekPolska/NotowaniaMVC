@@ -56,10 +56,7 @@ namespace NotowaniaMVC.Controllers.Quotations
             //   var streamWritter = new StreamWriter(pdf);
 
             string path = @"C:\Users\szklarek\Documents\" + pdfName;
-
-            
-   
-
+             
             using (FileStream fs = System.IO.File.Create(path, (int)pdf.Length))
             {
                 byte[] bytesInStream = new byte[pdf.Length];

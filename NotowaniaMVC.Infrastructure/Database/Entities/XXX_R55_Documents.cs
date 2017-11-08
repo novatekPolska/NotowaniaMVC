@@ -11,30 +11,35 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual int Id { get; set; }
         public virtual Guid Guid { get; set; }
         public virtual string Code { get; set; }
-        public virtual string Link { get; set; }
-        public virtual XXX_R55_Quotations Quotation { get; set; }
+        public virtual string Link { get; set; } 
         public virtual DateTime Created { get; set; }
         public virtual DateTime Modified { get; set; }
         public virtual int Modifier { get; set; }
         public virtual int Creator { get; set; }
+        public virtual string Name { get; set; }
 
-        private XXX_R55_Documents(Guid guid, string code, string link, int quotation, DateTime created, DateTime modified, int creator, int modifier)
+        protected XXX_R55_Documents()
+        {
+
+        }
+
+        private XXX_R55_Documents(string name, Guid guid, string code, string link, DateTime created, DateTime modified, int creator, int modifier)
         {
             Guid = guid;
             Code = code;
-            Link = link;
-            Quotation.Id = quotation;
+            Link = link; 
             Created = created;
             Modified = modified;
             Creator = creator;
             Modifier = modifier;
+            Name = name;
         }
 
         public static class Factory
         {
-            public static XXX_R55_Documents Create(Guid guid, string code, string link, int quotation, DateTime created, DateTime modified, int creator, int modifier)
+            public static XXX_R55_Documents Create(string name, Guid guid, string code, string link, DateTime created, DateTime modified, int creator, int modifier)
             {
-                return new XXX_R55_Documents(guid, code, link, quotation, created, modified, creator, modifier);
+                return new XXX_R55_Documents(name, guid, code, link, created, modified, creator, modifier);
             }
         }
     }
