@@ -8,7 +8,7 @@ namespace NotowaniaMVC.Domain.Documents.Validators
         public DocumentValidator()
         { 
             RuleFor(document => document.Link).NotNull();
-            RuleFor(document => document.Blob).NotNull();
+           // RuleFor(document => document.Blob).NotNull(); todo to ma byc na podstawie paremetru
             RuleFor(document => document.Link).Must(LinkExist).WithMessage("Podana sciezka lub podany plik nie istnieje"); 
         }
 

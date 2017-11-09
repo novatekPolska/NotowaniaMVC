@@ -45,7 +45,6 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
             diskDocumentsHelper.SaveDocumentOnDisk(file, "Funkcje-logiczne w Excelu1.pdf", "C:/Users/szklarek/Documents/");
             Assert.AreEqual(File.Exists("C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu1.pdf"), true);
             file.Close();
-            file.Flush();
         }
 
         [Test]
@@ -58,7 +57,6 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
                 diskDocumentsHelper.SaveDocumentOnDisk(file, "Funkcje-logiczne w Excelu.pdf", "C:/");
                 Assert.AreEqual(File.Exists("C:/Funkcje-logiczne w Excelu.pdf"), true); 
                 file.Close();
-                file.Flush();
             }
             else
             {
@@ -73,7 +71,6 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
             diskDocumentsHelper.SaveDocumentOnDisk(file, "Funkcje-logiczne w Excelu.pdf", "C:/testowyFolder/");
             Assert.AreEqual(File.Exists("C:/testowyFolder/Funkcje-logiczne w Excelu.pdf"), true);
             file.Close();
-            file.Flush();
         }
 
         [Test]

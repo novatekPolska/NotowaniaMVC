@@ -1,8 +1,7 @@
 ﻿using NHibernate.Mapping.Attributes;  
 
 namespace NotowaniaMVC.Infrastructure.Database.ExistingEntities
-{
-    
+{ 
     public class CurrencyDb
     {
         [Key]

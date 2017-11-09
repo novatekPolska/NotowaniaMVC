@@ -16,9 +16,9 @@ namespace NotowaniaMVC.Domain.Documents.Services
             _diskDocumentHelper = diskDocumentHelper;
         }
           
-        public ValidationResult SaveNewDocument(Document document, string name, Stream file)  
+        public ValidationResult SaveNewDocument(Document document, Stream file)  
         {
-            _diskDocumentHelper.SaveDocumentOnDisk(file, name, document.Link);  
+            _diskDocumentHelper.SaveDocumentOnDisk(file, document.Name, document.Link);  
             var validationResult = _dbDocumentHelper.SaveDocumentToDb(document);
             return validationResult;
         }

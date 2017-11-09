@@ -22,24 +22,21 @@ namespace NotowaniaMVC.Domain.Quotation.Services
             _quotationMapper = quotationMapper;
         }
 
-        public void AddNewQuotation(DomainEntities.Quotation quotation)
+        public int AddNewQuotation(DomainEntities.Quotation quotation)
         { 
             var validationResult = _quotationValidator.Validate(quotation);
             var objectToAdd = _quotationMapper.Map(quotation); 
             if (validationResult.IsValid)
                 _nHibernateQuotationUniversalRepository.Create(objectToAdd);
             else throw new System.Exception("błędy walidacji");
+            return objectToAdd.Id;
         }
 
-        public void AddDocumentToQuotation(DomainEntities.Quotation quotation, int documentId)
+        public void AddDocumentToQuotation(int quotationId, int documentId)
         {
-            quotation.SetDocumentId(documentId);
-            var validationResult = _quotationValidator.Validate(quotation);
-            if (validationResult.IsValid)
-            {
-                var quotationDb = _quotationMapper.Map(quotation);
-                _nHibernateQuotationUniversalRepository.Update(quotationDb);
-            } 
+            var quotationDb = _nHibernateQuotationUniversalRepository.GetById(quotationId);
+            quotationDb.Document = new XXX_R55_Documents { Id = documentId };
+            _nHibernateQuotationUniversalRepository.Update(quotationDb); 
         }
     }
 }

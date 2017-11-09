@@ -15,13 +15,13 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual decimal PriceMin { get; set; }
         public virtual decimal PriceMax { get; set; }
         public virtual DateTime DateTo { get; set; }
-        public virtual DateTime DateOfQuotation { get; set; }
-        public virtual UnitsDb Unit { get; set; } //jednostka
-        public virtual CurrencyDb Currency { get; set; } //waluta todo dodac tabele waluta i dodac klucz obcy
-        public virtual XXX_R55_Fuels Fuel { get; set; }
+        public virtual DateTime DateOfQuotation { get; set; } 
+        public virtual XXX_R55_FuelTypes Fuel { get; set; }
         public virtual XXX_R55_Regions Region { get; set; }
         public virtual XXX_R55_Companies Company { get; set; }
         public virtual XXX_R55_QuotationTypes QuotationType { get; set; }
+        public virtual UnitsDb Unit { get; set; } //jednostka
+        public virtual CurrencyDb Currency { get; set; }
         public virtual DateTime Created { get; set; }
         public virtual DateTime Modified { get; set; }
         public virtual int Modifier { get; set; }

@@ -91,6 +91,7 @@
     <Reference Include="FluentNHibernateProviders.Providers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernateProviders.0.9.6\lib\net40\FluentNHibernateProviders.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0" />
     <Reference Include="FluentValidator, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidator.2.0.4\lib\netstandard1.3\FluentValidator.dll</HintPath>
     </Reference>
@@ -408,14 +409,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quotations\Handlers\CommandHandlers\QuotationsCommandHandler.cs" />
     <Compile Include="Quotations\Interfaces\IQuotationMapper.cs" />
-    <Compile Include="Quotations\Mappings\QuotationMapper.cs" />
     <Compile Include="Quotations\ViewModels\NewQuotationViewModel.cs" />
     <Compile Include="Quotations\ViewModels\QuotationsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FuelPrices\Handlers\CommandHandlers\Messages\" />
     <Folder Include="FuelPrices\Handlers\QueryHandlers\Messages\" />
-    <Folder Include="FuelPrices\Mappings\" />
     <Folder Include="Quotations\Handlers\QueryHandlers\Messages\" />
     <Folder Include="Quotations\Services\" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace NotowaniaMVC.Domain.Documents.Helpers
         { 
             if (file != null) {
                 StringBuilder sb = new StringBuilder();
-                using (FileStream fs = File.Create(sb.AppendFormat("{0}, {1}", Path, Name).ToString(), (int)file.Length))
+                using (FileStream fs = File.Create(sb.AppendFormat("{0}{1}", Path, Name).ToString()))
                 {
                     byte[] bytesInStream = new byte[file.Length];
                     file.Read(bytesInStream, 0, bytesInStream.Length);

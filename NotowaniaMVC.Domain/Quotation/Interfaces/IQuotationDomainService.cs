@@ -2,7 +2,7 @@
 {
     public interface IQuotationDomainService
     {
-        void AddNewQuotation(DomainEntities.Quotation quotation);
-        void AddDocumentToQuotation(DomainEntities.Quotation quotation, int documentId);
+        int AddNewQuotation(DomainEntities.Quotation quotation);
+        void AddDocumentToQuotation(int quotation, int documentId);
     }
 }

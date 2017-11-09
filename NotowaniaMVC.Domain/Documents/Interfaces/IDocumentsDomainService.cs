@@ -6,6 +6,6 @@ namespace NotowaniaMVC.Domain.Documents.Interfaces
 {
     public interface IDocumentsDomainService
     {
-        ValidationResult SaveNewDocument(Document document, string name, Stream file);
+        ValidationResult SaveNewDocument(Document document, Stream file);
     }
 }

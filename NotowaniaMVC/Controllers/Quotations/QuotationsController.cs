@@ -7,6 +7,7 @@ using System.Web;
 using System.IO;
 using System.Text;
 using System;
+using System.Web.Helpers;
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
@@ -42,10 +43,18 @@ namespace NotowaniaMVC.Controllers.Quotations
         }
 
         [HttpPost]
-        public ActionResult Add(NewQuotationViewModel newQuotationModel)
+        public ActionResult Add(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile)
         {
             _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel });
             return View("Quotations", newQuotationModel);
+        }
+
+        [HttpGet]
+        public ActionResult GetDataForGrid()
+        {
+            var list = new List<QuotationsViewModel>();
+            list.Add(new QuotationsViewModel { Id = 1, CurrencyName = "test", FuelTypeName = "test", PdfPath = "C:/", PriceNettoMax = 5, PriceNettoMin = 4, UnitName = "test", QuotationTypeName = "test", QuotationDate = DateTime.Today });
+            return Json(list);
         }
 
         [HttpPost]

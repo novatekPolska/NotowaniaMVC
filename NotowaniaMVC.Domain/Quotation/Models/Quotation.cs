@@ -30,7 +30,7 @@ namespace NotowaniaMVC.Domain.DomainEntities
         public int? Company { get; private set; }
         public int? Unit { get; private set; }
         public int? QuotationType { get; private set; }
-        public int DocumentId { get; private set; }
+        public int? DocumentId { get; private set; }
         public DateTime DateTo { get; private set; }
         public DateTime DateOfQuotation { get; private set; }
           
@@ -40,28 +40,50 @@ namespace NotowaniaMVC.Domain.DomainEntities
             PriceMax = priceNettoMax;
             PriceMin = priceNettoMin; 
         }
+
+        private Quotation(int id, Guid guid, string code, decimal priceMin, decimal priceMax, int? currency, DateTime created, DateTime modified, int? modifier, int? creator, int? fuel, int? region, int? company, int? unit, int? quotationType, int? documentId, DateTime dateTo, DateTime dateOfQuotation)
+        {
+            Id = id;
+            Guid = guid;
+            Code = code;
+            PriceMin = priceMin;
+            PriceMax = priceMax;
+            Currency = currency;
+            Created = created;
+            Modified = modified;
+            Modifier = modifier;
+            Creator = creator;
+            Fuel = fuel;
+            Region = region;
+            Company = company;
+            Unit = unit;
+            QuotationType = quotationType;
+            DocumentId = documentId;
+            DateTo = dateTo;
+            DateOfQuotation = dateOfQuotation;
+    }
          
-        public void SetCurrency(int id)
+        public void SetCurrency(int? id)
         {
             Currency = id;
         }
 
-        public void SetQuotationType(int id)
+        public void SetQuotationType(int? id)
         {
             QuotationType = id;
         }
 
-        public void SetFuelType(int id)
+        public void SetFuelType(int? id)
         {
             Fuel = id;
         }
 
-        public void SetUnit(int id)
+        public void SetUnit(int? id)
         {
             Unit = id;
         }
 
-        public void SetDocumentId(int id)
+        public void SetDocumentId(int? id)
         {
             DocumentId = id;
         }
@@ -71,7 +93,12 @@ namespace NotowaniaMVC.Domain.DomainEntities
             public static Quotation Create(DateTime dateOfQuotation,  decimal priceNettoMin, decimal priceNettoMax)
             {
                 return new Quotation(dateOfQuotation, priceNettoMin, priceNettoMax);
-            } 
-        } 
+            }
+
+            public static Quotation Create(int id, Guid guid, string code, decimal priceMin, decimal priceMax, int? currency, DateTime created, DateTime modified, int? modifier, int? creator, int? fuel, int? region, int? company, int? unit, int? quotationType, int? documentId, DateTime dateTo, DateTime dateOfQuotation)
+            {
+                return new Quotation(id, guid, code, priceMin, priceMax, currency, created, modified, modifier, creator, fuel, region, company, unit, quotationType, documentId, dateTo, dateOfQuotation);
+            }
+        }  
     }
 }

@@ -19,7 +19,7 @@ namespace NotowaniaMVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfiguration.RegisterAndResolve();
-           // AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperProfile>());
+            //AutoMapperWebConfiguration.Configure();
         }
     }
 }

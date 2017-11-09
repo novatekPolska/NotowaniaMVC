@@ -464,6 +464,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotowaniaMVC.Application.Tests\Quotations\Handlers\CommandHandlers\QuotationsCommandHandlerTests.cs" />
+    <Compile Include="NotowaniaMVC.Domain.Tests\Documents\Mappers\DocumentToDocumentDbMapperTests.cs" />
     <Compile Include="NotowaniaMVC.Domain.Tests\Documents\Validators\DocumentValidatorTests.cs" />
     <Compile Include="NotowaniaMVC.Domain.Tests\Helpers\DbDocumentsHelperTests.cs" />
     <Compile Include="NotowaniaMVC.Domain.Tests\Helpers\DiskDocumentsHelperTests.cs" />
@@ -503,7 +505,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NotowaniaMVC.Application.Tests\" />
+    <Folder Include="NotowaniaMVC.Application.Tests\Quotations\Handlers\QueryHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

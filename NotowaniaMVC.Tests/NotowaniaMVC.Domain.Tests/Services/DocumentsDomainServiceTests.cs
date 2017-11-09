@@ -18,8 +18,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Services
         private readonly DbDocumentsHelper _dbDocumentsHelper;
         private readonly DiskDocumentsHelper _diskDocumentsHelper;
         private readonly DocumentToDocumentDbMapper _documentMapper;
-
-
+         
         public DocumentsDomainServiceTests()
         {
             _nhibernateUniversalRepository = new Mock<INHibernateUniversalRepository<XXX_R55_Documents>>();
@@ -46,9 +45,8 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Services
         public void when_try_to_add_correct_document_then_method_should_create_document_on_disk_and_database_with_correct_link()
         {
             Stream file = File.OpenRead("C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu.pdf");
-            _documentsDomainService.SaveNewDocument(CreateFakeDocument(), "test.pdf", file);
+            _documentsDomainService.SaveNewDocument(CreateFakeDocument(), file);
             file.Close();
-            file.Flush();
         }
 
         [Test]
@@ -56,15 +54,13 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Services
         {
             Stream file = File.OpenRead("C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu.pdf");
             var doc = Document.Factory.Create("test", "test", "", 1, 1, new object());
-            _documentsDomainService.SaveNewDocument(doc, "test.pdf", file);
+            _documentsDomainService.SaveNewDocument(doc, file);
             file.Close();
-            file.Flush();
         }
 
         private Document CreateFakeDocument()
         {
-            return Document.Factory.Create("test", "test", "C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu.pdf", 1, 1, new object());
-
+            return Document.Factory.Create("test.pdf", "test", "C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu.pdf", 1, 1, new object());
         }
     }
 }
