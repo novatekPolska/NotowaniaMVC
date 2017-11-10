@@ -39,7 +39,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Dictionaries.Repo
         [Test]
         public void can_get_fuel_units_dictionary()
         {
-            IQueryable<Dictionary> dictionary = unitsRepository.GetAllIdNamePairs();
+            Dictionary<int, string> dictionary = unitsRepository.GetAllIdNamePairs();
             Assert.Greater(dictionary.Count(), 0);
         }
     }

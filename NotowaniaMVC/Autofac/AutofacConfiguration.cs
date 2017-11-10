@@ -68,10 +68,11 @@ namespace NotowaniaMVC.Autofac
             }); 
 
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<FuelTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
-            builder.RegisterType<QuotationTypesRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitsRepository>().As<IDictionaryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<QuotationTypesRepository>().As<IQuotationTypesRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitsRepository>().As<IUnitsRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CurrencyRepository>().As<ICurrencyRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<DbDocumentsHelper>().As<IDbDocumentHelper>().InstancePerLifetimeScope();
             builder.RegisterType<DiskDocumentsHelper>().As<IDiskDocumentHelper>().InstancePerLifetimeScope();

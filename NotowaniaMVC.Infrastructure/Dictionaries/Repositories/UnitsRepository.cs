@@ -2,10 +2,11 @@
 using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces;
 using NotowaniaMVC.Infrastructure.Database.Entities;
 using NHibernate;
+using System.Collections.Generic;
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 {
-    public class UnitsRepository : IDictionaryRepository
+    public class UnitsRepository : IUnitsRepository
     {
         private ISession Session { get; set; }
 
@@ -14,9 +15,10 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
             Session = session;
         }
 
-        public IQueryable<Dictionary> GetAllIdNamePairs()
+        public Dictionary<int, string> GetAllIdNamePairs()
         {
-            return Session.Query<UnitsDb>().Select(c => new Dictionary { Id = c.Id, Name = c.Jm });
+            var data = Session.Query<UnitsDb>().Select(c => new { id = c.Id, name = c.Jm });
+            return data.ToDictionary(p => p.id, p => p.name); 
         }
     }
 }

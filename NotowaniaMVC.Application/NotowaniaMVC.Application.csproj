@@ -408,6 +408,8 @@
     <Compile Include="FuelPrices\ViewModels\FuelPricesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quotations\Handlers\CommandHandlers\QuotationsCommandHandler.cs" />
+    <Compile Include="Quotations\Handlers\QueryHandlers\Messages\GetDataForNewQuotationQuery.cs" />
+    <Compile Include="Quotations\Handlers\QueryHandlers\QuotationsQueryHandler.cs" />
     <Compile Include="Quotations\Interfaces\IQuotationMapper.cs" />
     <Compile Include="Quotations\ViewModels\NewQuotationViewModel.cs" />
     <Compile Include="Quotations\ViewModels\QuotationsViewModel.cs" />
@@ -415,7 +417,6 @@
   <ItemGroup>
     <Folder Include="FuelPrices\Handlers\CommandHandlers\Messages\" />
     <Folder Include="FuelPrices\Handlers\QueryHandlers\Messages\" />
-    <Folder Include="Quotations\Handlers\QueryHandlers\Messages\" />
     <Folder Include="Quotations\Services\" />
   </ItemGroup>
   <ItemGroup>

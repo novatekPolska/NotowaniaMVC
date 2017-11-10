@@ -1,11 +1,12 @@
 ﻿using NHibernate;
 using NotowaniaMVC.Infrastructure.Database.Entities;
-using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces; 
+using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 {
-    public class QuotationTypesRepository: IDictionaryRepository
+    public class QuotationTypesRepository: IQuotationTypesRepository
     { 
         private ISession Session { get; set; }
 
@@ -18,9 +19,10 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
         /// pobiera id i name dla typów notowań. Potrzebne jest to do kontrolki z listą rozwijalną w formularzu dodawania nowego notowania
         /// </summary>
         /// <returns></returns>
-        public IQueryable<Dictionary> GetAllIdNamePairs() 
+        public Dictionary<int, string> GetAllIdNamePairs() 
         {
-            return Session.Query<XXX_R55_QuotationTypes>().Select(c => new Dictionary { Id = c.Id, Name = c.Name });
+            var data = Session.Query<XXX_R55_QuotationTypes>().Select(c => new { id = c.Id, name = c.Name });
+            return data.ToDictionary(p => p.id, p => p.name); 
         } 
     }
 }

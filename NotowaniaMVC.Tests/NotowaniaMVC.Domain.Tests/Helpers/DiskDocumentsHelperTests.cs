@@ -12,7 +12,6 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
     {
         private readonly DiskDocumentsHelper diskDocumentsHelper;
         
-
         private TestContext testContextInstance;
         public TestContext TestContext
         {

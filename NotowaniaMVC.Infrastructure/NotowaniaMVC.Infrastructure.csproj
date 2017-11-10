@@ -440,7 +440,9 @@
     <Compile Include="Database\Mappings\QuotationTypesMap.cs" />
     <Compile Include="Database\Mappings\RegionsMap.cs" />
     <Compile Include="Database\ExistingEntitiesMappings\UnitsMap.cs" />
-    <Compile Include="Dictionaries\Dictionary.cs" />
+    <Compile Include="Dictionaries\Interfaces\ICurrencyRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IQuotationTypesRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IUnitsRepository.cs" />
     <Compile Include="Dictionaries\Repositories\CurrencyRepository.cs" />
     <Compile Include="FuelPrices\Interfaces\IPriceListsRepository.cs" />
     <Compile Include="Dictionaries\Repositories\UnitsRepository.cs" />
@@ -449,7 +451,7 @@
     <Compile Include="Quotations\Repositories\QuotationsRepository.cs" />
     <Compile Include="NLog-NHibernate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dictionaries\Interfaces\IDictionaryRepository.cs" />
+    <Compile Include="Dictionaries\Interfaces\IFuelTypesRepository.cs" />
     <Compile Include="Dictionaries\Repositories\FuelTypesRepository.cs" />
     <Compile Include="Dictionaries\Repositories\QuotationTypesRepository.cs" />
   </ItemGroup>

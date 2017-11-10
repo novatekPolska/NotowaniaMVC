@@ -3,6 +3,7 @@ using NotowaniaMVC.Infrastructure.Database.DBConfiguration;
 using NotowaniaMVC.Infrastructure.Dictionaries;
 using NotowaniaMVC.Infrastructure.Dictionaries.Repositories;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Dictionaries.Repositories
@@ -37,7 +38,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Infrastructure.Tests.Dictionaries.Repo
         [Test]
         public void can_get_quotation_dictionary()
         {
-            IQueryable<Dictionary> dictionary = quotationTypesRepository.GetAllIdNamePairs();
+            Dictionary<int, string> dictionary = quotationTypesRepository.GetAllIdNamePairs();
             Assert.Greater(dictionary.Count(), 0);
         }
     }

@@ -2,10 +2,11 @@
 using NotowaniaMVC.Infrastructure.Dictionaries.Interfaces;
 using NHibernate;
 using NotowaniaMVC.Infrastructure.Database.ExistingEntities;
+using System.Collections.Generic;
 
 namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
 {
-    public class CurrencyRepository : IDictionaryRepository
+    public class CurrencyRepository : ICurrencyRepository
     {
         private ISession Session { get; set; }
 
@@ -14,9 +15,10 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
             Session = session;
         }
 
-        public IQueryable<Dictionary> GetAllIdNamePairs()
+        public Dictionary<int, string> GetAllIdNamePairs()
         {
-            return Session.Query<CurrencyDb>().Select(c => new Dictionary { Id = c.Id, Name = c.Shortcut });
+            var data = Session.Query<CurrencyDb>().Select(c => new { id = c.Id, name = c.Shortcut });
+            return data.ToDictionary(p=>p.id, p=> p.name);
         }
     }
 }
