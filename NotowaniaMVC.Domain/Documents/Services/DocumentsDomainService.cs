@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using NotowaniaMVC.Domain.Documents.Interfaces; 
+﻿using NotowaniaMVC.Domain.Documents.Interfaces; 
 using NotowaniaMVC.Domain.DomainEntities; 
 using System.IO; 
 
@@ -16,11 +15,10 @@ namespace NotowaniaMVC.Domain.Documents.Services
             _diskDocumentHelper = diskDocumentHelper;
         }
           
-        public ValidationResult SaveNewDocument(Document document, Stream file)  
+        public int SaveNewDocument(Document document, Stream file)  
         {
             _diskDocumentHelper.SaveDocumentOnDisk(file, document.Name, document.Link);  
-            var validationResult = _dbDocumentHelper.SaveDocumentToDb(document);
-            return validationResult;
+            return _dbDocumentHelper.SaveDocumentToDb(document); 
         }
     }
 }

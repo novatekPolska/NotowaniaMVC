@@ -4,10 +4,9 @@ using NotowaniaMVC.Application.Quotations.ViewModels;
 using MediatR;
 using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers.Messages;
 using System.Web;
-using System.IO;
-using System.Text;
-using System;
-using System.Web.Helpers;
+using System.IO; 
+using System; 
+using NotowaniaMVC.Application.Quotations.Handlers.QueryHandlers.Messages;
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
@@ -17,34 +16,25 @@ namespace NotowaniaMVC.Controllers.Quotations
         public QuotationsController(IMediator mediator)
         {
             _mediator = mediator;
-        }
-
-        //public QuotationsController() //: this(IMediator mediator)
-        //{
-        //}
+        } 
 
         // GET: Quotations
         public ActionResult Quotations()
         {
-            Dictionary<int, string> currencyType = new Dictionary<int, string>();
-            currencyType.Add(1, "test");
-
-            Dictionary<int, string> fuelTypes = new Dictionary<int, string>();
-            fuelTypes.Add(1, "test");
-
-            Dictionary<int, string> quotationTypes = new Dictionary<int, string>();
-            quotationTypes.Add(1, "test");
-
-            Dictionary<int, string> units = new Dictionary<int, string>();
-            units.Add(1, "test");
-
-            NewQuotationViewModel quotationViewModel = new NewQuotationViewModel { CurrencyTypes = currencyType, FuelTypes = fuelTypes, QuotationTypes = quotationTypes, Units = units };
+            var quotationViewModel = _mediator.Send(new GetDataForNewQuotationQuery()).Result;
             return View(quotationViewModel);
         }
 
         [HttpPost]
         public ActionResult Add(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile)
         {
+            if (PdfFile != null)
+            {
+                newQuotationModel.PdfFile = PdfFile.InputStream;
+                newQuotationModel.PdfName = PdfFile.FileName;
+                newQuotationModel.PdfPath = "C:/"; 
+            }
+
             _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel });
             return View("Quotations", newQuotationModel);
         }

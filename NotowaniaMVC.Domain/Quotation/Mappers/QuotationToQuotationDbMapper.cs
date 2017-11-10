@@ -18,7 +18,7 @@ namespace NotowaniaMVC.Domain.Quotations.Mappers
             // encje osobne mamy tez z innych powodów - np bedziemy zmieniac baze podobno na mssql, bedziemy łaczyc sie z wieloma bazami, ogólnie 
             // projekt infrastrukture będzie szerokowykorzystywany tez w innych projektach stąd musi być całkiem niezależnym bytem
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<DomainEntities.Quotation, XXX_R55_FuelTypes>().ForMember(dst => dst.Id, src => src.MapFrom(e => e.Fuel));
+                cfg.CreateMap<DomainEntities.Quotation, CardGroupsDb>().ForMember(dst => dst.Id, src => src.MapFrom(e => e.Fuel));
                 cfg.CreateMap<DomainEntities.Quotation, XXX_R55_Companies>().ForMember(dst => dst.Id, src => src.MapFrom(e => e.Company));
                 cfg.CreateMap<DomainEntities.Quotation, XXX_R55_QuotationTypes>().ForMember(dst => dst.Id, src => src.MapFrom(e => e.QuotationType));
                 cfg.CreateMap<DomainEntities.Quotation, XXX_R55_Regions>().ForMember(dst => dst.Id, src => src.MapFrom(e => e.Region));
@@ -38,7 +38,7 @@ namespace NotowaniaMVC.Domain.Quotations.Mappers
                 .ForMember(dst => dst.Id, src => src.MapFrom(e => e.Id))
                 .ForMember(dst => dst.Guid, src => src.MapFrom(e => e.Guid))
                 .ForMember(dst => dst.DateTo, src => src.MapFrom(e => e.DateTo))
-                .ForMember(dst => dst.Fuel, src => src.MapFrom(e => e.Fuel == null ? null : Mapper.Map<DomainEntities.Quotation, XXX_R55_FuelTypes>(e)))
+                .ForMember(dst => dst.Fuel, src => src.MapFrom(e => e.Fuel == null ? null : Mapper.Map<DomainEntities.Quotation, CardGroupsDb>(e)))
                 .ForMember(dst => dst.Company, src => src.MapFrom(e => e.Company == null ? null : Mapper.Map<DomainEntities.Quotation, XXX_R55_Companies>(e)))
                 .ForMember(dst => dst.QuotationType, src => src.MapFrom(e => e.QuotationType == null ? null :  Mapper.Map<DomainEntities.Quotation, XXX_R55_QuotationTypes>(e)))
                 .ForMember(dst => dst.Region, src => src.MapFrom(e => e.Region == null ? null : Mapper.Map<DomainEntities.Quotation, XXX_R55_Regions>(e)))

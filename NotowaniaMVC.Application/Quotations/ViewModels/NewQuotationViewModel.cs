@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace NotowaniaMVC.Application.Quotations.ViewModels
 {
@@ -19,7 +20,7 @@ namespace NotowaniaMVC.Application.Quotations.ViewModels
         public string QuotationTypeName { get; set; }
         public decimal PriceNettoMin { get; set; }
         public decimal PriceNettoMax { get; set; }
-        public object PdfFile { get; set; }
+        public Stream PdfFile { get; set; }
         public int? PdfId { get; set; }
         public string PdfName { get; set; }
         public string PdfPath { get; set; }

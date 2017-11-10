@@ -59,7 +59,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Application.Tests.Quotations.Handlers.
         public void can_add_new_quotation_new_document_and_document_to_quotation()
         {
             Stream file = File.OpenRead("C:/Users/szklarek/Documents/Funkcje-logiczne w Excelu.pdf"); 
-            _quotationsCommandHandler.Handle(new NewQuotationCommand { FileName = "test.pdf", FileStream = file, QuotationViewModels = new NewQuotationViewModel { QuotationDate = DateTime.Now, PdfPath = "C:/", FuelType = 1, Currency = 1, PriceNettoMax = 10, PriceNettoMin = 5, PdfName = "test.pdf", QuotationType = 1, Unit = 10001 } });
+            _quotationsCommandHandler.Handle(new NewQuotationCommand { QuotationViewModels = new NewQuotationViewModel { QuotationDate = DateTime.Now, PdfPath = "C:/", FuelType = 1, Currency = 1, PriceNettoMax = 10, PriceNettoMin = 5, PdfName = "test.pdf", QuotationType = 1, Unit = 10001 } });
         } 
     }
 }

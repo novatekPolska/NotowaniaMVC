@@ -177,8 +177,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 date = date.AddDays(-1);
 
                 session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new UnitsDb { Jm = "test"});
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new UnitsDb { Jm = "test"}); 
                 var obj  = session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
 
                 id = (int)obj; 
@@ -202,8 +201,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 date = date.AddDays(-1);
 
                 session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new UnitsDb { Jm = "test"});
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new UnitsDb { Jm = "test"}); 
                 var obj = session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
 
                 id = (int)obj; 
@@ -219,50 +217,51 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
         [Test]
         public void when_fuel_type_FK_does_not_exist_then_validator_should_return_error()
         {
-            int id = 0;
-            using (var transaction = session.BeginTransaction())
-            {
-                DateTime date = DateTime.Now;
-                date = date.AddDays(-1);
+            throw (new Exception("niezaimplementowane"));
+            //int id = 0;
+            //using (var transaction = session.BeginTransaction())
+            //{
+            //    DateTime date = DateTime.Now;
+            //    date = date.AddDays(-1);
 
-                session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new UnitsDb { Jm = "test" });
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
-                var obj = session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+            //    session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
+            //    session.Save(new UnitsDb { Jm = "test" });
+            //    session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() }); 
 
-                id = (int)obj;
-                if (id != 0) id = id + 1;
+            //    id = (int)obj;
+            //    if (id != 0) id = id + 1;
 
-                var fakeQuotationObject = CreateFakeQuotation(date, id, 10, 5, 1, 1, 1);
-                var validationResult = quotationValidator.Validate(fakeQuotationObject);
+            //    var fakeQuotationObject = CreateFakeQuotation(date, id, 10, 5, 1, 1, 1);
+            //    var validationResult = quotationValidator.Validate(fakeQuotationObject);
 
-                Assert.AreEqual(validationResult.IsValid, false);
-                transaction.Rollback();
-            }
+            //    Assert.AreEqual(validationResult.IsValid, false);
+            //    transaction.Rollback();
+            //}
         }
 
         [Test]
         public void when_fuel_type_FK_exists_then_validator_should_not_return_error()
         {
-            int id = 0;
-            using (var transaction = session.BeginTransaction())
-            {
-                DateTime date = DateTime.Now;
-                date = date.AddDays(-1);
+            throw (new Exception("Niezaimplementowane"));
+            //int id = 0;
+            //using (var transaction = session.BeginTransaction())
+            //{
+            //    DateTime date = DateTime.Now;
+            //    date = date.AddDays(-1);
 
-                session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new UnitsDb { Jm = "test"});
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
-                var obj = session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+            //    session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
+            //    session.Save(new UnitsDb { Jm = "test"});
+            //    session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
+            //    var obj = session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
 
-                id = (int)obj; 
+            //    id = (int)obj; 
 
-                var fakeQuotationObject = CreateFakeQuotation(date, id, 10, 5, 1, 1, 1);
-                var validationResult = quotationValidator.Validate(fakeQuotationObject);
+            //    var fakeQuotationObject = CreateFakeQuotation(date, id, 10, 5, 1, 1, 1);
+            //    var validationResult = quotationValidator.Validate(fakeQuotationObject);
 
-                Assert.AreEqual(validationResult.IsValid, true);
-                transaction.Rollback();
-            }
+            //    Assert.AreEqual(validationResult.IsValid, true);
+            //    transaction.Rollback();
+            //}
         }
 
         [Test]
@@ -275,8 +274,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 date = date.AddDays(-1);
 
                 session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid()});
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() }); 
+                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid()}); 
                 var obj = session.Save(new UnitsDb { Jm = "test"});
 
                 id = (int)obj;
@@ -300,8 +298,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 date = date.AddDays(-1);
 
                 session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() }); 
                 var obj = session.Save(new UnitsDb { Jm = "test"});
 
                 id = (int)obj; 
@@ -323,8 +320,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() }); 
                 session.Save(new UnitsDb { Jm = "test"});
                 var obj = session.Save(new CurrencyDb {  Specie = "test", Multiplicity = 1, Shortcut= "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
 
@@ -348,8 +344,7 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Quotations.Validator
                 DateTime date = DateTime.Now;
                 date = date.AddDays(-1);
 
-                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() });
-                session.Save(new XXX_R55_FuelTypes { Name = "test", Code = "test", Guid = new Guid() });
+                session.Save(new XXX_R55_QuotationTypes { Name = "test", Code = "test", Guid = new Guid() }); 
                 session.Save(new UnitsDb { Jm = "test"});
                 var obj = session.Save(new CurrencyDb { Specie = "test", Multiplicity = 1, Shortcut = "test", Print = "test", Symbol = "test", Currency = "test", BasicCurrency = true });
 

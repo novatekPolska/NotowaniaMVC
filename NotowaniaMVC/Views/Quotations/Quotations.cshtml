@@ -52,9 +52,10 @@
                     <tr>
                         <td colspan="2" height="30px">  
                                 <label for="PdfFile" class="btnSavePdf" >
-                                    <i class="fa fa-cloud-upload"></i>
-                                    <img src="@Url.Content("~/Content/AddPdf.png")" height="40" width="40" />
-                                </label>
+                                    @*<label class="btnSavePdf">*@
+                                        <i class="fa fa-cloud-upload"></i>
+                                        <img src="@Url.Content("~/Content/AddPdf.png")" height="40" width="40" />
+                                    </label>
                                 <input id="PdfFile" type="file" name="PdfFile" value="PdfFile"/> 
                                 @Html.ValidationMessageFor(model => model.PdfFile, "", new { @class = "text-danger" })
                                 @*<input type="submit" value="Upload File" id="btnSubmit" height="40" width="40" src="@Url.Content("~/Content/PdfSave.png")">*@
@@ -118,7 +119,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ notowania: "))</td>
-                                        <td class="columns">@(Html.DropDownList("lbfQuotationTypesOptions", new SelectList(Model.QuotationTypes), new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">@(Html.DropDownListFor(model => model.QuotationType , new SelectList(Model.QuotationTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
                                     </tr>
                                 </table>
                             </td>
@@ -128,7 +129,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ paliwa: "))</td>
-                                        <td class="columns">@(Html.DropDownList("lbfFuelTypesOptions", new SelectList(Model.FuelTypes), new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">@(Html.DropDownListFor(model=>model.FuelType, new SelectList(Model.FuelTypes, "Key", "Value", 0), "- Wybierz -",new { @class = "textBox form-control" }))</td>
                                     </tr>
                                 </table>
                             </td>
@@ -138,7 +139,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Waluta: "))</td>
-                                        <td class="columns">@(Html.DropDownList("lbfCurrencyTypesOptions", new SelectList(Model.CurrencyTypes), new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">@(Html.DropDownListFor(model=> model.Currency, new SelectList(Model.CurrencyTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
                                     </tr>
                                 </table>
                             </td>
@@ -148,7 +149,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Jednostka: "))</td>
-                                        <td class="columns">@(Html.DropDownList("lbfUnitsOptions", new SelectList(Model.Units), new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">@(Html.DropDownListFor(model=>model.Unit, new SelectList(Model.Units, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
                                     </tr>
                                 </table>
                             </td>

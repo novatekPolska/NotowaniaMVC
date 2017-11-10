@@ -4,6 +4,7 @@ using NotowaniaMVC.Application.Quotations.ViewModels;
 using NotowaniaMVC.Domain.Documents.Interfaces;
 using NotowaniaMVC.Domain.DomainEntities;
 using NotowaniaMVC.Domain.Quotation.Interfaces;
+using System.IO;
 
 namespace NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers
 {
@@ -21,9 +22,9 @@ namespace NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers
         public void Handle(NewQuotationCommand message)
         {
             int newQuotationId = AddNewQuotation(message.QuotationViewModels);
-            var document = Document.Factory.Create(message.FileName, "", message.QuotationViewModels.PdfPath, 1, 1, null);
-            _documentsDomainService.SaveNewDocument(document ,message.FileStream);
-            _quotationDomainService.AddDocumentToQuotation(newQuotationId, document.Id);
+            var document = Document.Factory.Create(message.QuotationViewModels.PdfName, "", message.QuotationViewModels.PdfPath, 1, 1, null);
+            int newDocumentId = _documentsDomainService.SaveNewDocument(document ,message.QuotationViewModels.PdfFile);
+            _quotationDomainService.AddDocumentToQuotation(newQuotationId, newDocumentId);
         }
 
         private int AddNewQuotation(NewQuotationViewModel quotationViewModel)
@@ -37,5 +38,11 @@ namespace NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers
 
             return _quotationDomainService.AddNewQuotation(quotation); 
         } 
+
+        private int AddNewDocument(string fileName, string path, Stream fileStream)
+        {
+            var document = Document.Factory.Create(fileName, "", path, 1, 1, null); 
+            return _documentsDomainService.SaveNewDocument(document, fileStream);
+        }
     }
 }

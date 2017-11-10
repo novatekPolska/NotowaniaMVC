@@ -22,7 +22,7 @@ namespace NotowaniaMVC.Infrastructure.Dictionaries.Repositories
         /// <returns></returns>
         public Dictionary<int, string> GetAllIdNamePairs()
         {
-            IQuery query = Session.CreateSQLQuery("select GRU_ID_GRUPAKART, NAZWAGRUPY from XXX_GRUPAKART(10003)");
+            IQuery query = Session.CreateSQLQuery("select ID_GRUPAKART, NAZWAGRUPY from XXX_GRUPAKART(10003)");
             var dictionary = new Dictionary<int, string>();
 
             foreach (var element in query.List())

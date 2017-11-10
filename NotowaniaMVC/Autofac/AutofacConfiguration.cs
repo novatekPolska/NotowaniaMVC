@@ -27,6 +27,7 @@ using NotowaniaMVC.Domain.Documents.Interfaces;
 using NotowaniaMVC.Domain.Documents.Helpers;
 using NotowaniaMVC.Domain.Documents.Mappers;
 using NotowaniaMVC.Domain.Quotations.Mappers;
+using NotowaniaMVC.Domain.Documents.Services;
 
 namespace NotowaniaMVC.Autofac
 {
@@ -70,6 +71,8 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
+            builder.RegisterType<DocumentsDomainService>().As<IDocumentsDomainService>().InstancePerLifetimeScope();
+            
             builder.RegisterType<QuotationTypesRepository>().As<IQuotationTypesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UnitsRepository>().As<IUnitsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<CurrencyRepository>().As<ICurrencyRepository>().InstancePerLifetimeScope();

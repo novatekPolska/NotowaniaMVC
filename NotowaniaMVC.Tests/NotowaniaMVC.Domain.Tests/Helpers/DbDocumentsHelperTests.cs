@@ -5,6 +5,7 @@ using Moq;
 using NotowaniaMVC.Infrastructure.Common.Interfaces;
 using NotowaniaMVC.Domain.Documents.Helpers; 
 using NotowaniaMVC.Domain.Documents.Mappers;
+using System;
 
 namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
 {
@@ -39,16 +40,18 @@ namespace NotowaniaMVC.Tests.NotowaniaMVC.Domain.Tests.Helpers
         [Test]
         public void when_try_to_save_incorrect_document_then_method_should_not_save_doc_and_should_return_error()
         {
-            document = Document.Factory.Create("test", "test", "", 1, 1, new object());
-            var validationResult = _dbDocumentsHelper.SaveDocumentToDb(document);
-            Assert.AreEqual(validationResult.IsValid, false);
+            throw (new Exception("Po zmianie na zwracanie id ten test sensu nie ma i trzeba napisac inny"));
+            //document = Document.Factory.Create("test", "test", "", 1, 1, new object());
+            //var validationResult = _dbDocumentsHelper.SaveDocumentToDb(document);
+            //Assert.AreEqual(validationResult, false);
         }
 
         [Test]
         public void when_try_to_save_correct_document_then_method_should_not_return_error()
         {
-            var validationResult = _dbDocumentsHelper.SaveDocumentToDb(document);
-            Assert.AreEqual(validationResult.IsValid, true);
+            throw (new Exception("Po zmianie na zwracanie id ten test sensu nie ma i trzeba napisac inny"));
+            //var validationResult = _dbDocumentsHelper.SaveDocumentToDb(document);
+            //Assert.AreEqual(validationResult.IsValid, true);
         }
 
         private Document CreateFakeDocument()

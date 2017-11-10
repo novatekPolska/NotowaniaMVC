@@ -15,7 +15,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Create
         private ISession _session;
         private ITransaction _transaction;
         private Configuration _cfg; 
-        string connectionString = "datasource=192.168.48.21;database=D:\\BAZA\\test.fb;userid=sysdba;password=masterkey";
+        string connectionString = "datasource=192.168.48.21;database=D:\\BAZA\\SyS\\test.fb;userid=sysdba;password=masterkey";
 
         public CreateDatabase()
         {

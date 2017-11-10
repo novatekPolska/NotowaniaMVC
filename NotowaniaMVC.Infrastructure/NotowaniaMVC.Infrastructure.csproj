@@ -407,7 +407,6 @@
     <Compile Include="Database\Entities\XXX_R55_Deliveries.cs" />
     <Compile Include="Database\Entities\XXX_R55_Documents.cs" />
     <Compile Include="Database\Entities\XXX_R55_Fuels.cs" />
-    <Compile Include="Database\Entities\XXX_R55_FuelTypes.cs" />
     <Compile Include="Database\Entities\XXX_R55_PriceLists.cs" />
     <Compile Include="Database\Entities\XXX_R55_Quotations.cs" />
     <Compile Include="Database\Entities\XXX_R55_QuotationTypes.cs" />
@@ -434,7 +433,6 @@
     <Compile Include="Database\Mappings\CompaniesMap.cs" />
     <Compile Include="Database\Mappings\DocumentsMap.cs" />
     <Compile Include="Database\Mappings\FuelsMap.cs" />
-    <Compile Include="Database\Mappings\FuelTypesMap.cs" />
     <Compile Include="Database\Mappings\PriceListsMap.cs" />
     <Compile Include="Database\Mappings\QuotationsMap.cs" />
     <Compile Include="Database\Mappings\QuotationTypesMap.cs" />

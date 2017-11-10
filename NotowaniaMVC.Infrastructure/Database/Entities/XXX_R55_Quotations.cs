@@ -16,7 +16,7 @@ namespace NotowaniaMVC.Infrastructure.Database.Entities
         public virtual decimal PriceMax { get; set; }
         public virtual DateTime DateTo { get; set; }
         public virtual DateTime DateOfQuotation { get; set; } 
-        public virtual XXX_R55_FuelTypes Fuel { get; set; }
+        public virtual CardGroupsDb Fuel { get; set; }
         public virtual XXX_R55_Regions Region { get; set; }
         public virtual XXX_R55_Companies Company { get; set; }
         public virtual XXX_R55_QuotationTypes QuotationType { get; set; }

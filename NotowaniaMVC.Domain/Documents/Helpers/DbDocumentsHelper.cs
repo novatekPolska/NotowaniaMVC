@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using NotowaniaMVC.Domain.Documents.Interfaces;
+﻿using NotowaniaMVC.Domain.Documents.Interfaces;
 using NotowaniaMVC.Domain.Documents.Validators;
 using NotowaniaMVC.Domain.DomainEntities;
 using NotowaniaMVC.Infrastructure.Common.Interfaces;
@@ -18,16 +17,18 @@ namespace NotowaniaMVC.Domain.Documents.Helpers
             _documentMapper = documentMapper;
         }
 
-        public ValidationResult SaveDocumentToDb(Document document)
+        public int SaveDocumentToDb(Document document)
         {
             DocumentValidator validator = new DocumentValidator();
             var result = validator.Validate(document);
+            int documentId = 0;
             if (result.IsValid)
             { 
-                var documentToAdd = _documentMapper.Map(document); 
+                 var documentToAdd = _documentMapper.Map(document); 
                 _nHibernateUniversalRepository.Create(documentToAdd);
-            } 
-            return result;
+                documentId = documentToAdd.Id;
+            }
+            return documentId;
         }
 
 

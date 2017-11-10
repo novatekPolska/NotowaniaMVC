@@ -12,7 +12,7 @@ namespace NotowaniaMVC.Infrastructure.Database.DBConfiguration
     public class DatabaseConfiguration
     { 
         private Configuration _cfg; 
-        string connectionString = "datasource=192.168.48.21;database=D:\\BAZA\\test.fb;userid=sysdba;password=masterkey"; 
+        string connectionString = "datasource=192.168.48.21;database=D:\\BAZA\\SyS\\test.fb;userid=sysdba;password=masterkey"; 
 
         public DatabaseConfiguration()
         {
@@ -29,8 +29,7 @@ namespace NotowaniaMVC.Infrastructure.Database.DBConfiguration
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RegionsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DocumentsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CompaniesMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelTypesMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<FuelsMap>()) 
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PriceListsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationsMap>())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<QuotationTypesMap>())
