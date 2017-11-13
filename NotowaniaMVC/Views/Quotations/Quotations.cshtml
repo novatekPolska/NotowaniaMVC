@@ -1,6 +1,4 @@
-﻿<!doctype html>
-<html lang="pl">
-<head>
+﻿
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
@@ -8,60 +6,74 @@
     <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/quotationStyles.css")" rel="stylesheet" />
-      
-    <script type="text/javascript">
-        function TestAjax() {
-            alert("1");
+   
+    
 
-           var result =  $.ajax({
-                type: 'GET',
-                url: rootUrl('Quotations/GetDataForGrid'),
-                contentType: "application/json",  
-                success: function (data) {
-                    alert("Succeded");
-                }
-            });
-
-           alert("2");
-        }
-    </script>
-
-</head>
-<body> 
     @model NotowaniaMVC.Application.Quotations.ViewModels.NewQuotationViewModel
       
     @using GridMvc.Html 
+@using System.IO
     
     @{
         ViewData["Title"] = "Notowania";
     }
 
-
-
     @ViewBag.Model
-@using (Html.BeginForm("Add", "Quotations", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @*@using (Html.BeginForm("Add", "Quotations", FormMethod.Post, new { @area = "Admin", @role = "form" }))
-    {*@
+
+@using (Ajax.BeginForm("Add", "Quotations", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "target" }, new { enctype = "multipart/form-data" }))
+{ 
+    <script type="text/javascript">
+
+        function changePdfPreview() {
+            var docValue = document.getElementById("PdfFile")
+            return docValue
+        };
+
+        function test() {
+            var pdf = document.getElementById("PdfFile")
+            var pdfhidden = document.getElementById("Pdf")
+            pdfhidden.value = pdf
+
+            var file = pdf.files[0]
+             
+            var data = file
+
+            var form = $('form').get(0)
+            alert(form)
+            var fd = new FormData(form)
+            alert(fd) 
+           
+            $.ajax({
+                type: "POST",
+                url: "/Quotations/GeneratePDF",
+                data: fd,
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false
+
+                })
+        };
+
+
+    </script>
+
+        @Html.HiddenFor(model => model.Pdf)
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <table class="columns" style="margin-top:50px">
         <tr class="columns">
-            <td class="bdTbl">
+            <td class="bdTbl"> 
                 <table class="columns">
                     <tr>
                         <td colspan="2" height="30px">  
-                                <label for="PdfFile" class="btnSavePdf" >
+                                <label for="PdfFile" class="btnSavePdf">
                                     @*<label class="btnSavePdf">*@
                                         <i class="fa fa-cloud-upload"></i>
                                         <img src="@Url.Content("~/Content/AddPdf.png")" height="40" width="40" />
                                     </label>
-                                <input id="PdfFile" type="file" name="PdfFile" value="PdfFile"/> 
-                                @Html.ValidationMessageFor(model => model.PdfFile, "", new { @class = "text-danger" })
-                                @*<input type="submit" value="Upload File" id="btnSubmit" height="40" width="40" src="@Url.Content("~/Content/PdfSave.png")">*@
-                                <button class="btnSavePdf" type="submit">
-                                    <img src="@Url.Content("~/Content/PdfSave.png")" height="40" width="40" />
-                                </button> 
+                                <input id="PdfFile" type="file" name="PdfFile" value="PdfFile" onchange="test()"/> 
+                              
                                 @ViewBag.FileStatus 
                         </td>
                     </tr>
@@ -81,8 +93,7 @@
                                     <td class="tableColumns">
                                         <button class="btnDownload" formaction="@Url.Action("DownloadPdf")">
                                             <img src="@Url.Content("~/Content/PdfDownload.png")" width="40" height="40" />
-                                        </button>
-
+                                        </button> 
                                     </td>
                                 </tr>
                             </table>
@@ -90,12 +101,17 @@
                     </tr>
                     <tr class="columns">
                         <td class="columns">
+                            <object id='pdfbox' type="application/pdf">
+                                Click @Html.ActionLink("here", "GeneratePDF") to view the file.
+                            </object>   
                             <table class="columns">
-                                <tr class="columns"></tr>
+
+                                <tr class="columns">
+                                </tr>
                             </table>
                         </td>
                     </tr>
-                </table>
+                </table> 
             </td> 
                 <td class="bdTbl"> 
                     <table class="columns">
@@ -107,7 +123,7 @@
                                             @(Html.Label("Data notowania: "))
                                         </td>
                                         <td class="columns"> 
-                                            @Html.EditorFor(model => model.QuotationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                            @Html.TextBoxFor(model => model.QuotationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                                              
                                         </td>
                                     </tr>
@@ -119,7 +135,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ notowania: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model => model.QuotationType , new SelectList(Model.QuotationTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">@(Html.DropDownListFor(model => model.QuotationType, new SelectList(Model.QuotationTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
                                     </tr>
                                 </table>
                             </td>
@@ -129,7 +145,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ paliwa: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model=>model.FuelType, new SelectList(Model.FuelTypes, "Key", "Value", 0), "- Wybierz -",new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">@(Html.DropDownListFor(model => model.FuelType, new SelectList(Model.FuelTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
                                     </tr>
                                 </table>
                             </td>
@@ -139,7 +155,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Waluta: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model=> model.Currency, new SelectList(Model.CurrencyTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">@(Html.DropDownListFor(model => model.Currency, new SelectList(Model.CurrencyTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
                                     </tr>
                                 </table>
                             </td>
@@ -149,7 +165,7 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Jednostka: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model=>model.Unit, new SelectList(Model.Units, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">@(Html.DropDownListFor(model => model.Unit, new SelectList(Model.Units, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
                                     </tr>
                                 </table>
                             </td>
@@ -186,9 +202,7 @@
                   </button>
                   <button class="btnAddCancel" type="submit">
                       <img src="@Url.Content("~/Content/Save.png")" height="40" width="40" />
-                  </button>
-                  <button type="button" onclick="TestAjax()"> 
-                  </button>
+                  </button> 
               </td>    
         </tr> 
     </table>
@@ -213,6 +227,3 @@
 
                         }).Selectable(true).WithPaging(5).Sortable().Named("testGrida").Filterable(true).EmptyText("Brak danych")
     )
-     
-</body>
-</html>

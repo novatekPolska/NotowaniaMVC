@@ -22,9 +22,12 @@ namespace NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers
         public void Handle(NewQuotationCommand message)
         {
             int newQuotationId = AddNewQuotation(message.QuotationViewModels);
-            var document = Document.Factory.Create(message.QuotationViewModels.PdfName, "", message.QuotationViewModels.PdfPath, 1, 1, null);
-            int newDocumentId = _documentsDomainService.SaveNewDocument(document ,message.QuotationViewModels.PdfFile);
-            _quotationDomainService.AddDocumentToQuotation(newQuotationId, newDocumentId);
+
+            if (message.QuotationViewModels.PdfFile!=null)
+            {
+                int newDocumentId = AddNewDocument(message.QuotationViewModels.PdfName, message.QuotationViewModels.PdfPath, message.QuotationViewModels.PdfFile);
+                _quotationDomainService.AddDocumentToQuotation(newQuotationId, newDocumentId);
+            }
         }
 
         private int AddNewQuotation(NewQuotationViewModel quotationViewModel)

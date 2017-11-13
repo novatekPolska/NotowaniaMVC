@@ -12,18 +12,25 @@ namespace NotowaniaMVC.Application.Quotations.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime QuotationDate { get; set; }
-        public int? FuelType { get; set; }
+        [Required]
+        public int? FuelType { get; set; } 
         public string FuelTypeName { get; set; }
+        [Required]
         public int? Currency { get; set; } //waluta
         public string CurrencyName { get; set; } //waluta - nazwa
+        [Required]
         public int? QuotationType { get; set; } //typ notowania np propan/butan/mix
         public string QuotationTypeName { get; set; }
+        [Required]
         public decimal PriceNettoMin { get; set; }
+        [Required]
         public decimal PriceNettoMax { get; set; }
+        public object Pdf { get; set; }
         public Stream PdfFile { get; set; }
         public int? PdfId { get; set; }
         public string PdfName { get; set; }
         public string PdfPath { get; set; }
+        [Required]
         public int? Unit { get; set; }
 
         //Zmiennne do wypelnienia kontrole ListBoxFor (Listy rozwijalne)

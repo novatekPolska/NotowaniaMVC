@@ -26,9 +26,16 @@ namespace NotowaniaMVC.Controllers.Quotations
         }
 
         [HttpPost]
+        public ActionResult GeneratePDF(NewQuotationViewModel newQuotationModel) //działa, przekazuje pdfa do modelu
+        { 
+            //return File(PdfFile.InputStream, "application/pdf");
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Add(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile)
         {
-            if (PdfFile != null)
+            if (PdfFile != null) //todo do handlera
             {
                 newQuotationModel.PdfFile = PdfFile.InputStream;
                 newQuotationModel.PdfName = PdfFile.FileName;
@@ -36,7 +43,8 @@ namespace NotowaniaMVC.Controllers.Quotations
             }
 
             _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel });
-            return View("Quotations", newQuotationModel);
+            var quotationViewModel = _mediator.Send(new GetDataForNewQuotationQuery()).Result;
+            return View("Quotations", quotationViewModel);
         }
 
         [HttpGet]
