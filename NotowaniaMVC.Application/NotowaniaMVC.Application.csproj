@@ -401,6 +401,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documents\Handlers\CommandHandlers\Messages\NewTemporaryDocumentCommand.cs" />
+    <Compile Include="Documents\Handlers\CommandHandlers\TemporaryDocumentsCommandHandler.cs" />
     <Compile Include="FuelPrices\Handlers\CommandHandlers\FuelPricesCommandHandler.cs" />
     <Compile Include="Quotations\Handlers\CommandHandlers\Messages\NewQuotationCommand.cs" />
     <Compile Include="FuelPrices\Interfaces\IFuelPriceService.cs" />

@@ -12,7 +12,7 @@
     @model NotowaniaMVC.Application.Quotations.ViewModels.NewQuotationViewModel
       
     @using GridMvc.Html 
-@using System.IO
+    @using System.IO
     
     @{
         ViewData["Title"] = "Notowania";
@@ -23,26 +23,14 @@
 @using (Ajax.BeginForm("Add", "Quotations", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "target" }, new { enctype = "multipart/form-data" }))
 { 
     <script type="text/javascript">
-
-        function changePdfPreview() {
-            var docValue = document.getElementById("PdfFile")
-            return docValue
-        };
-
-        function test() {
-            var pdf = document.getElementById("PdfFile")
+        function test(files) { 
             var pdfhidden = document.getElementById("Pdf")
-            pdfhidden.value = pdf
+            var pdfBox = document.getElementById("pdfbox")
 
-            var file = pdf.files[0]
-             
-            var data = file
-
+            pdfhidden.value = files
             var form = $('form').get(0)
-            alert(form)
             var fd = new FormData(form)
-            alert(fd) 
-           
+             
             $.ajax({
                 type: "POST",
                 url: "/Quotations/GeneratePDF",
@@ -50,8 +38,13 @@
                 mimeType: "multipart/form-data",
                 contentType: false,
                 cache: false,
-                processData: false
-
+                processData: false,
+                success: function (data) {  
+                    pdfBox.src = data  
+                },
+                error: function () {
+                    alert('Błąd wyswietlania podglądu pliku PDF.');
+                }
                 })
         };
 
@@ -72,49 +65,20 @@
                                         <i class="fa fa-cloud-upload"></i>
                                         <img src="@Url.Content("~/Content/AddPdf.png")" height="40" width="40" />
                                     </label>
-                                <input id="PdfFile" type="file" name="PdfFile" value="PdfFile" onchange="test()"/> 
+                                <input id="PdfFile" type="file" name="PdfFile" value="PdfFile" onchange="test(this.files)"/> 
                               
                                 @ViewBag.FileStatus 
                         </td>
-                    </tr>
-                    <tr>
-                        <td height="60px">
-                            <table class="columns">
-                                <tr class="columns" height="50%">
-                                    <td class="tableColumns" colspan="2">
-                                        @Html.DisplayNameFor(model => model.PdfName)
-                                    </td>
-                                    <td class="columns" width="50%"></td>
-                                </tr>
-                                <tr class="columns" height="50%">
-                                    <td class="tableColumns" width="50%">
-                                        @Html.DisplayNameFor(model => model.PdfName)
-                                    </td>
-                                    <td class="tableColumns">
-                                        <button class="btnDownload" formaction="@Url.Action("DownloadPdf")">
-                                            <img src="@Url.Content("~/Content/PdfDownload.png")" width="40" height="40" />
-                                        </button> 
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                    </tr> 
                     <tr class="columns">
                         <td class="columns">
-                            <object id='pdfbox' type="application/pdf">
-                                Click @Html.ActionLink("here", "GeneratePDF") to view the file.
-                            </object>   
-                            <table class="columns">
-
-                                <tr class="columns">
-                                </tr>
-                            </table>
+                             <iframe id ="pdfbox" style="width:718px; height:700px; color:white; background-color:white" frameborder="0" ></iframe> 
                         </td>
                     </tr>
                 </table> 
             </td> 
                 <td class="bdTbl"> 
-                    <table class="columns">
+                    <table class="controls-row">
                         <tr class="columns">
                             <td class="columns">
                                 <table class="columns">
@@ -122,9 +86,9 @@
                                         <td class="columns">
                                             @(Html.Label("Data notowania: "))
                                         </td>
-                                        <td class="columns"> 
-                                            @Html.TextBoxFor(model => model.QuotationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                                             
+                                        <td class="columns">  
+                                            @Html.TextBoxFor(model => model.QuotationDate, new { @class = "textBox form-control" } )
+                                            @Html.ValidationMessageFor(model => model.QuotationDate)
                                         </td>
                                     </tr>
                                 </table>
@@ -135,7 +99,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ notowania: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model => model.QuotationType, new SelectList(Model.QuotationTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">
+                                        @(Html.DropDownListFor(model => model.QuotationType, new SelectList(Model.QuotationTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))
+                                        @Html.ValidationMessageFor(model => model.QuotationType)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -145,7 +112,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Typ paliwa: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model => model.FuelType, new SelectList(Model.FuelTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">
+                                        @(Html.DropDownListFor(model => model.FuelType, new SelectList(Model.FuelTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))
+                                        @Html.ValidationMessageFor(model => model.FuelType)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -155,7 +125,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Waluta: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model => model.Currency, new SelectList(Model.CurrencyTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">
+                                        @(Html.DropDownListFor(model => model.Currency, new SelectList(Model.CurrencyTypes, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) 
+                                        @Html.ValidationMessageFor(model => model.Currency)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -165,7 +138,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Jednostka: "))</td>
-                                        <td class="columns">@(Html.DropDownListFor(model => model.Unit, new SelectList(Model.Units, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" })) </td>
+                                        <td class="columns">
+                                        @(Html.DropDownListFor(model => model.Unit, new SelectList(Model.Units, "Key", "Value", 0), "- Wybierz -", new { @class = "textBox form-control" }))
+                                        @Html.ValidationMessageFor(model => model.Unit)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -175,7 +151,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Cena netto minimalna: "))</td>
-                                        <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMin, new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">
+                                        @(Html.TextBoxFor(model => model.PriceNettoMin, new { @class = "textBox form-control" }))
+                                        @Html.ValidationMessageFor(model => model.PriceNettoMin)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -185,7 +164,10 @@
                                 <table class="columns">
                                     <tr class="columns">
                                         <td class="columns">@(Html.Label("Cena netto maksymalna: "))</td>
-                                        <td class="columns">@(Html.TextBoxFor(model => model.PriceNettoMax, new { @class = "textBox form-control" }))</td>
+                                        <td class="columns">
+                                        @(Html.TextBoxFor(model => model.PriceNettoMax, new { @class = "textBox form-control" }))
+                                        @Html.ValidationMessageFor(model => model.PriceNettoMax)
+                                        </td>
                                     </tr>
                                 </table>
                             </td>

@@ -7,6 +7,7 @@ using System.Web;
 using System.IO; 
 using System; 
 using NotowaniaMVC.Application.Quotations.Handlers.QueryHandlers.Messages;
+using NotowaniaMVC.Application.Documents.Handlers.CommandHandlers.Messages;
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
@@ -26,10 +27,10 @@ namespace NotowaniaMVC.Controllers.Quotations
         }
 
         [HttpPost]
-        public ActionResult GeneratePDF(NewQuotationViewModel newQuotationModel) //działa, przekazuje pdfa do modelu
+        public string GeneratePDF(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile) 
         { 
-            //return File(PdfFile.InputStream, "application/pdf");
-            return View();
+            _mediator.Send(new NewTemporaryDocumentCommand { PdfFile = PdfFile.InputStream, PdfName = PdfFile.FileName, PdfPath = "C:/Users/szklarek/source/repos/NotowaniaMVC/NotowaniaMVC/Content" }); //todo konfigurowalnia sciezka
+            return "/Content/" + PdfFile.FileName; //todo usunąć sklejaka
         }
 
         [HttpPost]
