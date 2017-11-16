@@ -48,9 +48,7 @@ namespace NotowaniaMVC.Autofac
             builder.Register(c => dbConfig.GetSession());
           //  builder.Register(c => c.Resolve<ISessionFactory>().OpenSession());
 
-            builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
-            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<,>));
-            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<>));
+            
             builder.RegisterType<FuelPriceService>().As<IFuelPriceService>().InstancePerLifetimeScope();
 
             builder.RegisterType<QuotationsRepository>().As<IQuotationsRepository>().InstancePerLifetimeScope(); 
@@ -67,7 +65,6 @@ namespace NotowaniaMVC.Autofac
                     e.ReplaceInstance(genericRepository);
                 }
             }); 
-
             builder.RegisterType<PriceListsRepository>().As<IPriceListsRepository>().InstancePerLifetimeScope();
             builder.RegisterType<FuelTypesRepository>().As<IFuelTypesRepository>().InstancePerLifetimeScope();
             builder.RegisterType<QuotationDomainService>().As<IQuotationDomainService>().InstancePerLifetimeScope();
@@ -85,8 +82,10 @@ namespace NotowaniaMVC.Autofac
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly).AsSelf().AsImplementedInterfaces();
             
-            builder.RegisterControllers(typeof(MvcApplication).Assembly); 
-            
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<,>));
+            builder.RegisterAssemblyTypes(typeof(QuotationsCommandHandler).Assembly).AsClosedTypesOf(typeof(IRequestHandler<>));
             builder
               .Register<SingleInstanceFactory>(ctx => {
                   var c = ctx.Resolve<IComponentContext>();

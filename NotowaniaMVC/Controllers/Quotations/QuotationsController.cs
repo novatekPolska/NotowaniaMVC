@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic; 
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using NotowaniaMVC.Application.Quotations.ViewModels;
 using MediatR;
 using NotowaniaMVC.Application.Quotations.Handlers.CommandHandlers.Messages;
-using System.Web;
-using System.IO; 
-using System; 
+using System.Web;  
 using NotowaniaMVC.Application.Quotations.Handlers.QueryHandlers.Messages;
-using NotowaniaMVC.Application.Documents.Handlers.CommandHandlers.Messages;
+using NotowaniaMVC.Application.Documents.Handlers.CommandHandlers.Messages; 
 
 namespace NotowaniaMVC.Controllers.Quotations
 {
@@ -29,56 +26,38 @@ namespace NotowaniaMVC.Controllers.Quotations
         [HttpPost]
         public string GeneratePDF(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile) 
         { 
-            _mediator.Send(new NewTemporaryDocumentCommand { PdfFile = PdfFile.InputStream, PdfName = PdfFile.FileName, PdfPath = "C:/Users/szklarek/source/repos/NotowaniaMVC/NotowaniaMVC/Content" }); //todo konfigurowalnia sciezka
+            _mediator.Send(new NewTemporaryDocumentCommand { PdfFile = PdfFile.InputStream, PdfName = PdfFile.FileName, PdfPath = "C:/Users/szklarek/source/repos/NotowaniaMVC/NotowaniaMVC/Content/" }); //todo konfigurowalnia sciezka
             return "/Content/" + PdfFile.FileName; //todo usunąć sklejaka
         }
 
         [HttpPost]
-        public ActionResult Add(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile)
+        public void Add(NewQuotationViewModel newQuotationModel, HttpPostedFileBase PdfFile)
         {
-            if (PdfFile != null) //todo do handlera
+            if (PdfFile != null) //todo do handlera bo to logika aplikacyjna
             {
                 newQuotationModel.PdfFile = PdfFile.InputStream;
                 newQuotationModel.PdfName = PdfFile.FileName;
-                newQuotationModel.PdfPath = "C:/"; 
-            }
-
-            _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel });
-            var quotationViewModel = _mediator.Send(new GetDataForNewQuotationQuery()).Result;
-            return View("Quotations", quotationViewModel);
+                newQuotationModel.PdfPath = "C:/Users/szklarek/"; 
+            } 
+            _mediator.Send(new NewQuotationCommand { QuotationViewModels = newQuotationModel }); 
         }
-
-        [HttpGet]
+ 
+        [HttpPost]
         public ActionResult GetDataForGrid()
         {
-            var list = new List<QuotationsViewModel>();
-            list.Add(new QuotationsViewModel { Id = 1, CurrencyName = "test", FuelTypeName = "test", PdfPath = "C:/", PriceNettoMax = 5, PriceNettoMin = 4, UnitName = "test", QuotationTypeName = "test", QuotationDate = DateTime.Today });
-            return Json(list);
+            return InitialGrid();
         }
 
-        [HttpPost]
-        public ActionResult SavePdf(HttpPostedFileBase PdfFile)
+        [ChildActionOnly] 
+        public PartialViewResult InitialDataForPartialQuotationGrid()
         {
-            var pdf = PdfFile.InputStream;
-            var pdfName = PdfFile.FileName;
-            //   var streamWritter = new StreamWriter(pdf);
+            return InitialGrid();
+        } 
 
-            string path = @"C:\Users\szklarek\Documents\" + pdfName;
-             
-            using (FileStream fs = System.IO.File.Create(path, (int)pdf.Length))
-            {
-                byte[] bytesInStream = new byte[pdf.Length];
-                pdf.Read(bytesInStream, 0, bytesInStream.Length);
-                fs.Write(bytesInStream, 0, bytesInStream.Length);
-            }
-
-            return View("Quotations", new NewQuotationViewModel());
-        }
-
-        public ActionResult Cancel()
+        private PartialViewResult InitialGrid()
         {
-            return View();
+            var results = _mediator.Send(new GetDataSourceForQuotationsGridQuery());
+            return PartialView("QuotationGrid", results.Result);
         }
-         
     }
 }
